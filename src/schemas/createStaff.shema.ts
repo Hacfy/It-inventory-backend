@@ -7,7 +7,7 @@ export const CeateStaffShema = z.object({
       password : z.string().min(6 , "Minimum 6 charector required"),
       phone : z.string().min(10).max(15),
       collegeId: z.number(),
-      adminId: z.number()
+      adminId: z.number(),
 });
 
 export const StaffLoginSchema = z.object({
