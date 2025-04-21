@@ -1,0 +1,1 @@
+{"version":3,"file":"warehouse.schema.js","sourceRoot":"","sources":["../../src/schemas/warehouse.schema.ts"],"names":[],"mappings":";;;AAAA,6BAAsB;AAIT,QAAA,eAAe,GAAG,OAAC,CAAC,MAAM,CAAC;IACpC,IAAI,EAAG,OAAC,CAAC,MAAM,EAAE,CAAC,GAAG,CAAC,CAAC,EAAG,4BAA4B,CAAC;IACvD,WAAW,EAAG,OAAC,CAAC,MAAM,EAAE,CAAC,GAAG,CAAC,CAAC,EAAG,wBAAwB,CAAC;CAG7D,CAAC,CAAA"}

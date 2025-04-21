@@ -1,0 +1,36 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const college_routes_1 = __importDefault(require("./routes/college.routes"));
+const admin_routes_1 = __importDefault(require("./routes/admin.routes"));
+const warehouse_routes_1 = __importDefault(require("./routes/warehouse.routes"));
+const createStaff_routes_1 = __importDefault(require("./routes/createStaff.routes"));
+const compnent_routes_1 = __importDefault(require("./routes/compnent.routes"));
+const staff_routes_1 = __importDefault(require("./routes/staff.routes"));
+const componentRequest_routes_1 = __importDefault(require("./routes/componentRequest.routes"));
+const createDepartment_routes_1 = __importDefault(require("./routes/createDepartment.routes"));
+const createHod_routes_1 = __importDefault(require("./routes/createHod.routes"));
+const createLab_routes_1 = __importDefault(require("./routes/createLab.routes"));
+const report_routes_1 = __importDefault(require("./routes/report.routes"));
+const reportview_routes_1 = __importDefault(require("./routes/reportview.routes"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use('/api/admin', auth_routes_1.default);
+app.use('/api/college', college_routes_1.default);
+app.use('/api/admin', admin_routes_1.default);
+app.use('/api/warehouse', warehouse_routes_1.default);
+app.use('/api/staff', createStaff_routes_1.default);
+app.use("/api/component", compnent_routes_1.default);
+app.use("/api/staff", staff_routes_1.default);
+app.use("/api", componentRequest_routes_1.default);
+app.use("/api/department", createDepartment_routes_1.default);
+app.use("/api/hod", createHod_routes_1.default);
+app.use("/api/lab", createLab_routes_1.default);
+app.use("/api/report", report_routes_1.default);
+app.use("/api/report", reportview_routes_1.default);
+app.listen(process.env.PORT || 5000, () => console.log(`Server running on port ${process.env.PORT}`));
+//# sourceMappingURL=server.js.map
