@@ -33,4 +33,4 @@ app.use("/api/lab", createLab_routes_1.default);
 app.use("/api/report", report_routes_1.default);
 app.use("/api/report", reportview_routes_1.default);
 app.listen(process.env.PORT || 5000, () => console.log(`Server running on port ${process.env.PORT}`));
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=index.js.map
