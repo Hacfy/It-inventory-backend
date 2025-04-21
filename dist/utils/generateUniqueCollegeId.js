@@ -24,4 +24,3 @@ const generateUniqueCollegeId = () => __awaiter(void 0, void 0, void 0, function
     return newId;
 });
 exports.generateUniqueCollegeId = generateUniqueCollegeId;
-//# sourceMappingURL=generateUniqueCollegeId.js.map

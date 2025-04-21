@@ -8,4 +8,3 @@ const componentRequest_controllers_1 = require("../controllers/componentRequest.
 const router = express_1.default.Router();
 router.post('/request', componentRequest_controllers_1.requestComponentCreation);
 exports.default = router;
-//# sourceMappingURL=componentRequest.routes.js.map

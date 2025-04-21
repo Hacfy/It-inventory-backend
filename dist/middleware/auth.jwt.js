@@ -44,4 +44,3 @@ const verifyToken = (role) => {
 exports.verifyAdminToken = verifyToken("ADMIN");
 exports.verifyStaffToken = verifyToken("STAFF");
 exports.verifyHODToken = verifyToken("HOD");
-//# sourceMappingURL=auth.jwt.js.map

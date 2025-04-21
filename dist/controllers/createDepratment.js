@@ -110,4 +110,3 @@ const getAllDepartment = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getAllDepartment = getAllDepartment;
-//# sourceMappingURL=createDepratment.js.map

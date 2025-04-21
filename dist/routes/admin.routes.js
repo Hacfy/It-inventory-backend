@@ -12,4 +12,3 @@ router.get('/all', admin_controllers_1.getAllAdmins);
 router.get('/:id', admin_controllers_1.getAdminById);
 router.delete('/delete/:id', admin_controllers_1.deleteAdmin);
 exports.default = router;
-//# sourceMappingURL=admin.routes.js.map

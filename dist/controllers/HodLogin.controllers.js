@@ -83,4 +83,3 @@ const meHOD = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.meHOD = meHOD;
-//# sourceMappingURL=HodLogin.controllers.js.map

@@ -12,4 +12,3 @@ router.get('/me', auth_jwt_1.verifyAdminToken, authcontroller_1.me);
 router.post('/forgot-password', authcontroller_1.forgotPassword);
 router.post('/reset-password', authcontroller_1.resetPassword);
 exports.default = router;
-//# sourceMappingURL=auth.routes.js.map

@@ -7,4 +7,3 @@ exports.CreateCollegeSchema = zod_1.z.object({
     address: zod_1.z.string().min(1),
     collegeId: zod_1.z.string().optional(),
 });
-//# sourceMappingURL=collage.schema.js.map

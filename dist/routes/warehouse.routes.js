@@ -9,4 +9,3 @@ const auth_jwt_1 = require("../middleware/auth.jwt");
 const router = express_1.default.Router();
 router.post('/create', auth_jwt_1.verifyAdminToken, warehouse_1.createWarehouse);
 exports.default = router;
-//# sourceMappingURL=warehouse.routes.js.map

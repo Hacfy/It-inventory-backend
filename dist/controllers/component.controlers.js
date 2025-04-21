@@ -101,4 +101,3 @@ const getComponentId = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getComponentId = getComponentId;
-//# sourceMappingURL=component.controlers.js.map

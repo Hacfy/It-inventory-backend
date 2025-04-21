@@ -12,4 +12,3 @@ router.get('/me', auth_jwt_1.verifyStaffToken, staff_controllers_1.me);
 router.post('/forgot-password', staff_controllers_1.forgotPassword);
 router.post('/reset-password', staff_controllers_1.resetPassword);
 exports.default = router;
-//# sourceMappingURL=staff.routes.js.map

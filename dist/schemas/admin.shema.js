@@ -18,4 +18,3 @@ exports.AdminLoginSchema = zod_1.z.object({
     email: zod_1.z.string().email(),
     password: zod_1.z.string().min(6),
 });
-//# sourceMappingURL=admin.shema.js.map

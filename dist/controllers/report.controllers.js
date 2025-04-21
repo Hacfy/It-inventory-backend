@@ -62,4 +62,3 @@ const updateComponentStatus = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.updateComponentStatus = updateComponentStatus;
-//# sourceMappingURL=report.controllers.js.map

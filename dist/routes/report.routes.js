@@ -9,4 +9,3 @@ const auth_jwt_1 = require("../middleware/auth.jwt");
 const router = express_1.default.Router();
 router.post("/update", auth_jwt_1.verifyHODToken, report_controllers_1.updateComponentStatus);
 exports.default = router;
-//# sourceMappingURL=report.routes.js.map

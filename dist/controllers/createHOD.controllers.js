@@ -170,4 +170,3 @@ const getAllHod = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getAllHod = getAllHod;
-//# sourceMappingURL=createHOD.controllers.js.map

@@ -42,4 +42,3 @@ const createCollege = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createCollege = createCollege;
-//# sourceMappingURL=college.js.map

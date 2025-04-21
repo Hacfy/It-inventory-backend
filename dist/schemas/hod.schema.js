@@ -15,4 +15,3 @@ exports.HodLoginSchema = zod_1.z.object({
     email: zod_1.z.string().email(),
     password: zod_1.z.string().min(6, "Strong password is required")
 });
-//# sourceMappingURL=hod.schema.js.map

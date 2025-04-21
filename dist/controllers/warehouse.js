@@ -51,4 +51,3 @@ const createWarehouse = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.createWarehouse = createWarehouse;
-//# sourceMappingURL=warehouse.js.map

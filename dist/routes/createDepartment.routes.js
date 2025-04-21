@@ -9,4 +9,3 @@ const auth_jwt_1 = require("../middleware/auth.jwt");
 const router = express_1.default.Router();
 router.post("/create", auth_jwt_1.verifyAdminToken, createDepratment_1.createDepartment);
 exports.default = router;
-//# sourceMappingURL=createDepartment.routes.js.map

@@ -161,4 +161,3 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.resetPassword = resetPassword;
-//# sourceMappingURL=staff.controllers.js.map

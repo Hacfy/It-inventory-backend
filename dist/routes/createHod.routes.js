@@ -10,4 +10,3 @@ router.post("/:hodId/departments", auth_jwt_1.verifyAdminToken, createHOD_contro
 router.post("/login", HodLogin_controllers_1.hodLogin);
 router.get("/me", auth_jwt_1.verifyHODToken, HodLogin_controllers_1.meHOD);
 exports.default = router;
-//# sourceMappingURL=createHod.routes.js.map

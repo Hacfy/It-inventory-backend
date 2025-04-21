@@ -7,4 +7,3 @@ exports.ComponentSchema = zod_1.z.object({
     type: zod_1.z.string(),
     brand: zod_1.z.string().min(2, "Brand nam eis reuired"),
 });
-//# sourceMappingURL=component.schema.js.map

@@ -12,4 +12,3 @@ router.get("/all", createStaff_controllers_1.getAllStaff);
 router.get("/:id", createStaff_controllers_1.getStaffById);
 router.delete("/delete/:id", createStaff_controllers_1.deleteStaff);
 exports.default = router;
-//# sourceMappingURL=createStaff.routes.js.map
