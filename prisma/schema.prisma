@@ -1,0 +1,214 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model Admin {
+//   id               Int         @id @default(autoincrement())
+//   name             String
+//   email            String      @unique
+//   password         String
+//   phone            String
+//   role             Role        @default(ADMIN)
+//   resetToken       String?
+//   resetTokenExpiry DateTime?
+  
+  
+//   colleges         College[]  
+
+//   staffs           Staff[]
+//   warehouses       Warehouse[]
+//   component        Component[]
+//   HOD              HOD[]
+//   Department       Department[]
+//   Lab              Lab[]
+// }
+model Admin {
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String    @unique
+  password         String
+  phone            String
+  role             Role      @default(ADMIN)
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @default(now()) @updatedAt
+
+  colleges         College[]  
+  staffs           Staff[]
+  warehouses       Warehouse[]
+  component        Component[]
+  HOD              HOD[]
+  Department       Department[]
+  Lab              Lab[]
+}
+
+model College {
+  id         Int         @id @default(autoincrement())
+  name       String
+  address    String
+  collegeId  String      @unique
+  
+  
+  adminId    Int         
+  admin      Admin       @relation(fields: [adminId], references: [id])
+
+  staffs     Staff[]
+  warehouses Warehouse[]  
+  component  Component[]
+  hod        HOD[]
+  Department Department[]
+}
+
+model Warehouse {
+  id          Int     @id @default(autoincrement())
+  name        String
+  collegeId   Int
+  adminId     Int
+  warehouseId String  @unique  
+  admin       Admin   @relation(fields: [adminId], references: [id])
+  college     College @relation(fields: [collegeId], references: [id])
+  component   Component[]  
+}
+
+model Staff {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  password    String
+  phone       String
+  collegeId   Int
+  adminId     Int
+  role        Role     @default(STAFF)
+  resetToken  String?
+  resetTokenExpiry DateTime?
+  admin       Admin    @relation(fields: [adminId], references: [id])
+  college     College  @relation(fields: [collegeId], references: [id])
+  componentRequest  ComponentRequest[]
+}
+
+model ComponentRequest {
+  id               Int      @id @default(autoincrement())
+  name             String
+  brand            String
+  modelNumber      String
+  serialNumber     String
+  createdAt        DateTime @default(now())
+  staffId          Int
+  type             String
+  status           String
+  createdByStaffId Int?
+  staff            Staff    @relation(fields: [staffId], references: [id])
+}
+model HOD {
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  phone       String
+  password    String
+  collegeId   Int
+  adminId     Int
+  role        Role          @default(HOD)
+  admin       Admin         @relation(fields: [adminId], references: [id])
+  college     College       @relation(fields: [collegeId], references: [id])
+  departments Department[]  @relation("HODDepartments") 
+
+  Report Report[]
+}
+model Lab {
+  id           Int          @id @default(autoincrement())
+  name         String
+  departmentId Int
+  adminId      Int?
+  department   Department  @relation(fields: [departmentId], references: [id])
+  admin        Admin?      @relation(fields: [adminId], references: [id])
+  components   Component[]
+}
+
+model Component {
+  id           Int           @id @default(autoincrement())
+  name         String
+  brand        String
+  modelNumber  String       @unique
+  serialNumber String       @unique    
+  collegeId    Int
+  warehouseId  Int
+  adminId      Int
+  labId        Int           
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt
+   status       Status        @default(WORKING)
+  type         ComponentType
+  admin        Admin         @relation(fields: [adminId], references: [id])
+  college      College       @relation(fields: [collegeId], references: [id])
+  warehouse    Warehouse     @relation(fields: [warehouseId], references: [id])
+  lab          Lab           @relation(fields: [labId], references: [id])
+
+  @@index([labId])
+  @@index([status])
+  Report Report[]
+  Department Department[]
+}
+
+model Department {
+  id           Int      @id @default(autoincrement())
+  name         String
+  departmentId String   @unique
+  collegeId    Int
+  adminId      Int
+  hodId        Int?
+  admin        Admin    @relation(fields: [adminId], references: [id])
+  college      College  @relation(fields: [collegeId], references: [id])
+  hod          HOD?     @relation("HODDepartments", fields: [hodId], references: [id])  
+  Lab          Lab[]    
+  components   Component[]
+  Report Report[]
+}
+
+model Report {
+  id          Int      @id @default(autoincrement())
+  componentId Int
+  hodId       Int
+  status      Status
+  message     String
+  createdAt   DateTime @default(now())
+  departmentId Int
+  department  Department @relation(fields: [departmentId], references: [id])
+  component   Component @relation(fields: [componentId], references: [id])
+  hod         HOD       @relation(fields: [hodId], references: [id])
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ComponentType {
+  MONITOR
+  KEYBOARD
+  MOUSE
+  CPU
+  PRINTER
+  OTHER
+}
+
+enum Status {
+  WORKING
+  FAULTY
+  UNDER_REPAIR
+  REPLACED
+}
+
+enum Role {
+  ADMIN
+  STAFF
+  HOD
+}
+
