@@ -1,22 +1,13 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getReportById = exports.getAllReports = void 0;
+// import { PrismaClient } from '@prisma/client';
 const prisma_1 = require("../generated/prisma");
 const prisma = new prisma_1.PrismaClient();
-const getAllReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    const adminId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+const getAllReports = async (req, res) => {
+    const adminId = req.user?.id;
     try {
-        const reports = yield prisma.report.findMany({
+        const reports = await prisma.report.findMany({
             orderBy: {
                 createdAt: 'desc'
             },
@@ -49,15 +40,15 @@ const getAllReports = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             error: error.message,
         });
     }
-});
+};
 exports.getAllReports = getAllReports;
-const getReportById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getReportById = async (req, res) => {
     const id = Number(req.params.id);
     if (isNaN(id)) {
         return res.status(400).json({ message: "Invalid report ID" });
     }
     try {
-        const report = yield prisma.report.findUnique({
+        const report = await prisma.report.findUnique({
             where: { id },
             include: {
                 component: true,
@@ -80,5 +71,5 @@ const getReportById = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             error: error.message,
         });
     }
-});
+};
 exports.getReportById = getReportById;

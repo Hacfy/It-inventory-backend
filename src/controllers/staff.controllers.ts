@@ -1,7 +1,8 @@
 
 import { StaffLoginSchema } from "../schemas/createStaff.shema";
 import bcrypt from "bcryptjs";
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '../generated/prisma';
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer"
 import dotenv from "dotenv";
@@ -22,83 +23,83 @@ const transporter = nodemailer.createTransport({
 })
 
 export const loginStaff = async (req:any , res: any) => {
-    if (!JWT_SECRET) {
-        console.error("JWT_SECRET is not defined in .env");
-        return res.status(500).json({ message: "Internal server error" });
-    }
+    // if (!JWT_SECRET) {
+    //     console.error("JWT_SECRET is not defined in .env");
+    //     return res.status(500).json({ message: "Internal server error" });
+    // }
 
-    const parsed = StaffLoginSchema.safeParse(req.body);
-    if (!parsed.success) {
-        return res.status(400).json({ message: "Validation failed", errors: parsed.error.flatten() });
-    }
+    // const parsed = StaffLoginSchema.safeParse(req.body);
+    // if (!parsed.success) {
+    //     return res.status(400).json({ message: "Validation failed", errors: parsed.error.flatten() });
+    // }
 
-    const { email, password } = parsed.data;
+    // const { email, password } = parsed.data;
 
-    try {
-        const staff = await prisma.staff.findUnique({
-            where: { email }
-        });
+    // try {
+    //     const staff = await prisma.staff.findUnique({
+    //         where: { email }
+    //     });
 
-        if (!staff) {
-            return res.status(404).json({ message: "Staff not found" });
-        }
+    //     if (!staff) {
+    //         return res.status(404).json({ message: "Staff not found" });
+    //     }
 
-        const isMatch = await bcrypt.compare(password, staff.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: "Invalid password" });
-        }
+    //     const isMatch = await bcrypt.compare(password, staff.password);
+    //     if (!isMatch) {
+    //         return res.status(401).json({ message: "Invalid password" });
+    //     }
 
-        const token = jwt.sign(
-            { id: staff.id, email: staff.email, role: "STAFF" }, 
-            process.env.JWT_SECRET as string, 
-            { expiresIn: "7d" }
-          );
+    //     const token = jwt.sign(
+    //         { id: staff.id, email: staff.email, role: "STAFF" }, 
+    //         process.env.JWT_SECRET as string, 
+    //         { expiresIn: "7d" }
+    //       );
           
 
-        return res.status(200).json({
-            success: true,
-            message: "Login successful",
-            token,
-            staff: {
-                id: staff.id,
-                name: staff.name,
-                email: staff.email,
-                role: staff.role
-            }
-        });
-    } catch (err) {
-        console.error("Login error:", err);
-        return res.status(500).json({ message: "Something went wrong" });
-    }
+    //     return res.status(200).json({
+    //         success: true,
+    //         message: "Login successful",
+    //         token,
+    //         staff: {
+    //             id: staff.id,
+    //             name: staff.name,
+    //             email: staff.email,
+    //             role: staff.role
+    //         }
+    //     });
+    // } catch (err) {
+    //     console.error("Login error:", err);
+    //     return res.status(500).json({ message: "Something went wrong" });
+    // }
 };
 
 
 export const me = async (req: any, res: any) => {
-  try {
-    const { id } = (req as any).user;
+//   try {
+//     const { id } = (req as any).user;
 
-    const staff = await prisma.staff.findUnique({
-      where: { id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-      },
-    });
+//     const staff = await prisma.staff.findUnique({
+//       where: { id },
+//       select: {
+//         id: true,
+//         name: true,
+//         email: true,
+//         role: true,
+//       },
+//     });
 
-    if (!staff) {
-        return res.status(404).json({ message: 'Staff not found' });
-      }
+//     if (!staff) {
+//         return res.status(404).json({ message: 'Staff not found' });
+//       }
       
-    return res.status(200).json({
-      message: 'staff info fetched successfully',
-      staff,
-    });
-  } catch (error) {
-    console.error('Error fetching staff info:', error);
-    return res.status(500).json({ message: 'Internal server error' });
-  }
+//     return res.status(200).json({
+//       message: 'staff info fetched successfully',
+//       staff,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching staff info:', error);
+//     return res.status(500).json({ message: 'Internal server error' });
+//   }
 };
   
   

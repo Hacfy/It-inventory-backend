@@ -1,35 +1,26 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getComponentId = exports.getAllComponent = exports.createComponent = void 0;
 const prisma_1 = require("../generated/prisma");
 const component_schema_1 = require("../schemas/component.schema");
+// import { PrismaClient, Status } from '@prisma/client';
 const prisma = new prisma_1.PrismaClient();
-const createComponent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+const createComponent = async (req, res) => {
     const parsed = component_schema_1.ComponentSchema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({ error: parsed.error.flatten() });
     }
     try {
         const { name, type, brand, modelNumber, serialNumber, collegeId, labId, warehouseId } = req.body;
-        const adminId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+        const adminId = req.user?.id;
         if (!name || !type || !brand || !modelNumber || !serialNumber || !collegeId || !labId || !adminId || !warehouseId) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
-        const lab = yield prisma.lab.findUnique({ where: { id: labId } });
+        const lab = await prisma.lab.findUnique({ where: { id: labId } });
         if (!lab) {
             return res.status(404).json({ success: false, message: "Lab not found" });
         }
-        const component = yield prisma.component.create({
+        const component = await prisma.component.create({
             data: {
                 name,
                 type,
@@ -48,9 +39,9 @@ const createComponent = (req, res) => __awaiter(void 0, void 0, void 0, function
         console.error('Error creating component:', error);
         return res.status(500).json({ success: false, message: 'Error creating component', error: error.message });
     }
-});
+};
 exports.createComponent = createComponent;
-const getAllComponent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllComponent = async (req, res) => {
     const { collegeId, adminId, labId, warehouseId, status } = req.params;
     const validStatuses = ['WORKING', 'FAULTY', 'UNDER_REPAIR', 'REPLACED'];
     if (status && !validStatuses.includes(status)) {
@@ -58,7 +49,7 @@ const getAllComponent = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
     try {
         const prismaStatus = status ? prisma_1.Status[status] : undefined;
-        const components = yield prisma.component.findMany({
+        const components = await prisma.component.findMany({
             where: {
                 collegeId: Number(collegeId),
                 adminId: Number(adminId),
@@ -76,12 +67,12 @@ const getAllComponent = (req, res) => __awaiter(void 0, void 0, void 0, function
         console.error('Error fetching components:', err);
         return res.status(500).json({ message: 'Internal server error' });
     }
-});
+};
 exports.getAllComponent = getAllComponent;
-const getComponentId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getComponentId = async (req, res) => {
     const id = Number(req.params.id);
     try {
-        const component = yield prisma.component.findUnique({
+        const component = await prisma.component.findUnique({
             where: { id: id },
             include: {
                 college: true,
@@ -99,5 +90,5 @@ const getComponentId = (req, res) => __awaiter(void 0, void 0, void 0, function*
         console.error('Error fetching component:', err);
         return res.status(500).json({ message: 'Internal server error' });
     }
-});
+};
 exports.getComponentId = getComponentId;

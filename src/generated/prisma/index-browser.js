@@ -146,32 +146,6 @@ exports.Prisma.WarehouseScalarFieldEnum = {
   warehouseId: 'warehouseId'
 };
 
-exports.Prisma.StaffScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  password: 'password',
-  phone: 'phone',
-  collegeId: 'collegeId',
-  adminId: 'adminId',
-  role: 'role',
-  resetToken: 'resetToken',
-  resetTokenExpiry: 'resetTokenExpiry'
-};
-
-exports.Prisma.ComponentRequestScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  brand: 'brand',
-  modelNumber: 'modelNumber',
-  serialNumber: 'serialNumber',
-  createdAt: 'createdAt',
-  staffId: 'staffId',
-  type: 'type',
-  status: 'status',
-  createdByStaffId: 'createdByStaffId'
-};
-
 exports.Prisma.HODScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -241,7 +215,6 @@ exports.Prisma.NullsOrder = {
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
-  STAFF: 'STAFF',
   HOD: 'HOD'
 };
 
@@ -265,8 +238,6 @@ exports.Prisma.ModelName = {
   Admin: 'Admin',
   College: 'College',
   Warehouse: 'Warehouse',
-  Staff: 'Staff',
-  ComponentRequest: 'ComponentRequest',
   HOD: 'HOD',
   Lab: 'Lab',
   Component: 'Component',

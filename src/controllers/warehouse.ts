@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/prisma"
+import { PrismaClient } from '@prisma/client';
 import { WareHouseSchema } from "../schemas/warehouse.schema";
 import { Response , Request } from "express";
 const prisma = new PrismaClient();

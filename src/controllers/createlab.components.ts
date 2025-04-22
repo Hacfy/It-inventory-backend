@@ -1,7 +1,7 @@
 import { PrismaClient } from '../generated/prisma';
 import express from 'express';
 import { LabSchema } from '../schemas/lab.schema';
-
+// import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const createLab = async (req: any, res:any) => {
@@ -16,7 +16,7 @@ export const createLab = async (req: any, res:any) => {
 
     const department = await prisma.department.findUnique({
       where: { id: departmentId },
-      include: { hod: true }
+      include: { HOD: true }
     });
 
     if (!department) {
@@ -24,7 +24,7 @@ export const createLab = async (req: any, res:any) => {
     }
 
    
-    if (!department.hodId || !department.hod) {
+    if (!department.hodId || !department.HOD) {
       return res.status(400).json({ message: "Department has no assigned HOD" });
     }
 
@@ -68,7 +68,7 @@ export const getLabById = async ( req : any , res : any)=>{
       include : {
         department : true ,
         admin : true ,
-         components : true 
+       
 
       }
     });
@@ -89,7 +89,7 @@ export const getAllLab = async(req : any , res : any )=>{
       include : {
         department : true ,
         admin : true ,
-        components : true 
+      
          
       }
     });

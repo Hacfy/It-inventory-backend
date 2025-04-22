@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { PrismaClient } from '../generated/prisma';
 import { DepartmentSchema } from '../schemas/department.schema';
 import express from 'express';
+// import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
@@ -71,8 +72,8 @@ export const getDepartmentId = async (req: any, res: any) => {
       include: {
         admin: true,
         college: true,
-        components: true,
-        hod: true, 
+
+        HOD: true, 
       },
     });
 
@@ -98,7 +99,7 @@ export const getAllDepartment = async (req : any , res : any ) => {
         include : {
           admin  : true ,
           college : true ,
-          components  : true 
+         
         }
       });
       if(!departments) {

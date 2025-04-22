@@ -1,7 +1,7 @@
 import { PrismaClient, Status } from '../generated/prisma';
 import express from 'express';
 import { ComponentSchema } from '../schemas/component.schema';
-
+// import { PrismaClient, Status } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const createComponent = async (req: any, res: any) => {

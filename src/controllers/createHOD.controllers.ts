@@ -4,7 +4,7 @@ import { PrismaClient } from '../generated/prisma';
 import express from 'express';
 import { HodSignupSchema } from '../schemas/hod.schema';
 import { number } from 'zod';
-
+// import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const createHOD = async (req:any, res:any) => {

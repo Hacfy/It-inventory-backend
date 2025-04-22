@@ -1,3 +1,9 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -39,13 +45,33 @@ model Admin {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @default(now()) @updatedAt
 
-  colleges   College[]
-  staffs     Staff[]
-  warehouses Warehouse[]
-  component  Component[]
-  HOD        HOD[]
+  // colleges         College[]  
+  // staffs           Staff[]
+  // warehouses       Warehouse[]
+  // component        Component[]
+  // HOD              HOD[]
+  // Department       Department[]
+  // Lab              Lab[]
+
+  // College College[]
+
+  // Warehouse Warehouse[]
+
+  // Department Department[]
+
+  College College[]
+
+  Warehouse Warehouse[]
+
   Department Department[]
-  Lab        Lab[]
+
+  // HOD HOD[]
+
+  HOD HOD[]
+
+  Lab Lab[]
+
+  Component Component[]
 }
 
 model College {
@@ -57,54 +83,68 @@ model College {
   adminId Int
   admin   Admin @relation(fields: [adminId], references: [id])
 
-  staffs     Staff[]
-  warehouses Warehouse[]
-  component  Component[]
-  hod        HOD[]
+  // staffs     Staff[]
+  // warehouses Warehouse[]  
+  // component  Component[]
+  // hod        HOD[]
+  // Department Department[]
+
+  // Warehouse Warehouse[]
+
+  // Department Department[]
+
   Department Department[]
+
+  // HOD HOD[]
+
+  HOD HOD[]
+
+  Component Component[]
 }
 
+// 
 model Warehouse {
-  id          Int         @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   name        String
   collegeId   Int
   adminId     Int
-  warehouseId String      @unique
-  admin       Admin       @relation(fields: [adminId], references: [id])
-  college     College     @relation(fields: [collegeId], references: [id])
-  component   Component[]
+  warehouseId String @unique
+  admin       Admin  @relation(fields: [adminId], references: [id])
+  // college     College @relation(fields: [collegeId], references: [id])
+  // component   Component[]  
+
+  Component Component[]
 }
 
-model Staff {
-  id               Int                @id @default(autoincrement())
-  name             String
-  email            String             @unique
-  password         String
-  phone            String
-  collegeId        Int
-  adminId          Int
-  role             Role               @default(STAFF)
-  resetToken       String?
-  resetTokenExpiry DateTime?
-  admin            Admin              @relation(fields: [adminId], references: [id])
-  college          College            @relation(fields: [collegeId], references: [id])
-  componentRequest ComponentRequest[]
-}
+// model Staff {
+//   id          Int      @id @default(autoincrement())
+//   name        String
+//   email       String   @unique
+//   password    String
+//   phone       String
+//   collegeId   Int
+//   adminId     Int
+//   role        Role     @default(STAFF)
+//   resetToken  String?
+//   resetTokenExpiry DateTime?
+//   admin       Admin    @relation(fields: [adminId], references: [id])
+//   college     College  @relation(fields: [collegeId], references: [id])
+//   componentRequest  ComponentRequest[]
+// }
 
-model ComponentRequest {
-  id               Int      @id @default(autoincrement())
-  name             String
-  brand            String
-  modelNumber      String
-  serialNumber     String
-  createdAt        DateTime @default(now())
-  staffId          Int
-  type             String
-  status           String
-  createdByStaffId Int?
-  staff            Staff    @relation(fields: [staffId], references: [id])
-}
-
+// model ComponentRequest {
+//   id               Int      @id @default(autoincrement())
+//   name             String
+//   brand            String
+//   modelNumber      String
+//   serialNumber     String
+//   createdAt        DateTime @default(now())
+//   staffId          Int
+//   type             String
+//   status           String
+//   createdByStaffId Int?
+//   staff            Staff    @relation(fields: [staffId], references: [id])
+// }
 model HOD {
   id          Int          @id @default(autoincrement())
   name        String
@@ -122,13 +162,14 @@ model HOD {
 }
 
 model Lab {
-  id           Int         @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   name         String
   departmentId Int
   adminId      Int?
-  department   Department  @relation(fields: [departmentId], references: [id])
-  admin        Admin?      @relation(fields: [adminId], references: [id])
-  components   Component[]
+  department   Department @relation(fields: [departmentId], references: [id])
+  admin        Admin?     @relation(fields: [adminId], references: [id])
+
+  Component Component[]
 }
 
 model Component {
@@ -149,26 +190,31 @@ model Component {
   college      College       @relation(fields: [collegeId], references: [id])
   warehouse    Warehouse     @relation(fields: [warehouseId], references: [id])
   lab          Lab           @relation(fields: [labId], references: [id])
-  Report       Report[]
+  // Report Report[]
   Department   Department[]
+  Report       Report[]
 
   @@index([labId])
   @@index([status])
 }
 
 model Department {
-  id           Int         @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   name         String
-  departmentId String      @unique
+  departmentId String  @unique
   collegeId    Int
   adminId      Int
   hodId        Int?
-  admin        Admin       @relation(fields: [adminId], references: [id])
-  college      College     @relation(fields: [collegeId], references: [id])
-  hod          HOD?        @relation("HODDepartments", fields: [hodId], references: [id])
-  Lab          Lab[]
-  components   Component[]
-  Report       Report[]
+  admin        Admin   @relation(fields: [adminId], references: [id])
+  college      College @relation(fields: [collegeId], references: [id])
+
+  HOD HOD[] @relation("HODDepartments")
+
+  Lab Lab[]
+
+  Component Component[]
+
+  Report Report[]
 }
 
 model Report {
@@ -182,12 +228,6 @@ model Report {
   department   Department @relation(fields: [departmentId], references: [id])
   component    Component  @relation(fields: [componentId], references: [id])
   hod          HOD        @relation(fields: [hodId], references: [id])
-}
-
-enum RequestStatus {
-  PENDING
-  APPROVED
-  REJECTED
 }
 
 enum ComponentType {
@@ -208,6 +248,6 @@ enum Status {
 
 enum Role {
   ADMIN
-  STAFF
+
   HOD
 }

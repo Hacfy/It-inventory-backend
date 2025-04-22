@@ -8,7 +8,7 @@ import wareHouseRoutes from './routes/warehouse.routes'
 import StaffRoutes from './routes/createStaff.routes'
 import ComponentsRoutes from './routes/compnent.routes'
 import LoginsytaffRoutes from './routes/staff.routes'
-import RequestStaff from './routes/componentRequest.routes'
+// import RequestStaff from './routes/componentRequest.routes'
 import CreateDepartmnt from  './routes/createDepartment.routes'
 import HodRoutes from "./routes/createHod.routes"
 import CreateLab from "./routes/createLab.routes"
@@ -24,7 +24,7 @@ app.use('/api/warehouse', wareHouseRoutes);
 app.use('/api/staff',StaffRoutes);
 app.use("/api/component", ComponentsRoutes);
 app.use("/api/staff",LoginsytaffRoutes);
-app.use("/api", RequestStaff);
+// app.use("/api", RequestStaff);
 app.use("/api/department", CreateDepartmnt);
 app.use("/api/hod",HodRoutes);
 app.use("/api/lab",CreateLab);

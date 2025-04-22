@@ -1,6 +1,6 @@
 import { generateUniqueCollegeId } from '../utils/generateUniqueCollegeId';
 import { CreateCollegeSchema } from '../schemas/collage.schema';
-import { PrismaClient } from "../generated/prisma"
+import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 const prisma = new PrismaClient();
 

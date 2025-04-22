@@ -1,9 +1,9 @@
-import express from 'express';
-import {   requestComponentCreation } from '../controllers/componentRequest.controllers'
+// import express from 'express';
+// import {   requestComponentCreation } from '../controllers/componentRequest.controllers'
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post('/request',  requestComponentCreation);
+// router.post('/request',  requestComponentCreation);
 
 
-export default router;
+// export default router;

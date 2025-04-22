@@ -29,16 +29,6 @@ export type College = $Result.DefaultSelection<Prisma.$CollegePayload>
  */
 export type Warehouse = $Result.DefaultSelection<Prisma.$WarehousePayload>
 /**
- * Model Staff
- * 
- */
-export type Staff = $Result.DefaultSelection<Prisma.$StaffPayload>
-/**
- * Model ComponentRequest
- * 
- */
-export type ComponentRequest = $Result.DefaultSelection<Prisma.$ComponentRequestPayload>
-/**
  * Model HOD
  * 
  */
@@ -68,16 +58,7 @@ export type Report = $Result.DefaultSelection<Prisma.$ReportPayload>
  * Enums
  */
 export namespace $Enums {
-  export const RequestStatus: {
-  PENDING: 'PENDING',
-  APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
-};
-
-export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus]
-
-
-export const ComponentType: {
+  export const ComponentType: {
   MONITOR: 'MONITOR',
   KEYBOARD: 'KEYBOARD',
   MOUSE: 'MOUSE',
@@ -101,17 +82,12 @@ export type Status = (typeof Status)[keyof typeof Status]
 
 export const Role: {
   ADMIN: 'ADMIN',
-  STAFF: 'STAFF',
   HOD: 'HOD'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
 
 }
-
-export type RequestStatus = $Enums.RequestStatus
-
-export const RequestStatus: typeof $Enums.RequestStatus
 
 export type ComponentType = $Enums.ComponentType
 
@@ -279,26 +255,6 @@ export class PrismaClient<
     * ```
     */
   get warehouse(): Prisma.WarehouseDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.staff`: Exposes CRUD operations for the **Staff** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Staff
-    * const staff = await prisma.staff.findMany()
-    * ```
-    */
-  get staff(): Prisma.StaffDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.componentRequest`: Exposes CRUD operations for the **ComponentRequest** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ComponentRequests
-    * const componentRequests = await prisma.componentRequest.findMany()
-    * ```
-    */
-  get componentRequest(): Prisma.ComponentRequestDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.hOD`: Exposes CRUD operations for the **HOD** model.
@@ -792,8 +748,6 @@ export namespace Prisma {
     Admin: 'Admin',
     College: 'College',
     Warehouse: 'Warehouse',
-    Staff: 'Staff',
-    ComponentRequest: 'ComponentRequest',
     HOD: 'HOD',
     Lab: 'Lab',
     Component: 'Component',
@@ -817,7 +771,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "college" | "warehouse" | "staff" | "componentRequest" | "hOD" | "lab" | "component" | "department" | "report"
+      modelProps: "admin" | "college" | "warehouse" | "hOD" | "lab" | "component" | "department" | "report"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1040,154 +994,6 @@ export namespace Prisma {
           count: {
             args: Prisma.WarehouseCountArgs<ExtArgs>
             result: $Utils.Optional<WarehouseCountAggregateOutputType> | number
-          }
-        }
-      }
-      Staff: {
-        payload: Prisma.$StaffPayload<ExtArgs>
-        fields: Prisma.StaffFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.StaffFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.StaffFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>
-          }
-          findFirst: {
-            args: Prisma.StaffFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.StaffFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>
-          }
-          findMany: {
-            args: Prisma.StaffFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>[]
-          }
-          create: {
-            args: Prisma.StaffCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>
-          }
-          createMany: {
-            args: Prisma.StaffCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.StaffCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>[]
-          }
-          delete: {
-            args: Prisma.StaffDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>
-          }
-          update: {
-            args: Prisma.StaffUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>
-          }
-          deleteMany: {
-            args: Prisma.StaffDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.StaffUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.StaffUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>[]
-          }
-          upsert: {
-            args: Prisma.StaffUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StaffPayload>
-          }
-          aggregate: {
-            args: Prisma.StaffAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateStaff>
-          }
-          groupBy: {
-            args: Prisma.StaffGroupByArgs<ExtArgs>
-            result: $Utils.Optional<StaffGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.StaffCountArgs<ExtArgs>
-            result: $Utils.Optional<StaffCountAggregateOutputType> | number
-          }
-        }
-      }
-      ComponentRequest: {
-        payload: Prisma.$ComponentRequestPayload<ExtArgs>
-        fields: Prisma.ComponentRequestFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ComponentRequestFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ComponentRequestFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>
-          }
-          findFirst: {
-            args: Prisma.ComponentRequestFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ComponentRequestFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>
-          }
-          findMany: {
-            args: Prisma.ComponentRequestFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>[]
-          }
-          create: {
-            args: Prisma.ComponentRequestCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>
-          }
-          createMany: {
-            args: Prisma.ComponentRequestCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ComponentRequestCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>[]
-          }
-          delete: {
-            args: Prisma.ComponentRequestDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>
-          }
-          update: {
-            args: Prisma.ComponentRequestUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>
-          }
-          deleteMany: {
-            args: Prisma.ComponentRequestDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ComponentRequestUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ComponentRequestUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>[]
-          }
-          upsert: {
-            args: Prisma.ComponentRequestUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ComponentRequestPayload>
-          }
-          aggregate: {
-            args: Prisma.ComponentRequestAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateComponentRequest>
-          }
-          groupBy: {
-            args: Prisma.ComponentRequestGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ComponentRequestGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ComponentRequestCountArgs<ExtArgs>
-            result: $Utils.Optional<ComponentRequestCountAggregateOutputType> | number
           }
         }
       }
@@ -1648,8 +1454,6 @@ export namespace Prisma {
     admin?: AdminOmit
     college?: CollegeOmit
     warehouse?: WarehouseOmit
-    staff?: StaffOmit
-    componentRequest?: ComponentRequestOmit
     hOD?: HODOmit
     lab?: LabOmit
     component?: ComponentOmit
@@ -1749,23 +1553,21 @@ export namespace Prisma {
    */
 
   export type AdminCountOutputType = {
-    colleges: number
-    staffs: number
-    warehouses: number
-    component: number
-    HOD: number
+    College: number
+    Warehouse: number
     Department: number
+    HOD: number
     Lab: number
+    Component: number
   }
 
   export type AdminCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    colleges?: boolean | AdminCountOutputTypeCountCollegesArgs
-    staffs?: boolean | AdminCountOutputTypeCountStaffsArgs
-    warehouses?: boolean | AdminCountOutputTypeCountWarehousesArgs
-    component?: boolean | AdminCountOutputTypeCountComponentArgs
-    HOD?: boolean | AdminCountOutputTypeCountHODArgs
+    College?: boolean | AdminCountOutputTypeCountCollegeArgs
+    Warehouse?: boolean | AdminCountOutputTypeCountWarehouseArgs
     Department?: boolean | AdminCountOutputTypeCountDepartmentArgs
+    HOD?: boolean | AdminCountOutputTypeCountHODArgs
     Lab?: boolean | AdminCountOutputTypeCountLabArgs
+    Component?: boolean | AdminCountOutputTypeCountComponentArgs
   }
 
   // Custom InputTypes
@@ -1782,36 +1584,15 @@ export namespace Prisma {
   /**
    * AdminCountOutputType without action
    */
-  export type AdminCountOutputTypeCountCollegesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminCountOutputTypeCountCollegeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CollegeWhereInput
   }
 
   /**
    * AdminCountOutputType without action
    */
-  export type AdminCountOutputTypeCountStaffsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StaffWhereInput
-  }
-
-  /**
-   * AdminCountOutputType without action
-   */
-  export type AdminCountOutputTypeCountWarehousesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AdminCountOutputTypeCountWarehouseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WarehouseWhereInput
-  }
-
-  /**
-   * AdminCountOutputType without action
-   */
-  export type AdminCountOutputTypeCountComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ComponentWhereInput
-  }
-
-  /**
-   * AdminCountOutputType without action
-   */
-  export type AdminCountOutputTypeCountHODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HODWhereInput
   }
 
   /**
@@ -1824,8 +1605,22 @@ export namespace Prisma {
   /**
    * AdminCountOutputType without action
    */
+  export type AdminCountOutputTypeCountHODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HODWhereInput
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
   export type AdminCountOutputTypeCountLabArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LabWhereInput
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComponentWhereInput
   }
 
 
@@ -1834,19 +1629,15 @@ export namespace Prisma {
    */
 
   export type CollegeCountOutputType = {
-    staffs: number
-    warehouses: number
-    component: number
-    hod: number
     Department: number
+    HOD: number
+    Component: number
   }
 
   export type CollegeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    staffs?: boolean | CollegeCountOutputTypeCountStaffsArgs
-    warehouses?: boolean | CollegeCountOutputTypeCountWarehousesArgs
-    component?: boolean | CollegeCountOutputTypeCountComponentArgs
-    hod?: boolean | CollegeCountOutputTypeCountHodArgs
     Department?: boolean | CollegeCountOutputTypeCountDepartmentArgs
+    HOD?: boolean | CollegeCountOutputTypeCountHODArgs
+    Component?: boolean | CollegeCountOutputTypeCountComponentArgs
   }
 
   // Custom InputTypes
@@ -1863,15 +1654,15 @@ export namespace Prisma {
   /**
    * CollegeCountOutputType without action
    */
-  export type CollegeCountOutputTypeCountStaffsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StaffWhereInput
+  export type CollegeCountOutputTypeCountDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DepartmentWhereInput
   }
 
   /**
    * CollegeCountOutputType without action
    */
-  export type CollegeCountOutputTypeCountWarehousesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: WarehouseWhereInput
+  export type CollegeCountOutputTypeCountHODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HODWhereInput
   }
 
   /**
@@ -1881,31 +1672,17 @@ export namespace Prisma {
     where?: ComponentWhereInput
   }
 
-  /**
-   * CollegeCountOutputType without action
-   */
-  export type CollegeCountOutputTypeCountHodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HODWhereInput
-  }
-
-  /**
-   * CollegeCountOutputType without action
-   */
-  export type CollegeCountOutputTypeCountDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DepartmentWhereInput
-  }
-
 
   /**
    * Count Type WarehouseCountOutputType
    */
 
   export type WarehouseCountOutputType = {
-    component: number
+    Component: number
   }
 
   export type WarehouseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    component?: boolean | WarehouseCountOutputTypeCountComponentArgs
+    Component?: boolean | WarehouseCountOutputTypeCountComponentArgs
   }
 
   // Custom InputTypes
@@ -1924,37 +1701,6 @@ export namespace Prisma {
    */
   export type WarehouseCountOutputTypeCountComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ComponentWhereInput
-  }
-
-
-  /**
-   * Count Type StaffCountOutputType
-   */
-
-  export type StaffCountOutputType = {
-    componentRequest: number
-  }
-
-  export type StaffCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    componentRequest?: boolean | StaffCountOutputTypeCountComponentRequestArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * StaffCountOutputType without action
-   */
-  export type StaffCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the StaffCountOutputType
-     */
-    select?: StaffCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * StaffCountOutputType without action
-   */
-  export type StaffCountOutputTypeCountComponentRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ComponentRequestWhereInput
   }
 
 
@@ -2003,11 +1749,11 @@ export namespace Prisma {
    */
 
   export type LabCountOutputType = {
-    components: number
+    Component: number
   }
 
   export type LabCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    components?: boolean | LabCountOutputTypeCountComponentsArgs
+    Component?: boolean | LabCountOutputTypeCountComponentArgs
   }
 
   // Custom InputTypes
@@ -2024,7 +1770,7 @@ export namespace Prisma {
   /**
    * LabCountOutputType without action
    */
-  export type LabCountOutputTypeCountComponentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LabCountOutputTypeCountComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ComponentWhereInput
   }
 
@@ -2034,13 +1780,13 @@ export namespace Prisma {
    */
 
   export type ComponentCountOutputType = {
-    Report: number
     Department: number
+    Report: number
   }
 
   export type ComponentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Report?: boolean | ComponentCountOutputTypeCountReportArgs
     Department?: boolean | ComponentCountOutputTypeCountDepartmentArgs
+    Report?: boolean | ComponentCountOutputTypeCountReportArgs
   }
 
   // Custom InputTypes
@@ -2057,15 +1803,15 @@ export namespace Prisma {
   /**
    * ComponentCountOutputType without action
    */
-  export type ComponentCountOutputTypeCountReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReportWhereInput
+  export type ComponentCountOutputTypeCountDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DepartmentWhereInput
   }
 
   /**
    * ComponentCountOutputType without action
    */
-  export type ComponentCountOutputTypeCountDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DepartmentWhereInput
+  export type ComponentCountOutputTypeCountReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReportWhereInput
   }
 
 
@@ -2074,14 +1820,16 @@ export namespace Prisma {
    */
 
   export type DepartmentCountOutputType = {
+    HOD: number
     Lab: number
-    components: number
+    Component: number
     Report: number
   }
 
   export type DepartmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    HOD?: boolean | DepartmentCountOutputTypeCountHODArgs
     Lab?: boolean | DepartmentCountOutputTypeCountLabArgs
-    components?: boolean | DepartmentCountOutputTypeCountComponentsArgs
+    Component?: boolean | DepartmentCountOutputTypeCountComponentArgs
     Report?: boolean | DepartmentCountOutputTypeCountReportArgs
   }
 
@@ -2099,6 +1847,13 @@ export namespace Prisma {
   /**
    * DepartmentCountOutputType without action
    */
+  export type DepartmentCountOutputTypeCountHODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HODWhereInput
+  }
+
+  /**
+   * DepartmentCountOutputType without action
+   */
   export type DepartmentCountOutputTypeCountLabArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LabWhereInput
   }
@@ -2106,7 +1861,7 @@ export namespace Prisma {
   /**
    * DepartmentCountOutputType without action
    */
-  export type DepartmentCountOutputTypeCountComponentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type DepartmentCountOutputTypeCountComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ComponentWhereInput
   }
 
@@ -2360,13 +2115,12 @@ export namespace Prisma {
     resetTokenExpiry?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    colleges?: boolean | Admin$collegesArgs<ExtArgs>
-    staffs?: boolean | Admin$staffsArgs<ExtArgs>
-    warehouses?: boolean | Admin$warehousesArgs<ExtArgs>
-    component?: boolean | Admin$componentArgs<ExtArgs>
-    HOD?: boolean | Admin$HODArgs<ExtArgs>
+    College?: boolean | Admin$CollegeArgs<ExtArgs>
+    Warehouse?: boolean | Admin$WarehouseArgs<ExtArgs>
     Department?: boolean | Admin$DepartmentArgs<ExtArgs>
+    HOD?: boolean | Admin$HODArgs<ExtArgs>
     Lab?: boolean | Admin$LabArgs<ExtArgs>
+    Component?: boolean | Admin$ComponentArgs<ExtArgs>
     _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["admin"]>
 
@@ -2411,13 +2165,12 @@ export namespace Prisma {
 
   export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "role" | "resetToken" | "resetTokenExpiry" | "createdAt" | "updatedAt", ExtArgs["result"]["admin"]>
   export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    colleges?: boolean | Admin$collegesArgs<ExtArgs>
-    staffs?: boolean | Admin$staffsArgs<ExtArgs>
-    warehouses?: boolean | Admin$warehousesArgs<ExtArgs>
-    component?: boolean | Admin$componentArgs<ExtArgs>
-    HOD?: boolean | Admin$HODArgs<ExtArgs>
+    College?: boolean | Admin$CollegeArgs<ExtArgs>
+    Warehouse?: boolean | Admin$WarehouseArgs<ExtArgs>
     Department?: boolean | Admin$DepartmentArgs<ExtArgs>
+    HOD?: boolean | Admin$HODArgs<ExtArgs>
     Lab?: boolean | Admin$LabArgs<ExtArgs>
+    Component?: boolean | Admin$ComponentArgs<ExtArgs>
     _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2426,13 +2179,12 @@ export namespace Prisma {
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
     objects: {
-      colleges: Prisma.$CollegePayload<ExtArgs>[]
-      staffs: Prisma.$StaffPayload<ExtArgs>[]
-      warehouses: Prisma.$WarehousePayload<ExtArgs>[]
-      component: Prisma.$ComponentPayload<ExtArgs>[]
-      HOD: Prisma.$HODPayload<ExtArgs>[]
+      College: Prisma.$CollegePayload<ExtArgs>[]
+      Warehouse: Prisma.$WarehousePayload<ExtArgs>[]
       Department: Prisma.$DepartmentPayload<ExtArgs>[]
+      HOD: Prisma.$HODPayload<ExtArgs>[]
       Lab: Prisma.$LabPayload<ExtArgs>[]
+      Component: Prisma.$ComponentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2839,13 +2591,12 @@ export namespace Prisma {
    */
   export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    colleges<T extends Admin$collegesArgs<ExtArgs> = {}>(args?: Subset<T, Admin$collegesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CollegePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    staffs<T extends Admin$staffsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$staffsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    warehouses<T extends Admin$warehousesArgs<ExtArgs> = {}>(args?: Subset<T, Admin$warehousesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    component<T extends Admin$componentArgs<ExtArgs> = {}>(args?: Subset<T, Admin$componentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    HOD<T extends Admin$HODArgs<ExtArgs> = {}>(args?: Subset<T, Admin$HODArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HODPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    College<T extends Admin$CollegeArgs<ExtArgs> = {}>(args?: Subset<T, Admin$CollegeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CollegePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Warehouse<T extends Admin$WarehouseArgs<ExtArgs> = {}>(args?: Subset<T, Admin$WarehouseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Department<T extends Admin$DepartmentArgs<ExtArgs> = {}>(args?: Subset<T, Admin$DepartmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    HOD<T extends Admin$HODArgs<ExtArgs> = {}>(args?: Subset<T, Admin$HODArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HODPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Lab<T extends Admin$LabArgs<ExtArgs> = {}>(args?: Subset<T, Admin$LabArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Component<T extends Admin$ComponentArgs<ExtArgs> = {}>(args?: Subset<T, Admin$ComponentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3273,9 +3024,9 @@ export namespace Prisma {
   }
 
   /**
-   * Admin.colleges
+   * Admin.College
    */
-  export type Admin$collegesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Admin$CollegeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the College
      */
@@ -3297,33 +3048,9 @@ export namespace Prisma {
   }
 
   /**
-   * Admin.staffs
+   * Admin.Warehouse
    */
-  export type Admin$staffsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    where?: StaffWhereInput
-    orderBy?: StaffOrderByWithRelationInput | StaffOrderByWithRelationInput[]
-    cursor?: StaffWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StaffScalarFieldEnum | StaffScalarFieldEnum[]
-  }
-
-  /**
-   * Admin.warehouses
-   */
-  export type Admin$warehousesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Admin$WarehouseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Warehouse
      */
@@ -3342,54 +3069,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: WarehouseScalarFieldEnum | WarehouseScalarFieldEnum[]
-  }
-
-  /**
-   * Admin.component
-   */
-  export type Admin$componentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Component
-     */
-    select?: ComponentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Component
-     */
-    omit?: ComponentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentInclude<ExtArgs> | null
-    where?: ComponentWhereInput
-    orderBy?: ComponentOrderByWithRelationInput | ComponentOrderByWithRelationInput[]
-    cursor?: ComponentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ComponentScalarFieldEnum | ComponentScalarFieldEnum[]
-  }
-
-  /**
-   * Admin.HOD
-   */
-  export type Admin$HODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HOD
-     */
-    select?: HODSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HOD
-     */
-    omit?: HODOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HODInclude<ExtArgs> | null
-    where?: HODWhereInput
-    orderBy?: HODOrderByWithRelationInput | HODOrderByWithRelationInput[]
-    cursor?: HODWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HODScalarFieldEnum | HODScalarFieldEnum[]
   }
 
   /**
@@ -3417,6 +3096,30 @@ export namespace Prisma {
   }
 
   /**
+   * Admin.HOD
+   */
+  export type Admin$HODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HOD
+     */
+    select?: HODSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HOD
+     */
+    omit?: HODOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HODInclude<ExtArgs> | null
+    where?: HODWhereInput
+    orderBy?: HODOrderByWithRelationInput | HODOrderByWithRelationInput[]
+    cursor?: HODWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HODScalarFieldEnum | HODScalarFieldEnum[]
+  }
+
+  /**
    * Admin.Lab
    */
   export type Admin$LabArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3438,6 +3141,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LabScalarFieldEnum | LabScalarFieldEnum[]
+  }
+
+  /**
+   * Admin.Component
+   */
+  export type Admin$ComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Component
+     */
+    select?: ComponentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Component
+     */
+    omit?: ComponentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComponentInclude<ExtArgs> | null
+    where?: ComponentWhereInput
+    orderBy?: ComponentOrderByWithRelationInput | ComponentOrderByWithRelationInput[]
+    cursor?: ComponentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComponentScalarFieldEnum | ComponentScalarFieldEnum[]
   }
 
   /**
@@ -3662,11 +3389,9 @@ export namespace Prisma {
     collegeId?: boolean
     adminId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    staffs?: boolean | College$staffsArgs<ExtArgs>
-    warehouses?: boolean | College$warehousesArgs<ExtArgs>
-    component?: boolean | College$componentArgs<ExtArgs>
-    hod?: boolean | College$hodArgs<ExtArgs>
     Department?: boolean | College$DepartmentArgs<ExtArgs>
+    HOD?: boolean | College$HODArgs<ExtArgs>
+    Component?: boolean | College$ComponentArgs<ExtArgs>
     _count?: boolean | CollegeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["college"]>
 
@@ -3699,11 +3424,9 @@ export namespace Prisma {
   export type CollegeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "address" | "collegeId" | "adminId", ExtArgs["result"]["college"]>
   export type CollegeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    staffs?: boolean | College$staffsArgs<ExtArgs>
-    warehouses?: boolean | College$warehousesArgs<ExtArgs>
-    component?: boolean | College$componentArgs<ExtArgs>
-    hod?: boolean | College$hodArgs<ExtArgs>
     Department?: boolean | College$DepartmentArgs<ExtArgs>
+    HOD?: boolean | College$HODArgs<ExtArgs>
+    Component?: boolean | College$ComponentArgs<ExtArgs>
     _count?: boolean | CollegeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CollegeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3717,11 +3440,9 @@ export namespace Prisma {
     name: "College"
     objects: {
       admin: Prisma.$AdminPayload<ExtArgs>
-      staffs: Prisma.$StaffPayload<ExtArgs>[]
-      warehouses: Prisma.$WarehousePayload<ExtArgs>[]
-      component: Prisma.$ComponentPayload<ExtArgs>[]
-      hod: Prisma.$HODPayload<ExtArgs>[]
       Department: Prisma.$DepartmentPayload<ExtArgs>[]
+      HOD: Prisma.$HODPayload<ExtArgs>[]
+      Component: Prisma.$ComponentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4124,11 +3845,9 @@ export namespace Prisma {
   export interface Prisma__CollegeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    staffs<T extends College$staffsArgs<ExtArgs> = {}>(args?: Subset<T, College$staffsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    warehouses<T extends College$warehousesArgs<ExtArgs> = {}>(args?: Subset<T, College$warehousesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    component<T extends College$componentArgs<ExtArgs> = {}>(args?: Subset<T, College$componentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hod<T extends College$hodArgs<ExtArgs> = {}>(args?: Subset<T, College$hodArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HODPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Department<T extends College$DepartmentArgs<ExtArgs> = {}>(args?: Subset<T, College$DepartmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    HOD<T extends College$HODArgs<ExtArgs> = {}>(args?: Subset<T, College$HODArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HODPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Component<T extends College$ComponentArgs<ExtArgs> = {}>(args?: Subset<T, College$ComponentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4559,102 +4278,6 @@ export namespace Prisma {
   }
 
   /**
-   * College.staffs
-   */
-  export type College$staffsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    where?: StaffWhereInput
-    orderBy?: StaffOrderByWithRelationInput | StaffOrderByWithRelationInput[]
-    cursor?: StaffWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StaffScalarFieldEnum | StaffScalarFieldEnum[]
-  }
-
-  /**
-   * College.warehouses
-   */
-  export type College$warehousesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Warehouse
-     */
-    select?: WarehouseSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Warehouse
-     */
-    omit?: WarehouseOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: WarehouseInclude<ExtArgs> | null
-    where?: WarehouseWhereInput
-    orderBy?: WarehouseOrderByWithRelationInput | WarehouseOrderByWithRelationInput[]
-    cursor?: WarehouseWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: WarehouseScalarFieldEnum | WarehouseScalarFieldEnum[]
-  }
-
-  /**
-   * College.component
-   */
-  export type College$componentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Component
-     */
-    select?: ComponentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Component
-     */
-    omit?: ComponentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentInclude<ExtArgs> | null
-    where?: ComponentWhereInput
-    orderBy?: ComponentOrderByWithRelationInput | ComponentOrderByWithRelationInput[]
-    cursor?: ComponentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ComponentScalarFieldEnum | ComponentScalarFieldEnum[]
-  }
-
-  /**
-   * College.hod
-   */
-  export type College$hodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HOD
-     */
-    select?: HODSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HOD
-     */
-    omit?: HODOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HODInclude<ExtArgs> | null
-    where?: HODWhereInput
-    orderBy?: HODOrderByWithRelationInput | HODOrderByWithRelationInput[]
-    cursor?: HODWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HODScalarFieldEnum | HODScalarFieldEnum[]
-  }
-
-  /**
    * College.Department
    */
   export type College$DepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4676,6 +4299,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DepartmentScalarFieldEnum | DepartmentScalarFieldEnum[]
+  }
+
+  /**
+   * College.HOD
+   */
+  export type College$HODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HOD
+     */
+    select?: HODSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HOD
+     */
+    omit?: HODOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HODInclude<ExtArgs> | null
+    where?: HODWhereInput
+    orderBy?: HODOrderByWithRelationInput | HODOrderByWithRelationInput[]
+    cursor?: HODWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HODScalarFieldEnum | HODScalarFieldEnum[]
+  }
+
+  /**
+   * College.Component
+   */
+  export type College$ComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Component
+     */
+    select?: ComponentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Component
+     */
+    omit?: ComponentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComponentInclude<ExtArgs> | null
+    where?: ComponentWhereInput
+    orderBy?: ComponentOrderByWithRelationInput | ComponentOrderByWithRelationInput[]
+    cursor?: ComponentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComponentScalarFieldEnum | ComponentScalarFieldEnum[]
   }
 
   /**
@@ -4904,8 +4575,7 @@ export namespace Prisma {
     adminId?: boolean
     warehouseId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-    component?: boolean | Warehouse$componentArgs<ExtArgs>
+    Component?: boolean | Warehouse$ComponentArgs<ExtArgs>
     _count?: boolean | WarehouseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["warehouse"]>
 
@@ -4916,7 +4586,6 @@ export namespace Prisma {
     adminId?: boolean
     warehouseId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["warehouse"]>
 
   export type WarehouseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4926,7 +4595,6 @@ export namespace Prisma {
     adminId?: boolean
     warehouseId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["warehouse"]>
 
   export type WarehouseSelectScalar = {
@@ -4940,25 +4608,21 @@ export namespace Prisma {
   export type WarehouseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "collegeId" | "adminId" | "warehouseId", ExtArgs["result"]["warehouse"]>
   export type WarehouseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-    component?: boolean | Warehouse$componentArgs<ExtArgs>
+    Component?: boolean | Warehouse$ComponentArgs<ExtArgs>
     _count?: boolean | WarehouseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type WarehouseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
   }
   export type WarehouseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
   }
 
   export type $WarehousePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Warehouse"
     objects: {
       admin: Prisma.$AdminPayload<ExtArgs>
-      college: Prisma.$CollegePayload<ExtArgs>
-      component: Prisma.$ComponentPayload<ExtArgs>[]
+      Component: Prisma.$ComponentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5361,8 +5025,7 @@ export namespace Prisma {
   export interface Prisma__WarehouseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    college<T extends CollegeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CollegeDefaultArgs<ExtArgs>>): Prisma__CollegeClient<$Result.GetResult<Prisma.$CollegePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    component<T extends Warehouse$componentArgs<ExtArgs> = {}>(args?: Subset<T, Warehouse$componentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Component<T extends Warehouse$ComponentArgs<ExtArgs> = {}>(args?: Subset<T, Warehouse$ComponentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5793,9 +5456,9 @@ export namespace Prisma {
   }
 
   /**
-   * Warehouse.component
+   * Warehouse.Component
    */
-  export type Warehouse$componentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Warehouse$ComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Component
      */
@@ -5832,2374 +5495,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: WarehouseInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Staff
-   */
-
-  export type AggregateStaff = {
-    _count: StaffCountAggregateOutputType | null
-    _avg: StaffAvgAggregateOutputType | null
-    _sum: StaffSumAggregateOutputType | null
-    _min: StaffMinAggregateOutputType | null
-    _max: StaffMaxAggregateOutputType | null
-  }
-
-  export type StaffAvgAggregateOutputType = {
-    id: number | null
-    collegeId: number | null
-    adminId: number | null
-  }
-
-  export type StaffSumAggregateOutputType = {
-    id: number | null
-    collegeId: number | null
-    adminId: number | null
-  }
-
-  export type StaffMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    email: string | null
-    password: string | null
-    phone: string | null
-    collegeId: number | null
-    adminId: number | null
-    role: $Enums.Role | null
-    resetToken: string | null
-    resetTokenExpiry: Date | null
-  }
-
-  export type StaffMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    email: string | null
-    password: string | null
-    phone: string | null
-    collegeId: number | null
-    adminId: number | null
-    role: $Enums.Role | null
-    resetToken: string | null
-    resetTokenExpiry: Date | null
-  }
-
-  export type StaffCountAggregateOutputType = {
-    id: number
-    name: number
-    email: number
-    password: number
-    phone: number
-    collegeId: number
-    adminId: number
-    role: number
-    resetToken: number
-    resetTokenExpiry: number
-    _all: number
-  }
-
-
-  export type StaffAvgAggregateInputType = {
-    id?: true
-    collegeId?: true
-    adminId?: true
-  }
-
-  export type StaffSumAggregateInputType = {
-    id?: true
-    collegeId?: true
-    adminId?: true
-  }
-
-  export type StaffMinAggregateInputType = {
-    id?: true
-    name?: true
-    email?: true
-    password?: true
-    phone?: true
-    collegeId?: true
-    adminId?: true
-    role?: true
-    resetToken?: true
-    resetTokenExpiry?: true
-  }
-
-  export type StaffMaxAggregateInputType = {
-    id?: true
-    name?: true
-    email?: true
-    password?: true
-    phone?: true
-    collegeId?: true
-    adminId?: true
-    role?: true
-    resetToken?: true
-    resetTokenExpiry?: true
-  }
-
-  export type StaffCountAggregateInputType = {
-    id?: true
-    name?: true
-    email?: true
-    password?: true
-    phone?: true
-    collegeId?: true
-    adminId?: true
-    role?: true
-    resetToken?: true
-    resetTokenExpiry?: true
-    _all?: true
-  }
-
-  export type StaffAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Staff to aggregate.
-     */
-    where?: StaffWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Staff to fetch.
-     */
-    orderBy?: StaffOrderByWithRelationInput | StaffOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: StaffWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Staff from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Staff.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Staff
-    **/
-    _count?: true | StaffCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: StaffAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: StaffSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: StaffMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: StaffMaxAggregateInputType
-  }
-
-  export type GetStaffAggregateType<T extends StaffAggregateArgs> = {
-        [P in keyof T & keyof AggregateStaff]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateStaff[P]>
-      : GetScalarType<T[P], AggregateStaff[P]>
-  }
-
-
-
-
-  export type StaffGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StaffWhereInput
-    orderBy?: StaffOrderByWithAggregationInput | StaffOrderByWithAggregationInput[]
-    by: StaffScalarFieldEnum[] | StaffScalarFieldEnum
-    having?: StaffScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: StaffCountAggregateInputType | true
-    _avg?: StaffAvgAggregateInputType
-    _sum?: StaffSumAggregateInputType
-    _min?: StaffMinAggregateInputType
-    _max?: StaffMaxAggregateInputType
-  }
-
-  export type StaffGroupByOutputType = {
-    id: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    collegeId: number
-    adminId: number
-    role: $Enums.Role
-    resetToken: string | null
-    resetTokenExpiry: Date | null
-    _count: StaffCountAggregateOutputType | null
-    _avg: StaffAvgAggregateOutputType | null
-    _sum: StaffSumAggregateOutputType | null
-    _min: StaffMinAggregateOutputType | null
-    _max: StaffMaxAggregateOutputType | null
-  }
-
-  type GetStaffGroupByPayload<T extends StaffGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<StaffGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof StaffGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], StaffGroupByOutputType[P]>
-            : GetScalarType<T[P], StaffGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type StaffSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    password?: boolean
-    phone?: boolean
-    collegeId?: boolean
-    adminId?: boolean
-    role?: boolean
-    resetToken?: boolean
-    resetTokenExpiry?: boolean
-    admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-    componentRequest?: boolean | Staff$componentRequestArgs<ExtArgs>
-    _count?: boolean | StaffCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["staff"]>
-
-  export type StaffSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    password?: boolean
-    phone?: boolean
-    collegeId?: boolean
-    adminId?: boolean
-    role?: boolean
-    resetToken?: boolean
-    resetTokenExpiry?: boolean
-    admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["staff"]>
-
-  export type StaffSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    password?: boolean
-    phone?: boolean
-    collegeId?: boolean
-    adminId?: boolean
-    role?: boolean
-    resetToken?: boolean
-    resetTokenExpiry?: boolean
-    admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["staff"]>
-
-  export type StaffSelectScalar = {
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    password?: boolean
-    phone?: boolean
-    collegeId?: boolean
-    adminId?: boolean
-    role?: boolean
-    resetToken?: boolean
-    resetTokenExpiry?: boolean
-  }
-
-  export type StaffOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "collegeId" | "adminId" | "role" | "resetToken" | "resetTokenExpiry", ExtArgs["result"]["staff"]>
-  export type StaffInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-    componentRequest?: boolean | Staff$componentRequestArgs<ExtArgs>
-    _count?: boolean | StaffCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type StaffIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-  }
-  export type StaffIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    admin?: boolean | AdminDefaultArgs<ExtArgs>
-    college?: boolean | CollegeDefaultArgs<ExtArgs>
-  }
-
-  export type $StaffPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Staff"
-    objects: {
-      admin: Prisma.$AdminPayload<ExtArgs>
-      college: Prisma.$CollegePayload<ExtArgs>
-      componentRequest: Prisma.$ComponentRequestPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      email: string
-      password: string
-      phone: string
-      collegeId: number
-      adminId: number
-      role: $Enums.Role
-      resetToken: string | null
-      resetTokenExpiry: Date | null
-    }, ExtArgs["result"]["staff"]>
-    composites: {}
-  }
-
-  type StaffGetPayload<S extends boolean | null | undefined | StaffDefaultArgs> = $Result.GetResult<Prisma.$StaffPayload, S>
-
-  type StaffCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<StaffFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: StaffCountAggregateInputType | true
-    }
-
-  export interface StaffDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Staff'], meta: { name: 'Staff' } }
-    /**
-     * Find zero or one Staff that matches the filter.
-     * @param {StaffFindUniqueArgs} args - Arguments to find a Staff
-     * @example
-     * // Get one Staff
-     * const staff = await prisma.staff.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends StaffFindUniqueArgs>(args: SelectSubset<T, StaffFindUniqueArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Staff that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {StaffFindUniqueOrThrowArgs} args - Arguments to find a Staff
-     * @example
-     * // Get one Staff
-     * const staff = await prisma.staff.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends StaffFindUniqueOrThrowArgs>(args: SelectSubset<T, StaffFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Staff that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffFindFirstArgs} args - Arguments to find a Staff
-     * @example
-     * // Get one Staff
-     * const staff = await prisma.staff.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends StaffFindFirstArgs>(args?: SelectSubset<T, StaffFindFirstArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Staff that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffFindFirstOrThrowArgs} args - Arguments to find a Staff
-     * @example
-     * // Get one Staff
-     * const staff = await prisma.staff.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends StaffFindFirstOrThrowArgs>(args?: SelectSubset<T, StaffFindFirstOrThrowArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Staff that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Staff
-     * const staff = await prisma.staff.findMany()
-     * 
-     * // Get first 10 Staff
-     * const staff = await prisma.staff.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const staffWithIdOnly = await prisma.staff.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends StaffFindManyArgs>(args?: SelectSubset<T, StaffFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Staff.
-     * @param {StaffCreateArgs} args - Arguments to create a Staff.
-     * @example
-     * // Create one Staff
-     * const Staff = await prisma.staff.create({
-     *   data: {
-     *     // ... data to create a Staff
-     *   }
-     * })
-     * 
-     */
-    create<T extends StaffCreateArgs>(args: SelectSubset<T, StaffCreateArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Staff.
-     * @param {StaffCreateManyArgs} args - Arguments to create many Staff.
-     * @example
-     * // Create many Staff
-     * const staff = await prisma.staff.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends StaffCreateManyArgs>(args?: SelectSubset<T, StaffCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Staff and returns the data saved in the database.
-     * @param {StaffCreateManyAndReturnArgs} args - Arguments to create many Staff.
-     * @example
-     * // Create many Staff
-     * const staff = await prisma.staff.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Staff and only return the `id`
-     * const staffWithIdOnly = await prisma.staff.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends StaffCreateManyAndReturnArgs>(args?: SelectSubset<T, StaffCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Staff.
-     * @param {StaffDeleteArgs} args - Arguments to delete one Staff.
-     * @example
-     * // Delete one Staff
-     * const Staff = await prisma.staff.delete({
-     *   where: {
-     *     // ... filter to delete one Staff
-     *   }
-     * })
-     * 
-     */
-    delete<T extends StaffDeleteArgs>(args: SelectSubset<T, StaffDeleteArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Staff.
-     * @param {StaffUpdateArgs} args - Arguments to update one Staff.
-     * @example
-     * // Update one Staff
-     * const staff = await prisma.staff.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends StaffUpdateArgs>(args: SelectSubset<T, StaffUpdateArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Staff.
-     * @param {StaffDeleteManyArgs} args - Arguments to filter Staff to delete.
-     * @example
-     * // Delete a few Staff
-     * const { count } = await prisma.staff.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends StaffDeleteManyArgs>(args?: SelectSubset<T, StaffDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Staff.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Staff
-     * const staff = await prisma.staff.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends StaffUpdateManyArgs>(args: SelectSubset<T, StaffUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Staff and returns the data updated in the database.
-     * @param {StaffUpdateManyAndReturnArgs} args - Arguments to update many Staff.
-     * @example
-     * // Update many Staff
-     * const staff = await prisma.staff.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Staff and only return the `id`
-     * const staffWithIdOnly = await prisma.staff.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends StaffUpdateManyAndReturnArgs>(args: SelectSubset<T, StaffUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Staff.
-     * @param {StaffUpsertArgs} args - Arguments to update or create a Staff.
-     * @example
-     * // Update or create a Staff
-     * const staff = await prisma.staff.upsert({
-     *   create: {
-     *     // ... data to create a Staff
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Staff we want to update
-     *   }
-     * })
-     */
-    upsert<T extends StaffUpsertArgs>(args: SelectSubset<T, StaffUpsertArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Staff.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffCountArgs} args - Arguments to filter Staff to count.
-     * @example
-     * // Count the number of Staff
-     * const count = await prisma.staff.count({
-     *   where: {
-     *     // ... the filter for the Staff we want to count
-     *   }
-     * })
-    **/
-    count<T extends StaffCountArgs>(
-      args?: Subset<T, StaffCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], StaffCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Staff.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends StaffAggregateArgs>(args: Subset<T, StaffAggregateArgs>): Prisma.PrismaPromise<GetStaffAggregateType<T>>
-
-    /**
-     * Group by Staff.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StaffGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends StaffGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: StaffGroupByArgs['orderBy'] }
-        : { orderBy?: StaffGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, StaffGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStaffGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Staff model
-   */
-  readonly fields: StaffFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Staff.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__StaffClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    college<T extends CollegeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CollegeDefaultArgs<ExtArgs>>): Prisma__CollegeClient<$Result.GetResult<Prisma.$CollegePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    componentRequest<T extends Staff$componentRequestArgs<ExtArgs> = {}>(args?: Subset<T, Staff$componentRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Staff model
-   */
-  interface StaffFieldRefs {
-    readonly id: FieldRef<"Staff", 'Int'>
-    readonly name: FieldRef<"Staff", 'String'>
-    readonly email: FieldRef<"Staff", 'String'>
-    readonly password: FieldRef<"Staff", 'String'>
-    readonly phone: FieldRef<"Staff", 'String'>
-    readonly collegeId: FieldRef<"Staff", 'Int'>
-    readonly adminId: FieldRef<"Staff", 'Int'>
-    readonly role: FieldRef<"Staff", 'Role'>
-    readonly resetToken: FieldRef<"Staff", 'String'>
-    readonly resetTokenExpiry: FieldRef<"Staff", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Staff findUnique
-   */
-  export type StaffFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * Filter, which Staff to fetch.
-     */
-    where: StaffWhereUniqueInput
-  }
-
-  /**
-   * Staff findUniqueOrThrow
-   */
-  export type StaffFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * Filter, which Staff to fetch.
-     */
-    where: StaffWhereUniqueInput
-  }
-
-  /**
-   * Staff findFirst
-   */
-  export type StaffFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * Filter, which Staff to fetch.
-     */
-    where?: StaffWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Staff to fetch.
-     */
-    orderBy?: StaffOrderByWithRelationInput | StaffOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Staff.
-     */
-    cursor?: StaffWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Staff from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Staff.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Staff.
-     */
-    distinct?: StaffScalarFieldEnum | StaffScalarFieldEnum[]
-  }
-
-  /**
-   * Staff findFirstOrThrow
-   */
-  export type StaffFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * Filter, which Staff to fetch.
-     */
-    where?: StaffWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Staff to fetch.
-     */
-    orderBy?: StaffOrderByWithRelationInput | StaffOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Staff.
-     */
-    cursor?: StaffWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Staff from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Staff.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Staff.
-     */
-    distinct?: StaffScalarFieldEnum | StaffScalarFieldEnum[]
-  }
-
-  /**
-   * Staff findMany
-   */
-  export type StaffFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * Filter, which Staff to fetch.
-     */
-    where?: StaffWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Staff to fetch.
-     */
-    orderBy?: StaffOrderByWithRelationInput | StaffOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Staff.
-     */
-    cursor?: StaffWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Staff from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Staff.
-     */
-    skip?: number
-    distinct?: StaffScalarFieldEnum | StaffScalarFieldEnum[]
-  }
-
-  /**
-   * Staff create
-   */
-  export type StaffCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Staff.
-     */
-    data: XOR<StaffCreateInput, StaffUncheckedCreateInput>
-  }
-
-  /**
-   * Staff createMany
-   */
-  export type StaffCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Staff.
-     */
-    data: StaffCreateManyInput | StaffCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Staff createManyAndReturn
-   */
-  export type StaffCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * The data used to create many Staff.
-     */
-    data: StaffCreateManyInput | StaffCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Staff update
-   */
-  export type StaffUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Staff.
-     */
-    data: XOR<StaffUpdateInput, StaffUncheckedUpdateInput>
-    /**
-     * Choose, which Staff to update.
-     */
-    where: StaffWhereUniqueInput
-  }
-
-  /**
-   * Staff updateMany
-   */
-  export type StaffUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Staff.
-     */
-    data: XOR<StaffUpdateManyMutationInput, StaffUncheckedUpdateManyInput>
-    /**
-     * Filter which Staff to update
-     */
-    where?: StaffWhereInput
-    /**
-     * Limit how many Staff to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Staff updateManyAndReturn
-   */
-  export type StaffUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * The data used to update Staff.
-     */
-    data: XOR<StaffUpdateManyMutationInput, StaffUncheckedUpdateManyInput>
-    /**
-     * Filter which Staff to update
-     */
-    where?: StaffWhereInput
-    /**
-     * Limit how many Staff to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Staff upsert
-   */
-  export type StaffUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Staff to update in case it exists.
-     */
-    where: StaffWhereUniqueInput
-    /**
-     * In case the Staff found by the `where` argument doesn't exist, create a new Staff with this data.
-     */
-    create: XOR<StaffCreateInput, StaffUncheckedCreateInput>
-    /**
-     * In case the Staff was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<StaffUpdateInput, StaffUncheckedUpdateInput>
-  }
-
-  /**
-   * Staff delete
-   */
-  export type StaffDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-    /**
-     * Filter which Staff to delete.
-     */
-    where: StaffWhereUniqueInput
-  }
-
-  /**
-   * Staff deleteMany
-   */
-  export type StaffDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Staff to delete
-     */
-    where?: StaffWhereInput
-    /**
-     * Limit how many Staff to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Staff.componentRequest
-   */
-  export type Staff$componentRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    where?: ComponentRequestWhereInput
-    orderBy?: ComponentRequestOrderByWithRelationInput | ComponentRequestOrderByWithRelationInput[]
-    cursor?: ComponentRequestWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ComponentRequestScalarFieldEnum | ComponentRequestScalarFieldEnum[]
-  }
-
-  /**
-   * Staff without action
-   */
-  export type StaffDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Staff
-     */
-    select?: StaffSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Staff
-     */
-    omit?: StaffOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StaffInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ComponentRequest
-   */
-
-  export type AggregateComponentRequest = {
-    _count: ComponentRequestCountAggregateOutputType | null
-    _avg: ComponentRequestAvgAggregateOutputType | null
-    _sum: ComponentRequestSumAggregateOutputType | null
-    _min: ComponentRequestMinAggregateOutputType | null
-    _max: ComponentRequestMaxAggregateOutputType | null
-  }
-
-  export type ComponentRequestAvgAggregateOutputType = {
-    id: number | null
-    staffId: number | null
-    createdByStaffId: number | null
-  }
-
-  export type ComponentRequestSumAggregateOutputType = {
-    id: number | null
-    staffId: number | null
-    createdByStaffId: number | null
-  }
-
-  export type ComponentRequestMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    brand: string | null
-    modelNumber: string | null
-    serialNumber: string | null
-    createdAt: Date | null
-    staffId: number | null
-    type: string | null
-    status: string | null
-    createdByStaffId: number | null
-  }
-
-  export type ComponentRequestMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    brand: string | null
-    modelNumber: string | null
-    serialNumber: string | null
-    createdAt: Date | null
-    staffId: number | null
-    type: string | null
-    status: string | null
-    createdByStaffId: number | null
-  }
-
-  export type ComponentRequestCountAggregateOutputType = {
-    id: number
-    name: number
-    brand: number
-    modelNumber: number
-    serialNumber: number
-    createdAt: number
-    staffId: number
-    type: number
-    status: number
-    createdByStaffId: number
-    _all: number
-  }
-
-
-  export type ComponentRequestAvgAggregateInputType = {
-    id?: true
-    staffId?: true
-    createdByStaffId?: true
-  }
-
-  export type ComponentRequestSumAggregateInputType = {
-    id?: true
-    staffId?: true
-    createdByStaffId?: true
-  }
-
-  export type ComponentRequestMinAggregateInputType = {
-    id?: true
-    name?: true
-    brand?: true
-    modelNumber?: true
-    serialNumber?: true
-    createdAt?: true
-    staffId?: true
-    type?: true
-    status?: true
-    createdByStaffId?: true
-  }
-
-  export type ComponentRequestMaxAggregateInputType = {
-    id?: true
-    name?: true
-    brand?: true
-    modelNumber?: true
-    serialNumber?: true
-    createdAt?: true
-    staffId?: true
-    type?: true
-    status?: true
-    createdByStaffId?: true
-  }
-
-  export type ComponentRequestCountAggregateInputType = {
-    id?: true
-    name?: true
-    brand?: true
-    modelNumber?: true
-    serialNumber?: true
-    createdAt?: true
-    staffId?: true
-    type?: true
-    status?: true
-    createdByStaffId?: true
-    _all?: true
-  }
-
-  export type ComponentRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ComponentRequest to aggregate.
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ComponentRequests to fetch.
-     */
-    orderBy?: ComponentRequestOrderByWithRelationInput | ComponentRequestOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ComponentRequestWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ComponentRequests from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ComponentRequests.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ComponentRequests
-    **/
-    _count?: true | ComponentRequestCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ComponentRequestAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ComponentRequestSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ComponentRequestMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ComponentRequestMaxAggregateInputType
-  }
-
-  export type GetComponentRequestAggregateType<T extends ComponentRequestAggregateArgs> = {
-        [P in keyof T & keyof AggregateComponentRequest]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateComponentRequest[P]>
-      : GetScalarType<T[P], AggregateComponentRequest[P]>
-  }
-
-
-
-
-  export type ComponentRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ComponentRequestWhereInput
-    orderBy?: ComponentRequestOrderByWithAggregationInput | ComponentRequestOrderByWithAggregationInput[]
-    by: ComponentRequestScalarFieldEnum[] | ComponentRequestScalarFieldEnum
-    having?: ComponentRequestScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ComponentRequestCountAggregateInputType | true
-    _avg?: ComponentRequestAvgAggregateInputType
-    _sum?: ComponentRequestSumAggregateInputType
-    _min?: ComponentRequestMinAggregateInputType
-    _max?: ComponentRequestMaxAggregateInputType
-  }
-
-  export type ComponentRequestGroupByOutputType = {
-    id: number
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt: Date
-    staffId: number
-    type: string
-    status: string
-    createdByStaffId: number | null
-    _count: ComponentRequestCountAggregateOutputType | null
-    _avg: ComponentRequestAvgAggregateOutputType | null
-    _sum: ComponentRequestSumAggregateOutputType | null
-    _min: ComponentRequestMinAggregateOutputType | null
-    _max: ComponentRequestMaxAggregateOutputType | null
-  }
-
-  type GetComponentRequestGroupByPayload<T extends ComponentRequestGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ComponentRequestGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ComponentRequestGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ComponentRequestGroupByOutputType[P]>
-            : GetScalarType<T[P], ComponentRequestGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ComponentRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    brand?: boolean
-    modelNumber?: boolean
-    serialNumber?: boolean
-    createdAt?: boolean
-    staffId?: boolean
-    type?: boolean
-    status?: boolean
-    createdByStaffId?: boolean
-    staff?: boolean | StaffDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["componentRequest"]>
-
-  export type ComponentRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    brand?: boolean
-    modelNumber?: boolean
-    serialNumber?: boolean
-    createdAt?: boolean
-    staffId?: boolean
-    type?: boolean
-    status?: boolean
-    createdByStaffId?: boolean
-    staff?: boolean | StaffDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["componentRequest"]>
-
-  export type ComponentRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    brand?: boolean
-    modelNumber?: boolean
-    serialNumber?: boolean
-    createdAt?: boolean
-    staffId?: boolean
-    type?: boolean
-    status?: boolean
-    createdByStaffId?: boolean
-    staff?: boolean | StaffDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["componentRequest"]>
-
-  export type ComponentRequestSelectScalar = {
-    id?: boolean
-    name?: boolean
-    brand?: boolean
-    modelNumber?: boolean
-    serialNumber?: boolean
-    createdAt?: boolean
-    staffId?: boolean
-    type?: boolean
-    status?: boolean
-    createdByStaffId?: boolean
-  }
-
-  export type ComponentRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "brand" | "modelNumber" | "serialNumber" | "createdAt" | "staffId" | "type" | "status" | "createdByStaffId", ExtArgs["result"]["componentRequest"]>
-  export type ComponentRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    staff?: boolean | StaffDefaultArgs<ExtArgs>
-  }
-  export type ComponentRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    staff?: boolean | StaffDefaultArgs<ExtArgs>
-  }
-  export type ComponentRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    staff?: boolean | StaffDefaultArgs<ExtArgs>
-  }
-
-  export type $ComponentRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ComponentRequest"
-    objects: {
-      staff: Prisma.$StaffPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      brand: string
-      modelNumber: string
-      serialNumber: string
-      createdAt: Date
-      staffId: number
-      type: string
-      status: string
-      createdByStaffId: number | null
-    }, ExtArgs["result"]["componentRequest"]>
-    composites: {}
-  }
-
-  type ComponentRequestGetPayload<S extends boolean | null | undefined | ComponentRequestDefaultArgs> = $Result.GetResult<Prisma.$ComponentRequestPayload, S>
-
-  type ComponentRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ComponentRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ComponentRequestCountAggregateInputType | true
-    }
-
-  export interface ComponentRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ComponentRequest'], meta: { name: 'ComponentRequest' } }
-    /**
-     * Find zero or one ComponentRequest that matches the filter.
-     * @param {ComponentRequestFindUniqueArgs} args - Arguments to find a ComponentRequest
-     * @example
-     * // Get one ComponentRequest
-     * const componentRequest = await prisma.componentRequest.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ComponentRequestFindUniqueArgs>(args: SelectSubset<T, ComponentRequestFindUniqueArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ComponentRequest that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ComponentRequestFindUniqueOrThrowArgs} args - Arguments to find a ComponentRequest
-     * @example
-     * // Get one ComponentRequest
-     * const componentRequest = await prisma.componentRequest.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ComponentRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, ComponentRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ComponentRequest that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestFindFirstArgs} args - Arguments to find a ComponentRequest
-     * @example
-     * // Get one ComponentRequest
-     * const componentRequest = await prisma.componentRequest.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ComponentRequestFindFirstArgs>(args?: SelectSubset<T, ComponentRequestFindFirstArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ComponentRequest that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestFindFirstOrThrowArgs} args - Arguments to find a ComponentRequest
-     * @example
-     * // Get one ComponentRequest
-     * const componentRequest = await prisma.componentRequest.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ComponentRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, ComponentRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ComponentRequests that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ComponentRequests
-     * const componentRequests = await prisma.componentRequest.findMany()
-     * 
-     * // Get first 10 ComponentRequests
-     * const componentRequests = await prisma.componentRequest.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const componentRequestWithIdOnly = await prisma.componentRequest.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ComponentRequestFindManyArgs>(args?: SelectSubset<T, ComponentRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ComponentRequest.
-     * @param {ComponentRequestCreateArgs} args - Arguments to create a ComponentRequest.
-     * @example
-     * // Create one ComponentRequest
-     * const ComponentRequest = await prisma.componentRequest.create({
-     *   data: {
-     *     // ... data to create a ComponentRequest
-     *   }
-     * })
-     * 
-     */
-    create<T extends ComponentRequestCreateArgs>(args: SelectSubset<T, ComponentRequestCreateArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ComponentRequests.
-     * @param {ComponentRequestCreateManyArgs} args - Arguments to create many ComponentRequests.
-     * @example
-     * // Create many ComponentRequests
-     * const componentRequest = await prisma.componentRequest.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ComponentRequestCreateManyArgs>(args?: SelectSubset<T, ComponentRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ComponentRequests and returns the data saved in the database.
-     * @param {ComponentRequestCreateManyAndReturnArgs} args - Arguments to create many ComponentRequests.
-     * @example
-     * // Create many ComponentRequests
-     * const componentRequest = await prisma.componentRequest.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ComponentRequests and only return the `id`
-     * const componentRequestWithIdOnly = await prisma.componentRequest.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ComponentRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, ComponentRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ComponentRequest.
-     * @param {ComponentRequestDeleteArgs} args - Arguments to delete one ComponentRequest.
-     * @example
-     * // Delete one ComponentRequest
-     * const ComponentRequest = await prisma.componentRequest.delete({
-     *   where: {
-     *     // ... filter to delete one ComponentRequest
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ComponentRequestDeleteArgs>(args: SelectSubset<T, ComponentRequestDeleteArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ComponentRequest.
-     * @param {ComponentRequestUpdateArgs} args - Arguments to update one ComponentRequest.
-     * @example
-     * // Update one ComponentRequest
-     * const componentRequest = await prisma.componentRequest.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ComponentRequestUpdateArgs>(args: SelectSubset<T, ComponentRequestUpdateArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ComponentRequests.
-     * @param {ComponentRequestDeleteManyArgs} args - Arguments to filter ComponentRequests to delete.
-     * @example
-     * // Delete a few ComponentRequests
-     * const { count } = await prisma.componentRequest.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ComponentRequestDeleteManyArgs>(args?: SelectSubset<T, ComponentRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ComponentRequests.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ComponentRequests
-     * const componentRequest = await prisma.componentRequest.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ComponentRequestUpdateManyArgs>(args: SelectSubset<T, ComponentRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ComponentRequests and returns the data updated in the database.
-     * @param {ComponentRequestUpdateManyAndReturnArgs} args - Arguments to update many ComponentRequests.
-     * @example
-     * // Update many ComponentRequests
-     * const componentRequest = await prisma.componentRequest.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ComponentRequests and only return the `id`
-     * const componentRequestWithIdOnly = await prisma.componentRequest.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ComponentRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, ComponentRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ComponentRequest.
-     * @param {ComponentRequestUpsertArgs} args - Arguments to update or create a ComponentRequest.
-     * @example
-     * // Update or create a ComponentRequest
-     * const componentRequest = await prisma.componentRequest.upsert({
-     *   create: {
-     *     // ... data to create a ComponentRequest
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ComponentRequest we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ComponentRequestUpsertArgs>(args: SelectSubset<T, ComponentRequestUpsertArgs<ExtArgs>>): Prisma__ComponentRequestClient<$Result.GetResult<Prisma.$ComponentRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ComponentRequests.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestCountArgs} args - Arguments to filter ComponentRequests to count.
-     * @example
-     * // Count the number of ComponentRequests
-     * const count = await prisma.componentRequest.count({
-     *   where: {
-     *     // ... the filter for the ComponentRequests we want to count
-     *   }
-     * })
-    **/
-    count<T extends ComponentRequestCountArgs>(
-      args?: Subset<T, ComponentRequestCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ComponentRequestCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ComponentRequest.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ComponentRequestAggregateArgs>(args: Subset<T, ComponentRequestAggregateArgs>): Prisma.PrismaPromise<GetComponentRequestAggregateType<T>>
-
-    /**
-     * Group by ComponentRequest.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ComponentRequestGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ComponentRequestGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ComponentRequestGroupByArgs['orderBy'] }
-        : { orderBy?: ComponentRequestGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ComponentRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComponentRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ComponentRequest model
-   */
-  readonly fields: ComponentRequestFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ComponentRequest.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ComponentRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    staff<T extends StaffDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StaffDefaultArgs<ExtArgs>>): Prisma__StaffClient<$Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ComponentRequest model
-   */
-  interface ComponentRequestFieldRefs {
-    readonly id: FieldRef<"ComponentRequest", 'Int'>
-    readonly name: FieldRef<"ComponentRequest", 'String'>
-    readonly brand: FieldRef<"ComponentRequest", 'String'>
-    readonly modelNumber: FieldRef<"ComponentRequest", 'String'>
-    readonly serialNumber: FieldRef<"ComponentRequest", 'String'>
-    readonly createdAt: FieldRef<"ComponentRequest", 'DateTime'>
-    readonly staffId: FieldRef<"ComponentRequest", 'Int'>
-    readonly type: FieldRef<"ComponentRequest", 'String'>
-    readonly status: FieldRef<"ComponentRequest", 'String'>
-    readonly createdByStaffId: FieldRef<"ComponentRequest", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ComponentRequest findUnique
-   */
-  export type ComponentRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * Filter, which ComponentRequest to fetch.
-     */
-    where: ComponentRequestWhereUniqueInput
-  }
-
-  /**
-   * ComponentRequest findUniqueOrThrow
-   */
-  export type ComponentRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * Filter, which ComponentRequest to fetch.
-     */
-    where: ComponentRequestWhereUniqueInput
-  }
-
-  /**
-   * ComponentRequest findFirst
-   */
-  export type ComponentRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * Filter, which ComponentRequest to fetch.
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ComponentRequests to fetch.
-     */
-    orderBy?: ComponentRequestOrderByWithRelationInput | ComponentRequestOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ComponentRequests.
-     */
-    cursor?: ComponentRequestWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ComponentRequests from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ComponentRequests.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ComponentRequests.
-     */
-    distinct?: ComponentRequestScalarFieldEnum | ComponentRequestScalarFieldEnum[]
-  }
-
-  /**
-   * ComponentRequest findFirstOrThrow
-   */
-  export type ComponentRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * Filter, which ComponentRequest to fetch.
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ComponentRequests to fetch.
-     */
-    orderBy?: ComponentRequestOrderByWithRelationInput | ComponentRequestOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ComponentRequests.
-     */
-    cursor?: ComponentRequestWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ComponentRequests from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ComponentRequests.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ComponentRequests.
-     */
-    distinct?: ComponentRequestScalarFieldEnum | ComponentRequestScalarFieldEnum[]
-  }
-
-  /**
-   * ComponentRequest findMany
-   */
-  export type ComponentRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * Filter, which ComponentRequests to fetch.
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ComponentRequests to fetch.
-     */
-    orderBy?: ComponentRequestOrderByWithRelationInput | ComponentRequestOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ComponentRequests.
-     */
-    cursor?: ComponentRequestWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ComponentRequests from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ComponentRequests.
-     */
-    skip?: number
-    distinct?: ComponentRequestScalarFieldEnum | ComponentRequestScalarFieldEnum[]
-  }
-
-  /**
-   * ComponentRequest create
-   */
-  export type ComponentRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ComponentRequest.
-     */
-    data: XOR<ComponentRequestCreateInput, ComponentRequestUncheckedCreateInput>
-  }
-
-  /**
-   * ComponentRequest createMany
-   */
-  export type ComponentRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ComponentRequests.
-     */
-    data: ComponentRequestCreateManyInput | ComponentRequestCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ComponentRequest createManyAndReturn
-   */
-  export type ComponentRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * The data used to create many ComponentRequests.
-     */
-    data: ComponentRequestCreateManyInput | ComponentRequestCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ComponentRequest update
-   */
-  export type ComponentRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ComponentRequest.
-     */
-    data: XOR<ComponentRequestUpdateInput, ComponentRequestUncheckedUpdateInput>
-    /**
-     * Choose, which ComponentRequest to update.
-     */
-    where: ComponentRequestWhereUniqueInput
-  }
-
-  /**
-   * ComponentRequest updateMany
-   */
-  export type ComponentRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ComponentRequests.
-     */
-    data: XOR<ComponentRequestUpdateManyMutationInput, ComponentRequestUncheckedUpdateManyInput>
-    /**
-     * Filter which ComponentRequests to update
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * Limit how many ComponentRequests to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ComponentRequest updateManyAndReturn
-   */
-  export type ComponentRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * The data used to update ComponentRequests.
-     */
-    data: XOR<ComponentRequestUpdateManyMutationInput, ComponentRequestUncheckedUpdateManyInput>
-    /**
-     * Filter which ComponentRequests to update
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * Limit how many ComponentRequests to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ComponentRequest upsert
-   */
-  export type ComponentRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ComponentRequest to update in case it exists.
-     */
-    where: ComponentRequestWhereUniqueInput
-    /**
-     * In case the ComponentRequest found by the `where` argument doesn't exist, create a new ComponentRequest with this data.
-     */
-    create: XOR<ComponentRequestCreateInput, ComponentRequestUncheckedCreateInput>
-    /**
-     * In case the ComponentRequest was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ComponentRequestUpdateInput, ComponentRequestUncheckedUpdateInput>
-  }
-
-  /**
-   * ComponentRequest delete
-   */
-  export type ComponentRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
-    /**
-     * Filter which ComponentRequest to delete.
-     */
-    where: ComponentRequestWhereUniqueInput
-  }
-
-  /**
-   * ComponentRequest deleteMany
-   */
-  export type ComponentRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ComponentRequests to delete
-     */
-    where?: ComponentRequestWhereInput
-    /**
-     * Limit how many ComponentRequests to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ComponentRequest without action
-   */
-  export type ComponentRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ComponentRequest
-     */
-    select?: ComponentRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ComponentRequest
-     */
-    omit?: ComponentRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ComponentRequestInclude<ExtArgs> | null
   }
 
 
@@ -9608,7 +6903,7 @@ export namespace Prisma {
     adminId?: boolean
     department?: boolean | DepartmentDefaultArgs<ExtArgs>
     admin?: boolean | Lab$adminArgs<ExtArgs>
-    components?: boolean | Lab$componentsArgs<ExtArgs>
+    Component?: boolean | Lab$ComponentArgs<ExtArgs>
     _count?: boolean | LabCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lab"]>
 
@@ -9641,7 +6936,7 @@ export namespace Prisma {
   export type LabInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     department?: boolean | DepartmentDefaultArgs<ExtArgs>
     admin?: boolean | Lab$adminArgs<ExtArgs>
-    components?: boolean | Lab$componentsArgs<ExtArgs>
+    Component?: boolean | Lab$ComponentArgs<ExtArgs>
     _count?: boolean | LabCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LabIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9658,7 +6953,7 @@ export namespace Prisma {
     objects: {
       department: Prisma.$DepartmentPayload<ExtArgs>
       admin: Prisma.$AdminPayload<ExtArgs> | null
-      components: Prisma.$ComponentPayload<ExtArgs>[]
+      Component: Prisma.$ComponentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10061,7 +7356,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     department<T extends DepartmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DepartmentDefaultArgs<ExtArgs>>): Prisma__DepartmentClient<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     admin<T extends Lab$adminArgs<ExtArgs> = {}>(args?: Subset<T, Lab$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    components<T extends Lab$componentsArgs<ExtArgs> = {}>(args?: Subset<T, Lab$componentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Component<T extends Lab$ComponentArgs<ExtArgs> = {}>(args?: Subset<T, Lab$ComponentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10510,9 +7805,9 @@ export namespace Prisma {
   }
 
   /**
-   * Lab.components
+   * Lab.Component
    */
-  export type Lab$componentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Lab$ComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Component
      */
@@ -10834,8 +8129,8 @@ export namespace Prisma {
     college?: boolean | CollegeDefaultArgs<ExtArgs>
     warehouse?: boolean | WarehouseDefaultArgs<ExtArgs>
     lab?: boolean | LabDefaultArgs<ExtArgs>
-    Report?: boolean | Component$ReportArgs<ExtArgs>
     Department?: boolean | Component$DepartmentArgs<ExtArgs>
+    Report?: boolean | Component$ReportArgs<ExtArgs>
     _count?: boolean | ComponentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["component"]>
 
@@ -10901,8 +8196,8 @@ export namespace Prisma {
     college?: boolean | CollegeDefaultArgs<ExtArgs>
     warehouse?: boolean | WarehouseDefaultArgs<ExtArgs>
     lab?: boolean | LabDefaultArgs<ExtArgs>
-    Report?: boolean | Component$ReportArgs<ExtArgs>
     Department?: boolean | Component$DepartmentArgs<ExtArgs>
+    Report?: boolean | Component$ReportArgs<ExtArgs>
     _count?: boolean | ComponentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ComponentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10925,8 +8220,8 @@ export namespace Prisma {
       college: Prisma.$CollegePayload<ExtArgs>
       warehouse: Prisma.$WarehousePayload<ExtArgs>
       lab: Prisma.$LabPayload<ExtArgs>
-      Report: Prisma.$ReportPayload<ExtArgs>[]
       Department: Prisma.$DepartmentPayload<ExtArgs>[]
+      Report: Prisma.$ReportPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11340,8 +8635,8 @@ export namespace Prisma {
     college<T extends CollegeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CollegeDefaultArgs<ExtArgs>>): Prisma__CollegeClient<$Result.GetResult<Prisma.$CollegePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     warehouse<T extends WarehouseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WarehouseDefaultArgs<ExtArgs>>): Prisma__WarehouseClient<$Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     lab<T extends LabDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LabDefaultArgs<ExtArgs>>): Prisma__LabClient<$Result.GetResult<Prisma.$LabPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Report<T extends Component$ReportArgs<ExtArgs> = {}>(args?: Subset<T, Component$ReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Department<T extends Component$DepartmentArgs<ExtArgs> = {}>(args?: Subset<T, Component$DepartmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Report<T extends Component$ReportArgs<ExtArgs> = {}>(args?: Subset<T, Component$ReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11780,30 +9075,6 @@ export namespace Prisma {
   }
 
   /**
-   * Component.Report
-   */
-  export type Component$ReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Report
-     */
-    select?: ReportSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Report
-     */
-    omit?: ReportOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReportInclude<ExtArgs> | null
-    where?: ReportWhereInput
-    orderBy?: ReportOrderByWithRelationInput | ReportOrderByWithRelationInput[]
-    cursor?: ReportWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ReportScalarFieldEnum | ReportScalarFieldEnum[]
-  }
-
-  /**
    * Component.Department
    */
   export type Component$DepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11825,6 +9096,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DepartmentScalarFieldEnum | DepartmentScalarFieldEnum[]
+  }
+
+  /**
+   * Component.Report
+   */
+  export type Component$ReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Report
+     */
+    select?: ReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Report
+     */
+    omit?: ReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReportInclude<ExtArgs> | null
+    where?: ReportWhereInput
+    orderBy?: ReportOrderByWithRelationInput | ReportOrderByWithRelationInput[]
+    cursor?: ReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReportScalarFieldEnum | ReportScalarFieldEnum[]
   }
 
   /**
@@ -12066,9 +9361,9 @@ export namespace Prisma {
     hodId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
     college?: boolean | CollegeDefaultArgs<ExtArgs>
-    hod?: boolean | Department$hodArgs<ExtArgs>
+    HOD?: boolean | Department$HODArgs<ExtArgs>
     Lab?: boolean | Department$LabArgs<ExtArgs>
-    components?: boolean | Department$componentsArgs<ExtArgs>
+    Component?: boolean | Department$ComponentArgs<ExtArgs>
     Report?: boolean | Department$ReportArgs<ExtArgs>
     _count?: boolean | DepartmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["department"]>
@@ -12082,7 +9377,6 @@ export namespace Prisma {
     hodId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
     college?: boolean | CollegeDefaultArgs<ExtArgs>
-    hod?: boolean | Department$hodArgs<ExtArgs>
   }, ExtArgs["result"]["department"]>
 
   export type DepartmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12094,7 +9388,6 @@ export namespace Prisma {
     hodId?: boolean
     admin?: boolean | AdminDefaultArgs<ExtArgs>
     college?: boolean | CollegeDefaultArgs<ExtArgs>
-    hod?: boolean | Department$hodArgs<ExtArgs>
   }, ExtArgs["result"]["department"]>
 
   export type DepartmentSelectScalar = {
@@ -12110,21 +9403,19 @@ export namespace Prisma {
   export type DepartmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
     college?: boolean | CollegeDefaultArgs<ExtArgs>
-    hod?: boolean | Department$hodArgs<ExtArgs>
+    HOD?: boolean | Department$HODArgs<ExtArgs>
     Lab?: boolean | Department$LabArgs<ExtArgs>
-    components?: boolean | Department$componentsArgs<ExtArgs>
+    Component?: boolean | Department$ComponentArgs<ExtArgs>
     Report?: boolean | Department$ReportArgs<ExtArgs>
     _count?: boolean | DepartmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DepartmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
     college?: boolean | CollegeDefaultArgs<ExtArgs>
-    hod?: boolean | Department$hodArgs<ExtArgs>
   }
   export type DepartmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     admin?: boolean | AdminDefaultArgs<ExtArgs>
     college?: boolean | CollegeDefaultArgs<ExtArgs>
-    hod?: boolean | Department$hodArgs<ExtArgs>
   }
 
   export type $DepartmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12132,9 +9423,9 @@ export namespace Prisma {
     objects: {
       admin: Prisma.$AdminPayload<ExtArgs>
       college: Prisma.$CollegePayload<ExtArgs>
-      hod: Prisma.$HODPayload<ExtArgs> | null
+      HOD: Prisma.$HODPayload<ExtArgs>[]
       Lab: Prisma.$LabPayload<ExtArgs>[]
-      components: Prisma.$ComponentPayload<ExtArgs>[]
+      Component: Prisma.$ComponentPayload<ExtArgs>[]
       Report: Prisma.$ReportPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -12540,9 +9831,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     college<T extends CollegeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CollegeDefaultArgs<ExtArgs>>): Prisma__CollegeClient<$Result.GetResult<Prisma.$CollegePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    hod<T extends Department$hodArgs<ExtArgs> = {}>(args?: Subset<T, Department$hodArgs<ExtArgs>>): Prisma__HODClient<$Result.GetResult<Prisma.$HODPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    HOD<T extends Department$HODArgs<ExtArgs> = {}>(args?: Subset<T, Department$HODArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HODPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Lab<T extends Department$LabArgs<ExtArgs> = {}>(args?: Subset<T, Department$LabArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    components<T extends Department$componentsArgs<ExtArgs> = {}>(args?: Subset<T, Department$componentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Component<T extends Department$ComponentArgs<ExtArgs> = {}>(args?: Subset<T, Department$ComponentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Report<T extends Department$ReportArgs<ExtArgs> = {}>(args?: Subset<T, Department$ReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12975,9 +10266,9 @@ export namespace Prisma {
   }
 
   /**
-   * Department.hod
+   * Department.HOD
    */
-  export type Department$hodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Department$HODArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the HOD
      */
@@ -12991,6 +10282,11 @@ export namespace Prisma {
      */
     include?: HODInclude<ExtArgs> | null
     where?: HODWhereInput
+    orderBy?: HODOrderByWithRelationInput | HODOrderByWithRelationInput[]
+    cursor?: HODWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HODScalarFieldEnum | HODScalarFieldEnum[]
   }
 
   /**
@@ -13018,9 +10314,9 @@ export namespace Prisma {
   }
 
   /**
-   * Department.components
+   * Department.Component
    */
-  export type Department$componentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Department$ComponentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Component
      */
@@ -14282,38 +11578,6 @@ export namespace Prisma {
   export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof typeof WarehouseScalarFieldEnum]
 
 
-  export const StaffScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    email: 'email',
-    password: 'password',
-    phone: 'phone',
-    collegeId: 'collegeId',
-    adminId: 'adminId',
-    role: 'role',
-    resetToken: 'resetToken',
-    resetTokenExpiry: 'resetTokenExpiry'
-  };
-
-  export type StaffScalarFieldEnum = (typeof StaffScalarFieldEnum)[keyof typeof StaffScalarFieldEnum]
-
-
-  export const ComponentRequestScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    brand: 'brand',
-    modelNumber: 'modelNumber',
-    serialNumber: 'serialNumber',
-    createdAt: 'createdAt',
-    staffId: 'staffId',
-    type: 'type',
-    status: 'status',
-    createdByStaffId: 'createdByStaffId'
-  };
-
-  export type ComponentRequestScalarFieldEnum = (typeof ComponentRequestScalarFieldEnum)[keyof typeof ComponentRequestScalarFieldEnum]
-
-
   export const HODScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -14526,13 +11790,12 @@ export namespace Prisma {
     resetTokenExpiry?: DateTimeNullableFilter<"Admin"> | Date | string | null
     createdAt?: DateTimeFilter<"Admin"> | Date | string
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
-    colleges?: CollegeListRelationFilter
-    staffs?: StaffListRelationFilter
-    warehouses?: WarehouseListRelationFilter
-    component?: ComponentListRelationFilter
-    HOD?: HODListRelationFilter
+    College?: CollegeListRelationFilter
+    Warehouse?: WarehouseListRelationFilter
     Department?: DepartmentListRelationFilter
+    HOD?: HODListRelationFilter
     Lab?: LabListRelationFilter
+    Component?: ComponentListRelationFilter
   }
 
   export type AdminOrderByWithRelationInput = {
@@ -14546,13 +11809,12 @@ export namespace Prisma {
     resetTokenExpiry?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    colleges?: CollegeOrderByRelationAggregateInput
-    staffs?: StaffOrderByRelationAggregateInput
-    warehouses?: WarehouseOrderByRelationAggregateInput
-    component?: ComponentOrderByRelationAggregateInput
-    HOD?: HODOrderByRelationAggregateInput
+    College?: CollegeOrderByRelationAggregateInput
+    Warehouse?: WarehouseOrderByRelationAggregateInput
     Department?: DepartmentOrderByRelationAggregateInput
+    HOD?: HODOrderByRelationAggregateInput
     Lab?: LabOrderByRelationAggregateInput
+    Component?: ComponentOrderByRelationAggregateInput
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
@@ -14569,13 +11831,12 @@ export namespace Prisma {
     resetTokenExpiry?: DateTimeNullableFilter<"Admin"> | Date | string | null
     createdAt?: DateTimeFilter<"Admin"> | Date | string
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
-    colleges?: CollegeListRelationFilter
-    staffs?: StaffListRelationFilter
-    warehouses?: WarehouseListRelationFilter
-    component?: ComponentListRelationFilter
-    HOD?: HODListRelationFilter
+    College?: CollegeListRelationFilter
+    Warehouse?: WarehouseListRelationFilter
     Department?: DepartmentListRelationFilter
+    HOD?: HODListRelationFilter
     Lab?: LabListRelationFilter
+    Component?: ComponentListRelationFilter
   }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
@@ -14622,11 +11883,9 @@ export namespace Prisma {
     collegeId?: StringFilter<"College"> | string
     adminId?: IntFilter<"College"> | number
     admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
-    staffs?: StaffListRelationFilter
-    warehouses?: WarehouseListRelationFilter
-    component?: ComponentListRelationFilter
-    hod?: HODListRelationFilter
     Department?: DepartmentListRelationFilter
+    HOD?: HODListRelationFilter
+    Component?: ComponentListRelationFilter
   }
 
   export type CollegeOrderByWithRelationInput = {
@@ -14636,11 +11895,9 @@ export namespace Prisma {
     collegeId?: SortOrder
     adminId?: SortOrder
     admin?: AdminOrderByWithRelationInput
-    staffs?: StaffOrderByRelationAggregateInput
-    warehouses?: WarehouseOrderByRelationAggregateInput
-    component?: ComponentOrderByRelationAggregateInput
-    hod?: HODOrderByRelationAggregateInput
     Department?: DepartmentOrderByRelationAggregateInput
+    HOD?: HODOrderByRelationAggregateInput
+    Component?: ComponentOrderByRelationAggregateInput
   }
 
   export type CollegeWhereUniqueInput = Prisma.AtLeast<{
@@ -14653,11 +11910,9 @@ export namespace Prisma {
     address?: StringFilter<"College"> | string
     adminId?: IntFilter<"College"> | number
     admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
-    staffs?: StaffListRelationFilter
-    warehouses?: WarehouseListRelationFilter
-    component?: ComponentListRelationFilter
-    hod?: HODListRelationFilter
     Department?: DepartmentListRelationFilter
+    HOD?: HODListRelationFilter
+    Component?: ComponentListRelationFilter
   }, "id" | "collegeId">
 
   export type CollegeOrderByWithAggregationInput = {
@@ -14694,8 +11949,7 @@ export namespace Prisma {
     adminId?: IntFilter<"Warehouse"> | number
     warehouseId?: StringFilter<"Warehouse"> | string
     admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
-    college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
-    component?: ComponentListRelationFilter
+    Component?: ComponentListRelationFilter
   }
 
   export type WarehouseOrderByWithRelationInput = {
@@ -14705,8 +11959,7 @@ export namespace Prisma {
     adminId?: SortOrder
     warehouseId?: SortOrder
     admin?: AdminOrderByWithRelationInput
-    college?: CollegeOrderByWithRelationInput
-    component?: ComponentOrderByRelationAggregateInput
+    Component?: ComponentOrderByRelationAggregateInput
   }
 
   export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
@@ -14719,8 +11972,7 @@ export namespace Prisma {
     collegeId?: IntFilter<"Warehouse"> | number
     adminId?: IntFilter<"Warehouse"> | number
     admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
-    college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
-    component?: ComponentListRelationFilter
+    Component?: ComponentListRelationFilter
   }, "id" | "warehouseId">
 
   export type WarehouseOrderByWithAggregationInput = {
@@ -14745,176 +11997,6 @@ export namespace Prisma {
     collegeId?: IntWithAggregatesFilter<"Warehouse"> | number
     adminId?: IntWithAggregatesFilter<"Warehouse"> | number
     warehouseId?: StringWithAggregatesFilter<"Warehouse"> | string
-  }
-
-  export type StaffWhereInput = {
-    AND?: StaffWhereInput | StaffWhereInput[]
-    OR?: StaffWhereInput[]
-    NOT?: StaffWhereInput | StaffWhereInput[]
-    id?: IntFilter<"Staff"> | number
-    name?: StringFilter<"Staff"> | string
-    email?: StringFilter<"Staff"> | string
-    password?: StringFilter<"Staff"> | string
-    phone?: StringFilter<"Staff"> | string
-    collegeId?: IntFilter<"Staff"> | number
-    adminId?: IntFilter<"Staff"> | number
-    role?: EnumRoleFilter<"Staff"> | $Enums.Role
-    resetToken?: StringNullableFilter<"Staff"> | string | null
-    resetTokenExpiry?: DateTimeNullableFilter<"Staff"> | Date | string | null
-    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
-    college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
-    componentRequest?: ComponentRequestListRelationFilter
-  }
-
-  export type StaffOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    phone?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-    role?: SortOrder
-    resetToken?: SortOrderInput | SortOrder
-    resetTokenExpiry?: SortOrderInput | SortOrder
-    admin?: AdminOrderByWithRelationInput
-    college?: CollegeOrderByWithRelationInput
-    componentRequest?: ComponentRequestOrderByRelationAggregateInput
-  }
-
-  export type StaffWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    email?: string
-    AND?: StaffWhereInput | StaffWhereInput[]
-    OR?: StaffWhereInput[]
-    NOT?: StaffWhereInput | StaffWhereInput[]
-    name?: StringFilter<"Staff"> | string
-    password?: StringFilter<"Staff"> | string
-    phone?: StringFilter<"Staff"> | string
-    collegeId?: IntFilter<"Staff"> | number
-    adminId?: IntFilter<"Staff"> | number
-    role?: EnumRoleFilter<"Staff"> | $Enums.Role
-    resetToken?: StringNullableFilter<"Staff"> | string | null
-    resetTokenExpiry?: DateTimeNullableFilter<"Staff"> | Date | string | null
-    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
-    college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
-    componentRequest?: ComponentRequestListRelationFilter
-  }, "id" | "email">
-
-  export type StaffOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    phone?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-    role?: SortOrder
-    resetToken?: SortOrderInput | SortOrder
-    resetTokenExpiry?: SortOrderInput | SortOrder
-    _count?: StaffCountOrderByAggregateInput
-    _avg?: StaffAvgOrderByAggregateInput
-    _max?: StaffMaxOrderByAggregateInput
-    _min?: StaffMinOrderByAggregateInput
-    _sum?: StaffSumOrderByAggregateInput
-  }
-
-  export type StaffScalarWhereWithAggregatesInput = {
-    AND?: StaffScalarWhereWithAggregatesInput | StaffScalarWhereWithAggregatesInput[]
-    OR?: StaffScalarWhereWithAggregatesInput[]
-    NOT?: StaffScalarWhereWithAggregatesInput | StaffScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Staff"> | number
-    name?: StringWithAggregatesFilter<"Staff"> | string
-    email?: StringWithAggregatesFilter<"Staff"> | string
-    password?: StringWithAggregatesFilter<"Staff"> | string
-    phone?: StringWithAggregatesFilter<"Staff"> | string
-    collegeId?: IntWithAggregatesFilter<"Staff"> | number
-    adminId?: IntWithAggregatesFilter<"Staff"> | number
-    role?: EnumRoleWithAggregatesFilter<"Staff"> | $Enums.Role
-    resetToken?: StringNullableWithAggregatesFilter<"Staff"> | string | null
-    resetTokenExpiry?: DateTimeNullableWithAggregatesFilter<"Staff"> | Date | string | null
-  }
-
-  export type ComponentRequestWhereInput = {
-    AND?: ComponentRequestWhereInput | ComponentRequestWhereInput[]
-    OR?: ComponentRequestWhereInput[]
-    NOT?: ComponentRequestWhereInput | ComponentRequestWhereInput[]
-    id?: IntFilter<"ComponentRequest"> | number
-    name?: StringFilter<"ComponentRequest"> | string
-    brand?: StringFilter<"ComponentRequest"> | string
-    modelNumber?: StringFilter<"ComponentRequest"> | string
-    serialNumber?: StringFilter<"ComponentRequest"> | string
-    createdAt?: DateTimeFilter<"ComponentRequest"> | Date | string
-    staffId?: IntFilter<"ComponentRequest"> | number
-    type?: StringFilter<"ComponentRequest"> | string
-    status?: StringFilter<"ComponentRequest"> | string
-    createdByStaffId?: IntNullableFilter<"ComponentRequest"> | number | null
-    staff?: XOR<StaffScalarRelationFilter, StaffWhereInput>
-  }
-
-  export type ComponentRequestOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    brand?: SortOrder
-    modelNumber?: SortOrder
-    serialNumber?: SortOrder
-    createdAt?: SortOrder
-    staffId?: SortOrder
-    type?: SortOrder
-    status?: SortOrder
-    createdByStaffId?: SortOrderInput | SortOrder
-    staff?: StaffOrderByWithRelationInput
-  }
-
-  export type ComponentRequestWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: ComponentRequestWhereInput | ComponentRequestWhereInput[]
-    OR?: ComponentRequestWhereInput[]
-    NOT?: ComponentRequestWhereInput | ComponentRequestWhereInput[]
-    name?: StringFilter<"ComponentRequest"> | string
-    brand?: StringFilter<"ComponentRequest"> | string
-    modelNumber?: StringFilter<"ComponentRequest"> | string
-    serialNumber?: StringFilter<"ComponentRequest"> | string
-    createdAt?: DateTimeFilter<"ComponentRequest"> | Date | string
-    staffId?: IntFilter<"ComponentRequest"> | number
-    type?: StringFilter<"ComponentRequest"> | string
-    status?: StringFilter<"ComponentRequest"> | string
-    createdByStaffId?: IntNullableFilter<"ComponentRequest"> | number | null
-    staff?: XOR<StaffScalarRelationFilter, StaffWhereInput>
-  }, "id">
-
-  export type ComponentRequestOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    brand?: SortOrder
-    modelNumber?: SortOrder
-    serialNumber?: SortOrder
-    createdAt?: SortOrder
-    staffId?: SortOrder
-    type?: SortOrder
-    status?: SortOrder
-    createdByStaffId?: SortOrderInput | SortOrder
-    _count?: ComponentRequestCountOrderByAggregateInput
-    _avg?: ComponentRequestAvgOrderByAggregateInput
-    _max?: ComponentRequestMaxOrderByAggregateInput
-    _min?: ComponentRequestMinOrderByAggregateInput
-    _sum?: ComponentRequestSumOrderByAggregateInput
-  }
-
-  export type ComponentRequestScalarWhereWithAggregatesInput = {
-    AND?: ComponentRequestScalarWhereWithAggregatesInput | ComponentRequestScalarWhereWithAggregatesInput[]
-    OR?: ComponentRequestScalarWhereWithAggregatesInput[]
-    NOT?: ComponentRequestScalarWhereWithAggregatesInput | ComponentRequestScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"ComponentRequest"> | number
-    name?: StringWithAggregatesFilter<"ComponentRequest"> | string
-    brand?: StringWithAggregatesFilter<"ComponentRequest"> | string
-    modelNumber?: StringWithAggregatesFilter<"ComponentRequest"> | string
-    serialNumber?: StringWithAggregatesFilter<"ComponentRequest"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"ComponentRequest"> | Date | string
-    staffId?: IntWithAggregatesFilter<"ComponentRequest"> | number
-    type?: StringWithAggregatesFilter<"ComponentRequest"> | string
-    status?: StringWithAggregatesFilter<"ComponentRequest"> | string
-    createdByStaffId?: IntNullableWithAggregatesFilter<"ComponentRequest"> | number | null
   }
 
   export type HODWhereInput = {
@@ -15008,7 +12090,7 @@ export namespace Prisma {
     adminId?: IntNullableFilter<"Lab"> | number | null
     department?: XOR<DepartmentScalarRelationFilter, DepartmentWhereInput>
     admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
-    components?: ComponentListRelationFilter
+    Component?: ComponentListRelationFilter
   }
 
   export type LabOrderByWithRelationInput = {
@@ -15018,7 +12100,7 @@ export namespace Prisma {
     adminId?: SortOrderInput | SortOrder
     department?: DepartmentOrderByWithRelationInput
     admin?: AdminOrderByWithRelationInput
-    components?: ComponentOrderByRelationAggregateInput
+    Component?: ComponentOrderByRelationAggregateInput
   }
 
   export type LabWhereUniqueInput = Prisma.AtLeast<{
@@ -15031,7 +12113,7 @@ export namespace Prisma {
     adminId?: IntNullableFilter<"Lab"> | number | null
     department?: XOR<DepartmentScalarRelationFilter, DepartmentWhereInput>
     admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
-    components?: ComponentListRelationFilter
+    Component?: ComponentListRelationFilter
   }, "id">
 
   export type LabOrderByWithAggregationInput = {
@@ -15077,8 +12159,8 @@ export namespace Prisma {
     college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
     warehouse?: XOR<WarehouseScalarRelationFilter, WarehouseWhereInput>
     lab?: XOR<LabScalarRelationFilter, LabWhereInput>
-    Report?: ReportListRelationFilter
     Department?: DepartmentListRelationFilter
+    Report?: ReportListRelationFilter
   }
 
   export type ComponentOrderByWithRelationInput = {
@@ -15099,8 +12181,8 @@ export namespace Prisma {
     college?: CollegeOrderByWithRelationInput
     warehouse?: WarehouseOrderByWithRelationInput
     lab?: LabOrderByWithRelationInput
-    Report?: ReportOrderByRelationAggregateInput
     Department?: DepartmentOrderByRelationAggregateInput
+    Report?: ReportOrderByRelationAggregateInput
   }
 
   export type ComponentWhereUniqueInput = Prisma.AtLeast<{
@@ -15124,8 +12206,8 @@ export namespace Prisma {
     college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
     warehouse?: XOR<WarehouseScalarRelationFilter, WarehouseWhereInput>
     lab?: XOR<LabScalarRelationFilter, LabWhereInput>
-    Report?: ReportListRelationFilter
     Department?: DepartmentListRelationFilter
+    Report?: ReportListRelationFilter
   }, "id" | "modelNumber" | "serialNumber">
 
   export type ComponentOrderByWithAggregationInput = {
@@ -15180,9 +12262,9 @@ export namespace Prisma {
     hodId?: IntNullableFilter<"Department"> | number | null
     admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
     college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
-    hod?: XOR<HODNullableScalarRelationFilter, HODWhereInput> | null
+    HOD?: HODListRelationFilter
     Lab?: LabListRelationFilter
-    components?: ComponentListRelationFilter
+    Component?: ComponentListRelationFilter
     Report?: ReportListRelationFilter
   }
 
@@ -15195,9 +12277,9 @@ export namespace Prisma {
     hodId?: SortOrderInput | SortOrder
     admin?: AdminOrderByWithRelationInput
     college?: CollegeOrderByWithRelationInput
-    hod?: HODOrderByWithRelationInput
+    HOD?: HODOrderByRelationAggregateInput
     Lab?: LabOrderByRelationAggregateInput
-    components?: ComponentOrderByRelationAggregateInput
+    Component?: ComponentOrderByRelationAggregateInput
     Report?: ReportOrderByRelationAggregateInput
   }
 
@@ -15213,9 +12295,9 @@ export namespace Prisma {
     hodId?: IntNullableFilter<"Department"> | number | null
     admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
     college?: XOR<CollegeScalarRelationFilter, CollegeWhereInput>
-    hod?: XOR<HODNullableScalarRelationFilter, HODWhereInput> | null
+    HOD?: HODListRelationFilter
     Lab?: LabListRelationFilter
-    components?: ComponentListRelationFilter
+    Component?: ComponentListRelationFilter
     Report?: ReportListRelationFilter
   }, "id" | "departmentId">
 
@@ -15328,13 +12410,12 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
-    HOD?: HODCreateNestedManyWithoutAdminInput
+    College?: CollegeCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseCreateNestedManyWithoutAdminInput
     Department?: DepartmentCreateNestedManyWithoutAdminInput
+    HOD?: HODCreateNestedManyWithoutAdminInput
     Lab?: LabCreateNestedManyWithoutAdminInput
+    Component?: ComponentCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateInput = {
@@ -15348,13 +12429,12 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
-    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
+    College?: CollegeUncheckedCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
+    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
     Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUpdateInput = {
@@ -15367,13 +12447,12 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
-    HOD?: HODUpdateManyWithoutAdminNestedInput
+    College?: CollegeUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUpdateManyWithoutAdminNestedInput
+    HOD?: HODUpdateManyWithoutAdminNestedInput
     Lab?: LabUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateInput = {
@@ -15387,13 +12466,12 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
-    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
+    College?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
     Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminCreateManyInput = {
@@ -15438,12 +12516,10 @@ export namespace Prisma {
     name: string
     address: string
     collegeId: string
-    admin: AdminCreateNestedOneWithoutCollegesInput
-    staffs?: StaffCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseCreateNestedManyWithoutCollegeInput
-    component?: ComponentCreateNestedManyWithoutCollegeInput
-    hod?: HODCreateNestedManyWithoutCollegeInput
+    admin: AdminCreateNestedOneWithoutCollegeInput
     Department?: DepartmentCreateNestedManyWithoutCollegeInput
+    HOD?: HODCreateNestedManyWithoutCollegeInput
+    Component?: ComponentCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeUncheckedCreateInput = {
@@ -15452,23 +12528,19 @@ export namespace Prisma {
     address: string
     collegeId: string
     adminId: number
-    staffs?: StaffUncheckedCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutCollegeInput
-    component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
-    hod?: HODUncheckedCreateNestedManyWithoutCollegeInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutCollegeInput
+    HOD?: HODUncheckedCreateNestedManyWithoutCollegeInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutCollegesNestedInput
-    staffs?: StaffUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUpdateManyWithoutCollegeNestedInput
-    hod?: HODUpdateManyWithoutCollegeNestedInput
+    admin?: AdminUpdateOneRequiredWithoutCollegeNestedInput
     Department?: DepartmentUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUpdateManyWithoutCollegeNestedInput
   }
 
   export type CollegeUncheckedUpdateInput = {
@@ -15477,11 +12549,9 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
     adminId?: IntFieldUpdateOperationsInput | number
-    staffs?: StaffUncheckedUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
-    hod?: HODUncheckedUpdateManyWithoutCollegeNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
   }
 
   export type CollegeCreateManyInput = {
@@ -15508,10 +12578,10 @@ export namespace Prisma {
 
   export type WarehouseCreateInput = {
     name: string
+    collegeId: number
     warehouseId: string
-    admin: AdminCreateNestedOneWithoutWarehousesInput
-    college: CollegeCreateNestedOneWithoutWarehousesInput
-    component?: ComponentCreateNestedManyWithoutWarehouseInput
+    admin: AdminCreateNestedOneWithoutWarehouseInput
+    Component?: ComponentCreateNestedManyWithoutWarehouseInput
   }
 
   export type WarehouseUncheckedCreateInput = {
@@ -15520,15 +12590,15 @@ export namespace Prisma {
     collegeId: number
     adminId: number
     warehouseId: string
-    component?: ComponentUncheckedCreateNestedManyWithoutWarehouseInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutWarehouseInput
   }
 
   export type WarehouseUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutWarehousesNestedInput
-    college?: CollegeUpdateOneRequiredWithoutWarehousesNestedInput
-    component?: ComponentUpdateManyWithoutWarehouseNestedInput
+    admin?: AdminUpdateOneRequiredWithoutWarehouseNestedInput
+    Component?: ComponentUpdateManyWithoutWarehouseNestedInput
   }
 
   export type WarehouseUncheckedUpdateInput = {
@@ -15537,7 +12607,7 @@ export namespace Prisma {
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
-    component?: ComponentUncheckedUpdateManyWithoutWarehouseNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutWarehouseNestedInput
   }
 
   export type WarehouseCreateManyInput = {
@@ -15550,6 +12620,7 @@ export namespace Prisma {
 
   export type WarehouseUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -15561,183 +12632,6 @@ export namespace Prisma {
     warehouseId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StaffCreateInput = {
-    name: string
-    email: string
-    password: string
-    phone: string
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    admin: AdminCreateNestedOneWithoutStaffsInput
-    college: CollegeCreateNestedOneWithoutStaffsInput
-    componentRequest?: ComponentRequestCreateNestedManyWithoutStaffInput
-  }
-
-  export type StaffUncheckedCreateInput = {
-    id?: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    collegeId: number
-    adminId: number
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    componentRequest?: ComponentRequestUncheckedCreateNestedManyWithoutStaffInput
-  }
-
-  export type StaffUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    admin?: AdminUpdateOneRequiredWithoutStaffsNestedInput
-    college?: CollegeUpdateOneRequiredWithoutStaffsNestedInput
-    componentRequest?: ComponentRequestUpdateManyWithoutStaffNestedInput
-  }
-
-  export type StaffUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    adminId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    componentRequest?: ComponentRequestUncheckedUpdateManyWithoutStaffNestedInput
-  }
-
-  export type StaffCreateManyInput = {
-    id?: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    collegeId: number
-    adminId: number
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-  }
-
-  export type StaffUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type StaffUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    adminId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type ComponentRequestCreateInput = {
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt?: Date | string
-    type: string
-    status: string
-    createdByStaffId?: number | null
-    staff: StaffCreateNestedOneWithoutComponentRequestInput
-  }
-
-  export type ComponentRequestUncheckedCreateInput = {
-    id?: number
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt?: Date | string
-    staffId: number
-    type: string
-    status: string
-    createdByStaffId?: number | null
-  }
-
-  export type ComponentRequestUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-    staff?: StaffUpdateOneRequiredWithoutComponentRequestNestedInput
-  }
-
-  export type ComponentRequestUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    staffId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ComponentRequestCreateManyInput = {
-    id?: number
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt?: Date | string
-    staffId: number
-    type: string
-    status: string
-    createdByStaffId?: number | null
-  }
-
-  export type ComponentRequestUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ComponentRequestUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    staffId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
   export type HODCreateInput = {
     name: string
     email: string
@@ -15745,8 +12639,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     admin: AdminCreateNestedOneWithoutHODInput
-    college: CollegeCreateNestedOneWithoutHodInput
-    departments?: DepartmentCreateNestedManyWithoutHodInput
+    college: CollegeCreateNestedOneWithoutHODInput
+    departments?: DepartmentCreateNestedManyWithoutHODInput
     Report?: ReportCreateNestedManyWithoutHodInput
   }
 
@@ -15759,7 +12653,7 @@ export namespace Prisma {
     collegeId: number
     adminId: number
     role?: $Enums.Role
-    departments?: DepartmentUncheckedCreateNestedManyWithoutHodInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutHODInput
     Report?: ReportUncheckedCreateNestedManyWithoutHodInput
   }
 
@@ -15770,8 +12664,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     admin?: AdminUpdateOneRequiredWithoutHODNestedInput
-    college?: CollegeUpdateOneRequiredWithoutHodNestedInput
-    departments?: DepartmentUpdateManyWithoutHodNestedInput
+    college?: CollegeUpdateOneRequiredWithoutHODNestedInput
+    departments?: DepartmentUpdateManyWithoutHODNestedInput
     Report?: ReportUpdateManyWithoutHodNestedInput
   }
 
@@ -15784,7 +12678,7 @@ export namespace Prisma {
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    departments?: DepartmentUncheckedUpdateManyWithoutHodNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutHODNestedInput
     Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
   }
 
@@ -15822,7 +12716,7 @@ export namespace Prisma {
     name: string
     department: DepartmentCreateNestedOneWithoutLabInput
     admin?: AdminCreateNestedOneWithoutLabInput
-    components?: ComponentCreateNestedManyWithoutLabInput
+    Component?: ComponentCreateNestedManyWithoutLabInput
   }
 
   export type LabUncheckedCreateInput = {
@@ -15830,14 +12724,14 @@ export namespace Prisma {
     name: string
     departmentId: number
     adminId?: number | null
-    components?: ComponentUncheckedCreateNestedManyWithoutLabInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutLabInput
   }
 
   export type LabUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     department?: DepartmentUpdateOneRequiredWithoutLabNestedInput
     admin?: AdminUpdateOneWithoutLabNestedInput
-    components?: ComponentUpdateManyWithoutLabNestedInput
+    Component?: ComponentUpdateManyWithoutLabNestedInput
   }
 
   export type LabUncheckedUpdateInput = {
@@ -15845,7 +12739,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: IntFieldUpdateOperationsInput | number
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
-    components?: ComponentUncheckedUpdateManyWithoutLabNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutLabNestedInput
   }
 
   export type LabCreateManyInput = {
@@ -15878,9 +12772,9 @@ export namespace Prisma {
     admin: AdminCreateNestedOneWithoutComponentInput
     college: CollegeCreateNestedOneWithoutComponentInput
     warehouse: WarehouseCreateNestedOneWithoutComponentInput
-    lab: LabCreateNestedOneWithoutComponentsInput
+    lab: LabCreateNestedOneWithoutComponentInput
+    Department?: DepartmentCreateNestedManyWithoutComponentInput
     Report?: ReportCreateNestedManyWithoutComponentInput
-    Department?: DepartmentCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentUncheckedCreateInput = {
@@ -15897,8 +12791,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     status?: $Enums.Status
     type: $Enums.ComponentType
+    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentInput
     Report?: ReportUncheckedCreateNestedManyWithoutComponentInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentUpdateInput = {
@@ -15913,9 +12807,9 @@ export namespace Prisma {
     admin?: AdminUpdateOneRequiredWithoutComponentNestedInput
     college?: CollegeUpdateOneRequiredWithoutComponentNestedInput
     warehouse?: WarehouseUpdateOneRequiredWithoutComponentNestedInput
-    lab?: LabUpdateOneRequiredWithoutComponentsNestedInput
+    lab?: LabUpdateOneRequiredWithoutComponentNestedInput
+    Department?: DepartmentUpdateManyWithoutComponentNestedInput
     Report?: ReportUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateInput = {
@@ -15932,8 +12826,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
+    Department?: DepartmentUncheckedUpdateManyWithoutComponentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentCreateManyInput = {
@@ -15982,11 +12876,12 @@ export namespace Prisma {
   export type DepartmentCreateInput = {
     name: string
     departmentId: string
+    hodId?: number | null
     admin: AdminCreateNestedOneWithoutDepartmentInput
     college: CollegeCreateNestedOneWithoutDepartmentInput
-    hod?: HODCreateNestedOneWithoutDepartmentsInput
+    HOD?: HODCreateNestedManyWithoutDepartmentsInput
     Lab?: LabCreateNestedManyWithoutDepartmentInput
-    components?: ComponentCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentCreateNestedManyWithoutDepartmentInput
     Report?: ReportCreateNestedManyWithoutDepartmentInput
   }
 
@@ -15997,19 +12892,21 @@ export namespace Prisma {
     collegeId: number
     adminId: number
     hodId?: number | null
+    HOD?: HODUncheckedCreateNestedManyWithoutDepartmentsInput
     Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
-    components?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
     Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
     admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
     college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
-    hod?: HODUpdateOneWithoutDepartmentsNestedInput
+    HOD?: HODUpdateManyWithoutDepartmentsNestedInput
     Lab?: LabUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUpdateManyWithoutDepartmentNestedInput
     Report?: ReportUpdateManyWithoutDepartmentNestedInput
   }
 
@@ -16020,8 +12917,9 @@ export namespace Prisma {
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
     hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    HOD?: HODUncheckedUpdateManyWithoutDepartmentsNestedInput
     Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
@@ -16037,6 +12935,7 @@ export namespace Prisma {
   export type DepartmentUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DepartmentUncheckedUpdateManyInput = {
@@ -16188,28 +13087,10 @@ export namespace Prisma {
     none?: CollegeWhereInput
   }
 
-  export type StaffListRelationFilter = {
-    every?: StaffWhereInput
-    some?: StaffWhereInput
-    none?: StaffWhereInput
-  }
-
   export type WarehouseListRelationFilter = {
     every?: WarehouseWhereInput
     some?: WarehouseWhereInput
     none?: WarehouseWhereInput
-  }
-
-  export type ComponentListRelationFilter = {
-    every?: ComponentWhereInput
-    some?: ComponentWhereInput
-    none?: ComponentWhereInput
-  }
-
-  export type HODListRelationFilter = {
-    every?: HODWhereInput
-    some?: HODWhereInput
-    none?: HODWhereInput
   }
 
   export type DepartmentListRelationFilter = {
@@ -16218,10 +13099,22 @@ export namespace Prisma {
     none?: DepartmentWhereInput
   }
 
+  export type HODListRelationFilter = {
+    every?: HODWhereInput
+    some?: HODWhereInput
+    none?: HODWhereInput
+  }
+
   export type LabListRelationFilter = {
     every?: LabWhereInput
     some?: LabWhereInput
     none?: LabWhereInput
+  }
+
+  export type ComponentListRelationFilter = {
+    every?: ComponentWhereInput
+    some?: ComponentWhereInput
+    none?: ComponentWhereInput
   }
 
   export type SortOrderInput = {
@@ -16233,19 +13126,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type StaffOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type WarehouseOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ComponentOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type HODOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16253,7 +13134,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type HODOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type LabOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ComponentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16433,11 +13322,6 @@ export namespace Prisma {
     adminId?: SortOrder
   }
 
-  export type CollegeScalarRelationFilter = {
-    is?: CollegeWhereInput
-    isNot?: CollegeWhereInput
-  }
-
   export type WarehouseCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -16474,148 +13358,9 @@ export namespace Prisma {
     adminId?: SortOrder
   }
 
-  export type ComponentRequestListRelationFilter = {
-    every?: ComponentRequestWhereInput
-    some?: ComponentRequestWhereInput
-    none?: ComponentRequestWhereInput
-  }
-
-  export type ComponentRequestOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type StaffCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    phone?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-    role?: SortOrder
-    resetToken?: SortOrder
-    resetTokenExpiry?: SortOrder
-  }
-
-  export type StaffAvgOrderByAggregateInput = {
-    id?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-  }
-
-  export type StaffMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    phone?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-    role?: SortOrder
-    resetToken?: SortOrder
-    resetTokenExpiry?: SortOrder
-  }
-
-  export type StaffMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    phone?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-    role?: SortOrder
-    resetToken?: SortOrder
-    resetTokenExpiry?: SortOrder
-  }
-
-  export type StaffSumOrderByAggregateInput = {
-    id?: SortOrder
-    collegeId?: SortOrder
-    adminId?: SortOrder
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type StaffScalarRelationFilter = {
-    is?: StaffWhereInput
-    isNot?: StaffWhereInput
-  }
-
-  export type ComponentRequestCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    brand?: SortOrder
-    modelNumber?: SortOrder
-    serialNumber?: SortOrder
-    createdAt?: SortOrder
-    staffId?: SortOrder
-    type?: SortOrder
-    status?: SortOrder
-    createdByStaffId?: SortOrder
-  }
-
-  export type ComponentRequestAvgOrderByAggregateInput = {
-    id?: SortOrder
-    staffId?: SortOrder
-    createdByStaffId?: SortOrder
-  }
-
-  export type ComponentRequestMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    brand?: SortOrder
-    modelNumber?: SortOrder
-    serialNumber?: SortOrder
-    createdAt?: SortOrder
-    staffId?: SortOrder
-    type?: SortOrder
-    status?: SortOrder
-    createdByStaffId?: SortOrder
-  }
-
-  export type ComponentRequestMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    brand?: SortOrder
-    modelNumber?: SortOrder
-    serialNumber?: SortOrder
-    createdAt?: SortOrder
-    staffId?: SortOrder
-    type?: SortOrder
-    status?: SortOrder
-    createdByStaffId?: SortOrder
-  }
-
-  export type ComponentRequestSumOrderByAggregateInput = {
-    id?: SortOrder
-    staffId?: SortOrder
-    createdByStaffId?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
+  export type CollegeScalarRelationFilter = {
+    is?: CollegeWhereInput
+    isNot?: CollegeWhereInput
   }
 
   export type ReportListRelationFilter = {
@@ -16673,6 +13418,17 @@ export namespace Prisma {
     adminId?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type DepartmentScalarRelationFilter = {
     is?: DepartmentWhereInput
     isNot?: DepartmentWhereInput
@@ -16714,6 +13470,22 @@ export namespace Prisma {
     id?: SortOrder
     departmentId?: SortOrder
     adminId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumStatusFilter<$PrismaModel = never> = {
@@ -16824,11 +13596,6 @@ export namespace Prisma {
     _max?: NestedEnumComponentTypeFilter<$PrismaModel>
   }
 
-  export type HODNullableScalarRelationFilter = {
-    is?: HODWhereInput | null
-    isNot?: HODWhereInput | null
-  }
-
   export type DepartmentCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -16931,32 +13698,11 @@ export namespace Prisma {
     connect?: CollegeWhereUniqueInput | CollegeWhereUniqueInput[]
   }
 
-  export type StaffCreateNestedManyWithoutAdminInput = {
-    create?: XOR<StaffCreateWithoutAdminInput, StaffUncheckedCreateWithoutAdminInput> | StaffCreateWithoutAdminInput[] | StaffUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutAdminInput | StaffCreateOrConnectWithoutAdminInput[]
-    createMany?: StaffCreateManyAdminInputEnvelope
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-  }
-
   export type WarehouseCreateNestedManyWithoutAdminInput = {
     create?: XOR<WarehouseCreateWithoutAdminInput, WarehouseUncheckedCreateWithoutAdminInput> | WarehouseCreateWithoutAdminInput[] | WarehouseUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: WarehouseCreateOrConnectWithoutAdminInput | WarehouseCreateOrConnectWithoutAdminInput[]
     createMany?: WarehouseCreateManyAdminInputEnvelope
     connect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-  }
-
-  export type ComponentCreateNestedManyWithoutAdminInput = {
-    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
-    createMany?: ComponentCreateManyAdminInputEnvelope
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-  }
-
-  export type HODCreateNestedManyWithoutAdminInput = {
-    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
-    createMany?: HODCreateManyAdminInputEnvelope
-    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
   }
 
   export type DepartmentCreateNestedManyWithoutAdminInput = {
@@ -16966,11 +13712,25 @@ export namespace Prisma {
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
+  export type HODCreateNestedManyWithoutAdminInput = {
+    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
+    createMany?: HODCreateManyAdminInputEnvelope
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+  }
+
   export type LabCreateNestedManyWithoutAdminInput = {
     create?: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput> | LabCreateWithoutAdminInput[] | LabUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: LabCreateOrConnectWithoutAdminInput | LabCreateOrConnectWithoutAdminInput[]
     createMany?: LabCreateManyAdminInputEnvelope
     connect?: LabWhereUniqueInput | LabWhereUniqueInput[]
+  }
+
+  export type ComponentCreateNestedManyWithoutAdminInput = {
+    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
+    createMany?: ComponentCreateManyAdminInputEnvelope
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
   }
 
   export type CollegeUncheckedCreateNestedManyWithoutAdminInput = {
@@ -16980,32 +13740,11 @@ export namespace Prisma {
     connect?: CollegeWhereUniqueInput | CollegeWhereUniqueInput[]
   }
 
-  export type StaffUncheckedCreateNestedManyWithoutAdminInput = {
-    create?: XOR<StaffCreateWithoutAdminInput, StaffUncheckedCreateWithoutAdminInput> | StaffCreateWithoutAdminInput[] | StaffUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutAdminInput | StaffCreateOrConnectWithoutAdminInput[]
-    createMany?: StaffCreateManyAdminInputEnvelope
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-  }
-
   export type WarehouseUncheckedCreateNestedManyWithoutAdminInput = {
     create?: XOR<WarehouseCreateWithoutAdminInput, WarehouseUncheckedCreateWithoutAdminInput> | WarehouseCreateWithoutAdminInput[] | WarehouseUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: WarehouseCreateOrConnectWithoutAdminInput | WarehouseCreateOrConnectWithoutAdminInput[]
     createMany?: WarehouseCreateManyAdminInputEnvelope
     connect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-  }
-
-  export type ComponentUncheckedCreateNestedManyWithoutAdminInput = {
-    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
-    createMany?: ComponentCreateManyAdminInputEnvelope
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-  }
-
-  export type HODUncheckedCreateNestedManyWithoutAdminInput = {
-    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
-    createMany?: HODCreateManyAdminInputEnvelope
-    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
   }
 
   export type DepartmentUncheckedCreateNestedManyWithoutAdminInput = {
@@ -17015,11 +13754,25 @@ export namespace Prisma {
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
+  export type HODUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
+    createMany?: HODCreateManyAdminInputEnvelope
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+  }
+
   export type LabUncheckedCreateNestedManyWithoutAdminInput = {
     create?: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput> | LabCreateWithoutAdminInput[] | LabUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: LabCreateOrConnectWithoutAdminInput | LabCreateOrConnectWithoutAdminInput[]
     createMany?: LabCreateManyAdminInputEnvelope
     connect?: LabWhereUniqueInput | LabWhereUniqueInput[]
+  }
+
+  export type ComponentUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
+    createMany?: ComponentCreateManyAdminInputEnvelope
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17056,20 +13809,6 @@ export namespace Prisma {
     deleteMany?: CollegeScalarWhereInput | CollegeScalarWhereInput[]
   }
 
-  export type StaffUpdateManyWithoutAdminNestedInput = {
-    create?: XOR<StaffCreateWithoutAdminInput, StaffUncheckedCreateWithoutAdminInput> | StaffCreateWithoutAdminInput[] | StaffUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutAdminInput | StaffCreateOrConnectWithoutAdminInput[]
-    upsert?: StaffUpsertWithWhereUniqueWithoutAdminInput | StaffUpsertWithWhereUniqueWithoutAdminInput[]
-    createMany?: StaffCreateManyAdminInputEnvelope
-    set?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    disconnect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    delete?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    update?: StaffUpdateWithWhereUniqueWithoutAdminInput | StaffUpdateWithWhereUniqueWithoutAdminInput[]
-    updateMany?: StaffUpdateManyWithWhereWithoutAdminInput | StaffUpdateManyWithWhereWithoutAdminInput[]
-    deleteMany?: StaffScalarWhereInput | StaffScalarWhereInput[]
-  }
-
   export type WarehouseUpdateManyWithoutAdminNestedInput = {
     create?: XOR<WarehouseCreateWithoutAdminInput, WarehouseUncheckedCreateWithoutAdminInput> | WarehouseCreateWithoutAdminInput[] | WarehouseUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: WarehouseCreateOrConnectWithoutAdminInput | WarehouseCreateOrConnectWithoutAdminInput[]
@@ -17082,34 +13821,6 @@ export namespace Prisma {
     update?: WarehouseUpdateWithWhereUniqueWithoutAdminInput | WarehouseUpdateWithWhereUniqueWithoutAdminInput[]
     updateMany?: WarehouseUpdateManyWithWhereWithoutAdminInput | WarehouseUpdateManyWithWhereWithoutAdminInput[]
     deleteMany?: WarehouseScalarWhereInput | WarehouseScalarWhereInput[]
-  }
-
-  export type ComponentUpdateManyWithoutAdminNestedInput = {
-    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
-    upsert?: ComponentUpsertWithWhereUniqueWithoutAdminInput | ComponentUpsertWithWhereUniqueWithoutAdminInput[]
-    createMany?: ComponentCreateManyAdminInputEnvelope
-    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    update?: ComponentUpdateWithWhereUniqueWithoutAdminInput | ComponentUpdateWithWhereUniqueWithoutAdminInput[]
-    updateMany?: ComponentUpdateManyWithWhereWithoutAdminInput | ComponentUpdateManyWithWhereWithoutAdminInput[]
-    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
-  }
-
-  export type HODUpdateManyWithoutAdminNestedInput = {
-    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
-    upsert?: HODUpsertWithWhereUniqueWithoutAdminInput | HODUpsertWithWhereUniqueWithoutAdminInput[]
-    createMany?: HODCreateManyAdminInputEnvelope
-    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    update?: HODUpdateWithWhereUniqueWithoutAdminInput | HODUpdateWithWhereUniqueWithoutAdminInput[]
-    updateMany?: HODUpdateManyWithWhereWithoutAdminInput | HODUpdateManyWithWhereWithoutAdminInput[]
-    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
   }
 
   export type DepartmentUpdateManyWithoutAdminNestedInput = {
@@ -17126,6 +13837,20 @@ export namespace Prisma {
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
+  export type HODUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
+    upsert?: HODUpsertWithWhereUniqueWithoutAdminInput | HODUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: HODCreateManyAdminInputEnvelope
+    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    update?: HODUpdateWithWhereUniqueWithoutAdminInput | HODUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: HODUpdateManyWithWhereWithoutAdminInput | HODUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
+  }
+
   export type LabUpdateManyWithoutAdminNestedInput = {
     create?: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput> | LabCreateWithoutAdminInput[] | LabUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: LabCreateOrConnectWithoutAdminInput | LabCreateOrConnectWithoutAdminInput[]
@@ -17138,6 +13863,20 @@ export namespace Prisma {
     update?: LabUpdateWithWhereUniqueWithoutAdminInput | LabUpdateWithWhereUniqueWithoutAdminInput[]
     updateMany?: LabUpdateManyWithWhereWithoutAdminInput | LabUpdateManyWithWhereWithoutAdminInput[]
     deleteMany?: LabScalarWhereInput | LabScalarWhereInput[]
+  }
+
+  export type ComponentUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
+    upsert?: ComponentUpsertWithWhereUniqueWithoutAdminInput | ComponentUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: ComponentCreateManyAdminInputEnvelope
+    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    update?: ComponentUpdateWithWhereUniqueWithoutAdminInput | ComponentUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: ComponentUpdateManyWithWhereWithoutAdminInput | ComponentUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -17162,20 +13901,6 @@ export namespace Prisma {
     deleteMany?: CollegeScalarWhereInput | CollegeScalarWhereInput[]
   }
 
-  export type StaffUncheckedUpdateManyWithoutAdminNestedInput = {
-    create?: XOR<StaffCreateWithoutAdminInput, StaffUncheckedCreateWithoutAdminInput> | StaffCreateWithoutAdminInput[] | StaffUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutAdminInput | StaffCreateOrConnectWithoutAdminInput[]
-    upsert?: StaffUpsertWithWhereUniqueWithoutAdminInput | StaffUpsertWithWhereUniqueWithoutAdminInput[]
-    createMany?: StaffCreateManyAdminInputEnvelope
-    set?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    disconnect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    delete?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    update?: StaffUpdateWithWhereUniqueWithoutAdminInput | StaffUpdateWithWhereUniqueWithoutAdminInput[]
-    updateMany?: StaffUpdateManyWithWhereWithoutAdminInput | StaffUpdateManyWithWhereWithoutAdminInput[]
-    deleteMany?: StaffScalarWhereInput | StaffScalarWhereInput[]
-  }
-
   export type WarehouseUncheckedUpdateManyWithoutAdminNestedInput = {
     create?: XOR<WarehouseCreateWithoutAdminInput, WarehouseUncheckedCreateWithoutAdminInput> | WarehouseCreateWithoutAdminInput[] | WarehouseUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: WarehouseCreateOrConnectWithoutAdminInput | WarehouseCreateOrConnectWithoutAdminInput[]
@@ -17188,34 +13913,6 @@ export namespace Prisma {
     update?: WarehouseUpdateWithWhereUniqueWithoutAdminInput | WarehouseUpdateWithWhereUniqueWithoutAdminInput[]
     updateMany?: WarehouseUpdateManyWithWhereWithoutAdminInput | WarehouseUpdateManyWithWhereWithoutAdminInput[]
     deleteMany?: WarehouseScalarWhereInput | WarehouseScalarWhereInput[]
-  }
-
-  export type ComponentUncheckedUpdateManyWithoutAdminNestedInput = {
-    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
-    upsert?: ComponentUpsertWithWhereUniqueWithoutAdminInput | ComponentUpsertWithWhereUniqueWithoutAdminInput[]
-    createMany?: ComponentCreateManyAdminInputEnvelope
-    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    update?: ComponentUpdateWithWhereUniqueWithoutAdminInput | ComponentUpdateWithWhereUniqueWithoutAdminInput[]
-    updateMany?: ComponentUpdateManyWithWhereWithoutAdminInput | ComponentUpdateManyWithWhereWithoutAdminInput[]
-    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
-  }
-
-  export type HODUncheckedUpdateManyWithoutAdminNestedInput = {
-    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
-    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
-    upsert?: HODUpsertWithWhereUniqueWithoutAdminInput | HODUpsertWithWhereUniqueWithoutAdminInput[]
-    createMany?: HODCreateManyAdminInputEnvelope
-    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    update?: HODUpdateWithWhereUniqueWithoutAdminInput | HODUpdateWithWhereUniqueWithoutAdminInput[]
-    updateMany?: HODUpdateManyWithWhereWithoutAdminInput | HODUpdateManyWithWhereWithoutAdminInput[]
-    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
   }
 
   export type DepartmentUncheckedUpdateManyWithoutAdminNestedInput = {
@@ -17232,6 +13929,20 @@ export namespace Prisma {
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
+  export type HODUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput> | HODCreateWithoutAdminInput[] | HODUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutAdminInput | HODCreateOrConnectWithoutAdminInput[]
+    upsert?: HODUpsertWithWhereUniqueWithoutAdminInput | HODUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: HODCreateManyAdminInputEnvelope
+    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    update?: HODUpdateWithWhereUniqueWithoutAdminInput | HODUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: HODUpdateManyWithWhereWithoutAdminInput | HODUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
+  }
+
   export type LabUncheckedUpdateManyWithoutAdminNestedInput = {
     create?: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput> | LabCreateWithoutAdminInput[] | LabUncheckedCreateWithoutAdminInput[]
     connectOrCreate?: LabCreateOrConnectWithoutAdminInput | LabCreateOrConnectWithoutAdminInput[]
@@ -17246,38 +13957,24 @@ export namespace Prisma {
     deleteMany?: LabScalarWhereInput | LabScalarWhereInput[]
   }
 
-  export type AdminCreateNestedOneWithoutCollegesInput = {
-    create?: XOR<AdminCreateWithoutCollegesInput, AdminUncheckedCreateWithoutCollegesInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutCollegesInput
-    connect?: AdminWhereUniqueInput
-  }
-
-  export type StaffCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<StaffCreateWithoutCollegeInput, StaffUncheckedCreateWithoutCollegeInput> | StaffCreateWithoutCollegeInput[] | StaffUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutCollegeInput | StaffCreateOrConnectWithoutCollegeInput[]
-    createMany?: StaffCreateManyCollegeInputEnvelope
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-  }
-
-  export type WarehouseCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<WarehouseCreateWithoutCollegeInput, WarehouseUncheckedCreateWithoutCollegeInput> | WarehouseCreateWithoutCollegeInput[] | WarehouseUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: WarehouseCreateOrConnectWithoutCollegeInput | WarehouseCreateOrConnectWithoutCollegeInput[]
-    createMany?: WarehouseCreateManyCollegeInputEnvelope
-    connect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-  }
-
-  export type ComponentCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
-    createMany?: ComponentCreateManyCollegeInputEnvelope
+  export type ComponentUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<ComponentCreateWithoutAdminInput, ComponentUncheckedCreateWithoutAdminInput> | ComponentCreateWithoutAdminInput[] | ComponentUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutAdminInput | ComponentCreateOrConnectWithoutAdminInput[]
+    upsert?: ComponentUpsertWithWhereUniqueWithoutAdminInput | ComponentUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: ComponentCreateManyAdminInputEnvelope
+    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
     connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    update?: ComponentUpdateWithWhereUniqueWithoutAdminInput | ComponentUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: ComponentUpdateManyWithWhereWithoutAdminInput | ComponentUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
   }
 
-  export type HODCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput> | HODCreateWithoutCollegeInput[] | HODUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: HODCreateOrConnectWithoutCollegeInput | HODCreateOrConnectWithoutCollegeInput[]
-    createMany?: HODCreateManyCollegeInputEnvelope
-    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+  export type AdminCreateNestedOneWithoutCollegeInput = {
+    create?: XOR<AdminCreateWithoutCollegeInput, AdminUncheckedCreateWithoutCollegeInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutCollegeInput
+    connect?: AdminWhereUniqueInput
   }
 
   export type DepartmentCreateNestedManyWithoutCollegeInput = {
@@ -17287,32 +13984,18 @@ export namespace Prisma {
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
-  export type StaffUncheckedCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<StaffCreateWithoutCollegeInput, StaffUncheckedCreateWithoutCollegeInput> | StaffCreateWithoutCollegeInput[] | StaffUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutCollegeInput | StaffCreateOrConnectWithoutCollegeInput[]
-    createMany?: StaffCreateManyCollegeInputEnvelope
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-  }
-
-  export type WarehouseUncheckedCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<WarehouseCreateWithoutCollegeInput, WarehouseUncheckedCreateWithoutCollegeInput> | WarehouseCreateWithoutCollegeInput[] | WarehouseUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: WarehouseCreateOrConnectWithoutCollegeInput | WarehouseCreateOrConnectWithoutCollegeInput[]
-    createMany?: WarehouseCreateManyCollegeInputEnvelope
-    connect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-  }
-
-  export type ComponentUncheckedCreateNestedManyWithoutCollegeInput = {
-    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
-    createMany?: ComponentCreateManyCollegeInputEnvelope
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-  }
-
-  export type HODUncheckedCreateNestedManyWithoutCollegeInput = {
+  export type HODCreateNestedManyWithoutCollegeInput = {
     create?: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput> | HODCreateWithoutCollegeInput[] | HODUncheckedCreateWithoutCollegeInput[]
     connectOrCreate?: HODCreateOrConnectWithoutCollegeInput | HODCreateOrConnectWithoutCollegeInput[]
     createMany?: HODCreateManyCollegeInputEnvelope
     connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+  }
+
+  export type ComponentCreateNestedManyWithoutCollegeInput = {
+    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
+    createMany?: ComponentCreateManyCollegeInputEnvelope
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
   }
 
   export type DepartmentUncheckedCreateNestedManyWithoutCollegeInput = {
@@ -17322,68 +14005,26 @@ export namespace Prisma {
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
-  export type AdminUpdateOneRequiredWithoutCollegesNestedInput = {
-    create?: XOR<AdminCreateWithoutCollegesInput, AdminUncheckedCreateWithoutCollegesInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutCollegesInput
-    upsert?: AdminUpsertWithoutCollegesInput
-    connect?: AdminWhereUniqueInput
-    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutCollegesInput, AdminUpdateWithoutCollegesInput>, AdminUncheckedUpdateWithoutCollegesInput>
-  }
-
-  export type StaffUpdateManyWithoutCollegeNestedInput = {
-    create?: XOR<StaffCreateWithoutCollegeInput, StaffUncheckedCreateWithoutCollegeInput> | StaffCreateWithoutCollegeInput[] | StaffUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutCollegeInput | StaffCreateOrConnectWithoutCollegeInput[]
-    upsert?: StaffUpsertWithWhereUniqueWithoutCollegeInput | StaffUpsertWithWhereUniqueWithoutCollegeInput[]
-    createMany?: StaffCreateManyCollegeInputEnvelope
-    set?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    disconnect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    delete?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    update?: StaffUpdateWithWhereUniqueWithoutCollegeInput | StaffUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: StaffUpdateManyWithWhereWithoutCollegeInput | StaffUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: StaffScalarWhereInput | StaffScalarWhereInput[]
-  }
-
-  export type WarehouseUpdateManyWithoutCollegeNestedInput = {
-    create?: XOR<WarehouseCreateWithoutCollegeInput, WarehouseUncheckedCreateWithoutCollegeInput> | WarehouseCreateWithoutCollegeInput[] | WarehouseUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: WarehouseCreateOrConnectWithoutCollegeInput | WarehouseCreateOrConnectWithoutCollegeInput[]
-    upsert?: WarehouseUpsertWithWhereUniqueWithoutCollegeInput | WarehouseUpsertWithWhereUniqueWithoutCollegeInput[]
-    createMany?: WarehouseCreateManyCollegeInputEnvelope
-    set?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    disconnect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    delete?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    connect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    update?: WarehouseUpdateWithWhereUniqueWithoutCollegeInput | WarehouseUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: WarehouseUpdateManyWithWhereWithoutCollegeInput | WarehouseUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: WarehouseScalarWhereInput | WarehouseScalarWhereInput[]
-  }
-
-  export type ComponentUpdateManyWithoutCollegeNestedInput = {
-    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
-    upsert?: ComponentUpsertWithWhereUniqueWithoutCollegeInput | ComponentUpsertWithWhereUniqueWithoutCollegeInput[]
-    createMany?: ComponentCreateManyCollegeInputEnvelope
-    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    update?: ComponentUpdateWithWhereUniqueWithoutCollegeInput | ComponentUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: ComponentUpdateManyWithWhereWithoutCollegeInput | ComponentUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
-  }
-
-  export type HODUpdateManyWithoutCollegeNestedInput = {
+  export type HODUncheckedCreateNestedManyWithoutCollegeInput = {
     create?: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput> | HODCreateWithoutCollegeInput[] | HODUncheckedCreateWithoutCollegeInput[]
     connectOrCreate?: HODCreateOrConnectWithoutCollegeInput | HODCreateOrConnectWithoutCollegeInput[]
-    upsert?: HODUpsertWithWhereUniqueWithoutCollegeInput | HODUpsertWithWhereUniqueWithoutCollegeInput[]
     createMany?: HODCreateManyCollegeInputEnvelope
-    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
     connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
-    update?: HODUpdateWithWhereUniqueWithoutCollegeInput | HODUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: HODUpdateManyWithWhereWithoutCollegeInput | HODUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
+  }
+
+  export type ComponentUncheckedCreateNestedManyWithoutCollegeInput = {
+    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
+    createMany?: ComponentCreateManyCollegeInputEnvelope
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+  }
+
+  export type AdminUpdateOneRequiredWithoutCollegeNestedInput = {
+    create?: XOR<AdminCreateWithoutCollegeInput, AdminUncheckedCreateWithoutCollegeInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutCollegeInput
+    upsert?: AdminUpsertWithoutCollegeInput
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutCollegeInput, AdminUpdateWithoutCollegeInput>, AdminUncheckedUpdateWithoutCollegeInput>
   }
 
   export type DepartmentUpdateManyWithoutCollegeNestedInput = {
@@ -17400,49 +14041,7 @@ export namespace Prisma {
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
-  export type StaffUncheckedUpdateManyWithoutCollegeNestedInput = {
-    create?: XOR<StaffCreateWithoutCollegeInput, StaffUncheckedCreateWithoutCollegeInput> | StaffCreateWithoutCollegeInput[] | StaffUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: StaffCreateOrConnectWithoutCollegeInput | StaffCreateOrConnectWithoutCollegeInput[]
-    upsert?: StaffUpsertWithWhereUniqueWithoutCollegeInput | StaffUpsertWithWhereUniqueWithoutCollegeInput[]
-    createMany?: StaffCreateManyCollegeInputEnvelope
-    set?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    disconnect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    delete?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    connect?: StaffWhereUniqueInput | StaffWhereUniqueInput[]
-    update?: StaffUpdateWithWhereUniqueWithoutCollegeInput | StaffUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: StaffUpdateManyWithWhereWithoutCollegeInput | StaffUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: StaffScalarWhereInput | StaffScalarWhereInput[]
-  }
-
-  export type WarehouseUncheckedUpdateManyWithoutCollegeNestedInput = {
-    create?: XOR<WarehouseCreateWithoutCollegeInput, WarehouseUncheckedCreateWithoutCollegeInput> | WarehouseCreateWithoutCollegeInput[] | WarehouseUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: WarehouseCreateOrConnectWithoutCollegeInput | WarehouseCreateOrConnectWithoutCollegeInput[]
-    upsert?: WarehouseUpsertWithWhereUniqueWithoutCollegeInput | WarehouseUpsertWithWhereUniqueWithoutCollegeInput[]
-    createMany?: WarehouseCreateManyCollegeInputEnvelope
-    set?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    disconnect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    delete?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    connect?: WarehouseWhereUniqueInput | WarehouseWhereUniqueInput[]
-    update?: WarehouseUpdateWithWhereUniqueWithoutCollegeInput | WarehouseUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: WarehouseUpdateManyWithWhereWithoutCollegeInput | WarehouseUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: WarehouseScalarWhereInput | WarehouseScalarWhereInput[]
-  }
-
-  export type ComponentUncheckedUpdateManyWithoutCollegeNestedInput = {
-    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
-    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
-    upsert?: ComponentUpsertWithWhereUniqueWithoutCollegeInput | ComponentUpsertWithWhereUniqueWithoutCollegeInput[]
-    createMany?: ComponentCreateManyCollegeInputEnvelope
-    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
-    update?: ComponentUpdateWithWhereUniqueWithoutCollegeInput | ComponentUpdateWithWhereUniqueWithoutCollegeInput[]
-    updateMany?: ComponentUpdateManyWithWhereWithoutCollegeInput | ComponentUpdateManyWithWhereWithoutCollegeInput[]
-    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
-  }
-
-  export type HODUncheckedUpdateManyWithoutCollegeNestedInput = {
+  export type HODUpdateManyWithoutCollegeNestedInput = {
     create?: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput> | HODCreateWithoutCollegeInput[] | HODUncheckedCreateWithoutCollegeInput[]
     connectOrCreate?: HODCreateOrConnectWithoutCollegeInput | HODCreateOrConnectWithoutCollegeInput[]
     upsert?: HODUpsertWithWhereUniqueWithoutCollegeInput | HODUpsertWithWhereUniqueWithoutCollegeInput[]
@@ -17454,6 +14053,20 @@ export namespace Prisma {
     update?: HODUpdateWithWhereUniqueWithoutCollegeInput | HODUpdateWithWhereUniqueWithoutCollegeInput[]
     updateMany?: HODUpdateManyWithWhereWithoutCollegeInput | HODUpdateManyWithWhereWithoutCollegeInput[]
     deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
+  }
+
+  export type ComponentUpdateManyWithoutCollegeNestedInput = {
+    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
+    upsert?: ComponentUpsertWithWhereUniqueWithoutCollegeInput | ComponentUpsertWithWhereUniqueWithoutCollegeInput[]
+    createMany?: ComponentCreateManyCollegeInputEnvelope
+    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    update?: ComponentUpdateWithWhereUniqueWithoutCollegeInput | ComponentUpdateWithWhereUniqueWithoutCollegeInput[]
+    updateMany?: ComponentUpdateManyWithWhereWithoutCollegeInput | ComponentUpdateManyWithWhereWithoutCollegeInput[]
+    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
   }
 
   export type DepartmentUncheckedUpdateManyWithoutCollegeNestedInput = {
@@ -17470,16 +14083,38 @@ export namespace Prisma {
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
-  export type AdminCreateNestedOneWithoutWarehousesInput = {
-    create?: XOR<AdminCreateWithoutWarehousesInput, AdminUncheckedCreateWithoutWarehousesInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutWarehousesInput
-    connect?: AdminWhereUniqueInput
+  export type HODUncheckedUpdateManyWithoutCollegeNestedInput = {
+    create?: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput> | HODCreateWithoutCollegeInput[] | HODUncheckedCreateWithoutCollegeInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutCollegeInput | HODCreateOrConnectWithoutCollegeInput[]
+    upsert?: HODUpsertWithWhereUniqueWithoutCollegeInput | HODUpsertWithWhereUniqueWithoutCollegeInput[]
+    createMany?: HODCreateManyCollegeInputEnvelope
+    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    update?: HODUpdateWithWhereUniqueWithoutCollegeInput | HODUpdateWithWhereUniqueWithoutCollegeInput[]
+    updateMany?: HODUpdateManyWithWhereWithoutCollegeInput | HODUpdateManyWithWhereWithoutCollegeInput[]
+    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
   }
 
-  export type CollegeCreateNestedOneWithoutWarehousesInput = {
-    create?: XOR<CollegeCreateWithoutWarehousesInput, CollegeUncheckedCreateWithoutWarehousesInput>
-    connectOrCreate?: CollegeCreateOrConnectWithoutWarehousesInput
-    connect?: CollegeWhereUniqueInput
+  export type ComponentUncheckedUpdateManyWithoutCollegeNestedInput = {
+    create?: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput> | ComponentCreateWithoutCollegeInput[] | ComponentUncheckedCreateWithoutCollegeInput[]
+    connectOrCreate?: ComponentCreateOrConnectWithoutCollegeInput | ComponentCreateOrConnectWithoutCollegeInput[]
+    upsert?: ComponentUpsertWithWhereUniqueWithoutCollegeInput | ComponentUpsertWithWhereUniqueWithoutCollegeInput[]
+    createMany?: ComponentCreateManyCollegeInputEnvelope
+    set?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    disconnect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    delete?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
+    update?: ComponentUpdateWithWhereUniqueWithoutCollegeInput | ComponentUpdateWithWhereUniqueWithoutCollegeInput[]
+    updateMany?: ComponentUpdateManyWithWhereWithoutCollegeInput | ComponentUpdateManyWithWhereWithoutCollegeInput[]
+    deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
+  }
+
+  export type AdminCreateNestedOneWithoutWarehouseInput = {
+    create?: XOR<AdminCreateWithoutWarehouseInput, AdminUncheckedCreateWithoutWarehouseInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutWarehouseInput
+    connect?: AdminWhereUniqueInput
   }
 
   export type ComponentCreateNestedManyWithoutWarehouseInput = {
@@ -17496,20 +14131,12 @@ export namespace Prisma {
     connect?: ComponentWhereUniqueInput | ComponentWhereUniqueInput[]
   }
 
-  export type AdminUpdateOneRequiredWithoutWarehousesNestedInput = {
-    create?: XOR<AdminCreateWithoutWarehousesInput, AdminUncheckedCreateWithoutWarehousesInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutWarehousesInput
-    upsert?: AdminUpsertWithoutWarehousesInput
+  export type AdminUpdateOneRequiredWithoutWarehouseNestedInput = {
+    create?: XOR<AdminCreateWithoutWarehouseInput, AdminUncheckedCreateWithoutWarehouseInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutWarehouseInput
+    upsert?: AdminUpsertWithoutWarehouseInput
     connect?: AdminWhereUniqueInput
-    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutWarehousesInput, AdminUpdateWithoutWarehousesInput>, AdminUncheckedUpdateWithoutWarehousesInput>
-  }
-
-  export type CollegeUpdateOneRequiredWithoutWarehousesNestedInput = {
-    create?: XOR<CollegeCreateWithoutWarehousesInput, CollegeUncheckedCreateWithoutWarehousesInput>
-    connectOrCreate?: CollegeCreateOrConnectWithoutWarehousesInput
-    upsert?: CollegeUpsertWithoutWarehousesInput
-    connect?: CollegeWhereUniqueInput
-    update?: XOR<XOR<CollegeUpdateToOneWithWhereWithoutWarehousesInput, CollegeUpdateWithoutWarehousesInput>, CollegeUncheckedUpdateWithoutWarehousesInput>
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutWarehouseInput, AdminUpdateWithoutWarehouseInput>, AdminUncheckedUpdateWithoutWarehouseInput>
   }
 
   export type ComponentUpdateManyWithoutWarehouseNestedInput = {
@@ -17540,114 +14167,21 @@ export namespace Prisma {
     deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
   }
 
-  export type AdminCreateNestedOneWithoutStaffsInput = {
-    create?: XOR<AdminCreateWithoutStaffsInput, AdminUncheckedCreateWithoutStaffsInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutStaffsInput
-    connect?: AdminWhereUniqueInput
-  }
-
-  export type CollegeCreateNestedOneWithoutStaffsInput = {
-    create?: XOR<CollegeCreateWithoutStaffsInput, CollegeUncheckedCreateWithoutStaffsInput>
-    connectOrCreate?: CollegeCreateOrConnectWithoutStaffsInput
-    connect?: CollegeWhereUniqueInput
-  }
-
-  export type ComponentRequestCreateNestedManyWithoutStaffInput = {
-    create?: XOR<ComponentRequestCreateWithoutStaffInput, ComponentRequestUncheckedCreateWithoutStaffInput> | ComponentRequestCreateWithoutStaffInput[] | ComponentRequestUncheckedCreateWithoutStaffInput[]
-    connectOrCreate?: ComponentRequestCreateOrConnectWithoutStaffInput | ComponentRequestCreateOrConnectWithoutStaffInput[]
-    createMany?: ComponentRequestCreateManyStaffInputEnvelope
-    connect?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-  }
-
-  export type ComponentRequestUncheckedCreateNestedManyWithoutStaffInput = {
-    create?: XOR<ComponentRequestCreateWithoutStaffInput, ComponentRequestUncheckedCreateWithoutStaffInput> | ComponentRequestCreateWithoutStaffInput[] | ComponentRequestUncheckedCreateWithoutStaffInput[]
-    connectOrCreate?: ComponentRequestCreateOrConnectWithoutStaffInput | ComponentRequestCreateOrConnectWithoutStaffInput[]
-    createMany?: ComponentRequestCreateManyStaffInputEnvelope
-    connect?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-  }
-
-  export type AdminUpdateOneRequiredWithoutStaffsNestedInput = {
-    create?: XOR<AdminCreateWithoutStaffsInput, AdminUncheckedCreateWithoutStaffsInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutStaffsInput
-    upsert?: AdminUpsertWithoutStaffsInput
-    connect?: AdminWhereUniqueInput
-    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutStaffsInput, AdminUpdateWithoutStaffsInput>, AdminUncheckedUpdateWithoutStaffsInput>
-  }
-
-  export type CollegeUpdateOneRequiredWithoutStaffsNestedInput = {
-    create?: XOR<CollegeCreateWithoutStaffsInput, CollegeUncheckedCreateWithoutStaffsInput>
-    connectOrCreate?: CollegeCreateOrConnectWithoutStaffsInput
-    upsert?: CollegeUpsertWithoutStaffsInput
-    connect?: CollegeWhereUniqueInput
-    update?: XOR<XOR<CollegeUpdateToOneWithWhereWithoutStaffsInput, CollegeUpdateWithoutStaffsInput>, CollegeUncheckedUpdateWithoutStaffsInput>
-  }
-
-  export type ComponentRequestUpdateManyWithoutStaffNestedInput = {
-    create?: XOR<ComponentRequestCreateWithoutStaffInput, ComponentRequestUncheckedCreateWithoutStaffInput> | ComponentRequestCreateWithoutStaffInput[] | ComponentRequestUncheckedCreateWithoutStaffInput[]
-    connectOrCreate?: ComponentRequestCreateOrConnectWithoutStaffInput | ComponentRequestCreateOrConnectWithoutStaffInput[]
-    upsert?: ComponentRequestUpsertWithWhereUniqueWithoutStaffInput | ComponentRequestUpsertWithWhereUniqueWithoutStaffInput[]
-    createMany?: ComponentRequestCreateManyStaffInputEnvelope
-    set?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    disconnect?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    delete?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    connect?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    update?: ComponentRequestUpdateWithWhereUniqueWithoutStaffInput | ComponentRequestUpdateWithWhereUniqueWithoutStaffInput[]
-    updateMany?: ComponentRequestUpdateManyWithWhereWithoutStaffInput | ComponentRequestUpdateManyWithWhereWithoutStaffInput[]
-    deleteMany?: ComponentRequestScalarWhereInput | ComponentRequestScalarWhereInput[]
-  }
-
-  export type ComponentRequestUncheckedUpdateManyWithoutStaffNestedInput = {
-    create?: XOR<ComponentRequestCreateWithoutStaffInput, ComponentRequestUncheckedCreateWithoutStaffInput> | ComponentRequestCreateWithoutStaffInput[] | ComponentRequestUncheckedCreateWithoutStaffInput[]
-    connectOrCreate?: ComponentRequestCreateOrConnectWithoutStaffInput | ComponentRequestCreateOrConnectWithoutStaffInput[]
-    upsert?: ComponentRequestUpsertWithWhereUniqueWithoutStaffInput | ComponentRequestUpsertWithWhereUniqueWithoutStaffInput[]
-    createMany?: ComponentRequestCreateManyStaffInputEnvelope
-    set?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    disconnect?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    delete?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    connect?: ComponentRequestWhereUniqueInput | ComponentRequestWhereUniqueInput[]
-    update?: ComponentRequestUpdateWithWhereUniqueWithoutStaffInput | ComponentRequestUpdateWithWhereUniqueWithoutStaffInput[]
-    updateMany?: ComponentRequestUpdateManyWithWhereWithoutStaffInput | ComponentRequestUpdateManyWithWhereWithoutStaffInput[]
-    deleteMany?: ComponentRequestScalarWhereInput | ComponentRequestScalarWhereInput[]
-  }
-
-  export type StaffCreateNestedOneWithoutComponentRequestInput = {
-    create?: XOR<StaffCreateWithoutComponentRequestInput, StaffUncheckedCreateWithoutComponentRequestInput>
-    connectOrCreate?: StaffCreateOrConnectWithoutComponentRequestInput
-    connect?: StaffWhereUniqueInput
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type StaffUpdateOneRequiredWithoutComponentRequestNestedInput = {
-    create?: XOR<StaffCreateWithoutComponentRequestInput, StaffUncheckedCreateWithoutComponentRequestInput>
-    connectOrCreate?: StaffCreateOrConnectWithoutComponentRequestInput
-    upsert?: StaffUpsertWithoutComponentRequestInput
-    connect?: StaffWhereUniqueInput
-    update?: XOR<XOR<StaffUpdateToOneWithWhereWithoutComponentRequestInput, StaffUpdateWithoutComponentRequestInput>, StaffUncheckedUpdateWithoutComponentRequestInput>
-  }
-
   export type AdminCreateNestedOneWithoutHODInput = {
     create?: XOR<AdminCreateWithoutHODInput, AdminUncheckedCreateWithoutHODInput>
     connectOrCreate?: AdminCreateOrConnectWithoutHODInput
     connect?: AdminWhereUniqueInput
   }
 
-  export type CollegeCreateNestedOneWithoutHodInput = {
-    create?: XOR<CollegeCreateWithoutHodInput, CollegeUncheckedCreateWithoutHodInput>
-    connectOrCreate?: CollegeCreateOrConnectWithoutHodInput
+  export type CollegeCreateNestedOneWithoutHODInput = {
+    create?: XOR<CollegeCreateWithoutHODInput, CollegeUncheckedCreateWithoutHODInput>
+    connectOrCreate?: CollegeCreateOrConnectWithoutHODInput
     connect?: CollegeWhereUniqueInput
   }
 
-  export type DepartmentCreateNestedManyWithoutHodInput = {
-    create?: XOR<DepartmentCreateWithoutHodInput, DepartmentUncheckedCreateWithoutHodInput> | DepartmentCreateWithoutHodInput[] | DepartmentUncheckedCreateWithoutHodInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutHodInput | DepartmentCreateOrConnectWithoutHodInput[]
-    createMany?: DepartmentCreateManyHodInputEnvelope
+  export type DepartmentCreateNestedManyWithoutHODInput = {
+    create?: XOR<DepartmentCreateWithoutHODInput, DepartmentUncheckedCreateWithoutHODInput> | DepartmentCreateWithoutHODInput[] | DepartmentUncheckedCreateWithoutHODInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutHODInput | DepartmentCreateOrConnectWithoutHODInput[]
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
@@ -17658,10 +14192,9 @@ export namespace Prisma {
     connect?: ReportWhereUniqueInput | ReportWhereUniqueInput[]
   }
 
-  export type DepartmentUncheckedCreateNestedManyWithoutHodInput = {
-    create?: XOR<DepartmentCreateWithoutHodInput, DepartmentUncheckedCreateWithoutHodInput> | DepartmentCreateWithoutHodInput[] | DepartmentUncheckedCreateWithoutHodInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutHodInput | DepartmentCreateOrConnectWithoutHodInput[]
-    createMany?: DepartmentCreateManyHodInputEnvelope
+  export type DepartmentUncheckedCreateNestedManyWithoutHODInput = {
+    create?: XOR<DepartmentCreateWithoutHODInput, DepartmentUncheckedCreateWithoutHODInput> | DepartmentCreateWithoutHODInput[] | DepartmentUncheckedCreateWithoutHODInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutHODInput | DepartmentCreateOrConnectWithoutHODInput[]
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
@@ -17680,25 +14213,24 @@ export namespace Prisma {
     update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutHODInput, AdminUpdateWithoutHODInput>, AdminUncheckedUpdateWithoutHODInput>
   }
 
-  export type CollegeUpdateOneRequiredWithoutHodNestedInput = {
-    create?: XOR<CollegeCreateWithoutHodInput, CollegeUncheckedCreateWithoutHodInput>
-    connectOrCreate?: CollegeCreateOrConnectWithoutHodInput
-    upsert?: CollegeUpsertWithoutHodInput
+  export type CollegeUpdateOneRequiredWithoutHODNestedInput = {
+    create?: XOR<CollegeCreateWithoutHODInput, CollegeUncheckedCreateWithoutHODInput>
+    connectOrCreate?: CollegeCreateOrConnectWithoutHODInput
+    upsert?: CollegeUpsertWithoutHODInput
     connect?: CollegeWhereUniqueInput
-    update?: XOR<XOR<CollegeUpdateToOneWithWhereWithoutHodInput, CollegeUpdateWithoutHodInput>, CollegeUncheckedUpdateWithoutHodInput>
+    update?: XOR<XOR<CollegeUpdateToOneWithWhereWithoutHODInput, CollegeUpdateWithoutHODInput>, CollegeUncheckedUpdateWithoutHODInput>
   }
 
-  export type DepartmentUpdateManyWithoutHodNestedInput = {
-    create?: XOR<DepartmentCreateWithoutHodInput, DepartmentUncheckedCreateWithoutHodInput> | DepartmentCreateWithoutHodInput[] | DepartmentUncheckedCreateWithoutHodInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutHodInput | DepartmentCreateOrConnectWithoutHodInput[]
-    upsert?: DepartmentUpsertWithWhereUniqueWithoutHodInput | DepartmentUpsertWithWhereUniqueWithoutHodInput[]
-    createMany?: DepartmentCreateManyHodInputEnvelope
+  export type DepartmentUpdateManyWithoutHODNestedInput = {
+    create?: XOR<DepartmentCreateWithoutHODInput, DepartmentUncheckedCreateWithoutHODInput> | DepartmentCreateWithoutHODInput[] | DepartmentUncheckedCreateWithoutHODInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutHODInput | DepartmentCreateOrConnectWithoutHODInput[]
+    upsert?: DepartmentUpsertWithWhereUniqueWithoutHODInput | DepartmentUpsertWithWhereUniqueWithoutHODInput[]
     set?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     disconnect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     delete?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    update?: DepartmentUpdateWithWhereUniqueWithoutHodInput | DepartmentUpdateWithWhereUniqueWithoutHodInput[]
-    updateMany?: DepartmentUpdateManyWithWhereWithoutHodInput | DepartmentUpdateManyWithWhereWithoutHodInput[]
+    update?: DepartmentUpdateWithWhereUniqueWithoutHODInput | DepartmentUpdateWithWhereUniqueWithoutHODInput[]
+    updateMany?: DepartmentUpdateManyWithWhereWithoutHODInput | DepartmentUpdateManyWithWhereWithoutHODInput[]
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
@@ -17716,17 +14248,16 @@ export namespace Prisma {
     deleteMany?: ReportScalarWhereInput | ReportScalarWhereInput[]
   }
 
-  export type DepartmentUncheckedUpdateManyWithoutHodNestedInput = {
-    create?: XOR<DepartmentCreateWithoutHodInput, DepartmentUncheckedCreateWithoutHodInput> | DepartmentCreateWithoutHodInput[] | DepartmentUncheckedCreateWithoutHodInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutHodInput | DepartmentCreateOrConnectWithoutHodInput[]
-    upsert?: DepartmentUpsertWithWhereUniqueWithoutHodInput | DepartmentUpsertWithWhereUniqueWithoutHodInput[]
-    createMany?: DepartmentCreateManyHodInputEnvelope
+  export type DepartmentUncheckedUpdateManyWithoutHODNestedInput = {
+    create?: XOR<DepartmentCreateWithoutHODInput, DepartmentUncheckedCreateWithoutHODInput> | DepartmentCreateWithoutHODInput[] | DepartmentUncheckedCreateWithoutHODInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutHODInput | DepartmentCreateOrConnectWithoutHODInput[]
+    upsert?: DepartmentUpsertWithWhereUniqueWithoutHODInput | DepartmentUpsertWithWhereUniqueWithoutHODInput[]
     set?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     disconnect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     delete?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    update?: DepartmentUpdateWithWhereUniqueWithoutHodInput | DepartmentUpdateWithWhereUniqueWithoutHodInput[]
-    updateMany?: DepartmentUpdateManyWithWhereWithoutHodInput | DepartmentUpdateManyWithWhereWithoutHodInput[]
+    update?: DepartmentUpdateWithWhereUniqueWithoutHODInput | DepartmentUpdateWithWhereUniqueWithoutHODInput[]
+    updateMany?: DepartmentUpdateManyWithWhereWithoutHODInput | DepartmentUpdateManyWithWhereWithoutHODInput[]
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
@@ -17802,6 +14333,14 @@ export namespace Prisma {
     deleteMany?: ComponentScalarWhereInput | ComponentScalarWhereInput[]
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type ComponentUncheckedUpdateManyWithoutLabNestedInput = {
     create?: XOR<ComponentCreateWithoutLabInput, ComponentUncheckedCreateWithoutLabInput> | ComponentCreateWithoutLabInput[] | ComponentUncheckedCreateWithoutLabInput[]
     connectOrCreate?: ComponentCreateOrConnectWithoutLabInput | ComponentCreateOrConnectWithoutLabInput[]
@@ -17834,10 +14373,16 @@ export namespace Prisma {
     connect?: WarehouseWhereUniqueInput
   }
 
-  export type LabCreateNestedOneWithoutComponentsInput = {
-    create?: XOR<LabCreateWithoutComponentsInput, LabUncheckedCreateWithoutComponentsInput>
-    connectOrCreate?: LabCreateOrConnectWithoutComponentsInput
+  export type LabCreateNestedOneWithoutComponentInput = {
+    create?: XOR<LabCreateWithoutComponentInput, LabUncheckedCreateWithoutComponentInput>
+    connectOrCreate?: LabCreateOrConnectWithoutComponentInput
     connect?: LabWhereUniqueInput
+  }
+
+  export type DepartmentCreateNestedManyWithoutComponentInput = {
+    create?: XOR<DepartmentCreateWithoutComponentInput, DepartmentUncheckedCreateWithoutComponentInput> | DepartmentCreateWithoutComponentInput[] | DepartmentUncheckedCreateWithoutComponentInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentInput | DepartmentCreateOrConnectWithoutComponentInput[]
+    connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
   export type ReportCreateNestedManyWithoutComponentInput = {
@@ -17847,9 +14392,9 @@ export namespace Prisma {
     connect?: ReportWhereUniqueInput | ReportWhereUniqueInput[]
   }
 
-  export type DepartmentCreateNestedManyWithoutComponentsInput = {
-    create?: XOR<DepartmentCreateWithoutComponentsInput, DepartmentUncheckedCreateWithoutComponentsInput> | DepartmentCreateWithoutComponentsInput[] | DepartmentUncheckedCreateWithoutComponentsInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentsInput | DepartmentCreateOrConnectWithoutComponentsInput[]
+  export type DepartmentUncheckedCreateNestedManyWithoutComponentInput = {
+    create?: XOR<DepartmentCreateWithoutComponentInput, DepartmentUncheckedCreateWithoutComponentInput> | DepartmentCreateWithoutComponentInput[] | DepartmentUncheckedCreateWithoutComponentInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentInput | DepartmentCreateOrConnectWithoutComponentInput[]
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
@@ -17858,12 +14403,6 @@ export namespace Prisma {
     connectOrCreate?: ReportCreateOrConnectWithoutComponentInput | ReportCreateOrConnectWithoutComponentInput[]
     createMany?: ReportCreateManyComponentInputEnvelope
     connect?: ReportWhereUniqueInput | ReportWhereUniqueInput[]
-  }
-
-  export type DepartmentUncheckedCreateNestedManyWithoutComponentsInput = {
-    create?: XOR<DepartmentCreateWithoutComponentsInput, DepartmentUncheckedCreateWithoutComponentsInput> | DepartmentCreateWithoutComponentsInput[] | DepartmentUncheckedCreateWithoutComponentsInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentsInput | DepartmentCreateOrConnectWithoutComponentsInput[]
-    connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
   }
 
   export type EnumStatusFieldUpdateOperationsInput = {
@@ -17898,12 +14437,25 @@ export namespace Prisma {
     update?: XOR<XOR<WarehouseUpdateToOneWithWhereWithoutComponentInput, WarehouseUpdateWithoutComponentInput>, WarehouseUncheckedUpdateWithoutComponentInput>
   }
 
-  export type LabUpdateOneRequiredWithoutComponentsNestedInput = {
-    create?: XOR<LabCreateWithoutComponentsInput, LabUncheckedCreateWithoutComponentsInput>
-    connectOrCreate?: LabCreateOrConnectWithoutComponentsInput
-    upsert?: LabUpsertWithoutComponentsInput
+  export type LabUpdateOneRequiredWithoutComponentNestedInput = {
+    create?: XOR<LabCreateWithoutComponentInput, LabUncheckedCreateWithoutComponentInput>
+    connectOrCreate?: LabCreateOrConnectWithoutComponentInput
+    upsert?: LabUpsertWithoutComponentInput
     connect?: LabWhereUniqueInput
-    update?: XOR<XOR<LabUpdateToOneWithWhereWithoutComponentsInput, LabUpdateWithoutComponentsInput>, LabUncheckedUpdateWithoutComponentsInput>
+    update?: XOR<XOR<LabUpdateToOneWithWhereWithoutComponentInput, LabUpdateWithoutComponentInput>, LabUncheckedUpdateWithoutComponentInput>
+  }
+
+  export type DepartmentUpdateManyWithoutComponentNestedInput = {
+    create?: XOR<DepartmentCreateWithoutComponentInput, DepartmentUncheckedCreateWithoutComponentInput> | DepartmentCreateWithoutComponentInput[] | DepartmentUncheckedCreateWithoutComponentInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentInput | DepartmentCreateOrConnectWithoutComponentInput[]
+    upsert?: DepartmentUpsertWithWhereUniqueWithoutComponentInput | DepartmentUpsertWithWhereUniqueWithoutComponentInput[]
+    set?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
+    disconnect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
+    delete?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
+    connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
+    update?: DepartmentUpdateWithWhereUniqueWithoutComponentInput | DepartmentUpdateWithWhereUniqueWithoutComponentInput[]
+    updateMany?: DepartmentUpdateManyWithWhereWithoutComponentInput | DepartmentUpdateManyWithWhereWithoutComponentInput[]
+    deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
   export type ReportUpdateManyWithoutComponentNestedInput = {
@@ -17920,16 +14472,16 @@ export namespace Prisma {
     deleteMany?: ReportScalarWhereInput | ReportScalarWhereInput[]
   }
 
-  export type DepartmentUpdateManyWithoutComponentsNestedInput = {
-    create?: XOR<DepartmentCreateWithoutComponentsInput, DepartmentUncheckedCreateWithoutComponentsInput> | DepartmentCreateWithoutComponentsInput[] | DepartmentUncheckedCreateWithoutComponentsInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentsInput | DepartmentCreateOrConnectWithoutComponentsInput[]
-    upsert?: DepartmentUpsertWithWhereUniqueWithoutComponentsInput | DepartmentUpsertWithWhereUniqueWithoutComponentsInput[]
+  export type DepartmentUncheckedUpdateManyWithoutComponentNestedInput = {
+    create?: XOR<DepartmentCreateWithoutComponentInput, DepartmentUncheckedCreateWithoutComponentInput> | DepartmentCreateWithoutComponentInput[] | DepartmentUncheckedCreateWithoutComponentInput[]
+    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentInput | DepartmentCreateOrConnectWithoutComponentInput[]
+    upsert?: DepartmentUpsertWithWhereUniqueWithoutComponentInput | DepartmentUpsertWithWhereUniqueWithoutComponentInput[]
     set?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     disconnect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     delete?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
     connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    update?: DepartmentUpdateWithWhereUniqueWithoutComponentsInput | DepartmentUpdateWithWhereUniqueWithoutComponentsInput[]
-    updateMany?: DepartmentUpdateManyWithWhereWithoutComponentsInput | DepartmentUpdateManyWithWhereWithoutComponentsInput[]
+    update?: DepartmentUpdateWithWhereUniqueWithoutComponentInput | DepartmentUpdateWithWhereUniqueWithoutComponentInput[]
+    updateMany?: DepartmentUpdateManyWithWhereWithoutComponentInput | DepartmentUpdateManyWithWhereWithoutComponentInput[]
     deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
   }
 
@@ -17947,19 +14499,6 @@ export namespace Prisma {
     deleteMany?: ReportScalarWhereInput | ReportScalarWhereInput[]
   }
 
-  export type DepartmentUncheckedUpdateManyWithoutComponentsNestedInput = {
-    create?: XOR<DepartmentCreateWithoutComponentsInput, DepartmentUncheckedCreateWithoutComponentsInput> | DepartmentCreateWithoutComponentsInput[] | DepartmentUncheckedCreateWithoutComponentsInput[]
-    connectOrCreate?: DepartmentCreateOrConnectWithoutComponentsInput | DepartmentCreateOrConnectWithoutComponentsInput[]
-    upsert?: DepartmentUpsertWithWhereUniqueWithoutComponentsInput | DepartmentUpsertWithWhereUniqueWithoutComponentsInput[]
-    set?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    disconnect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    delete?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    connect?: DepartmentWhereUniqueInput | DepartmentWhereUniqueInput[]
-    update?: DepartmentUpdateWithWhereUniqueWithoutComponentsInput | DepartmentUpdateWithWhereUniqueWithoutComponentsInput[]
-    updateMany?: DepartmentUpdateManyWithWhereWithoutComponentsInput | DepartmentUpdateManyWithWhereWithoutComponentsInput[]
-    deleteMany?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
-  }
-
   export type AdminCreateNestedOneWithoutDepartmentInput = {
     create?: XOR<AdminCreateWithoutDepartmentInput, AdminUncheckedCreateWithoutDepartmentInput>
     connectOrCreate?: AdminCreateOrConnectWithoutDepartmentInput
@@ -17972,10 +14511,10 @@ export namespace Prisma {
     connect?: CollegeWhereUniqueInput
   }
 
-  export type HODCreateNestedOneWithoutDepartmentsInput = {
-    create?: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput>
-    connectOrCreate?: HODCreateOrConnectWithoutDepartmentsInput
-    connect?: HODWhereUniqueInput
+  export type HODCreateNestedManyWithoutDepartmentsInput = {
+    create?: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput> | HODCreateWithoutDepartmentsInput[] | HODUncheckedCreateWithoutDepartmentsInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutDepartmentsInput | HODCreateOrConnectWithoutDepartmentsInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
   }
 
   export type LabCreateNestedManyWithoutDepartmentInput = {
@@ -17996,6 +14535,12 @@ export namespace Prisma {
     connectOrCreate?: ReportCreateOrConnectWithoutDepartmentInput | ReportCreateOrConnectWithoutDepartmentInput[]
     createMany?: ReportCreateManyDepartmentInputEnvelope
     connect?: ReportWhereUniqueInput | ReportWhereUniqueInput[]
+  }
+
+  export type HODUncheckedCreateNestedManyWithoutDepartmentsInput = {
+    create?: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput> | HODCreateWithoutDepartmentsInput[] | HODUncheckedCreateWithoutDepartmentsInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutDepartmentsInput | HODCreateOrConnectWithoutDepartmentsInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
   }
 
   export type LabUncheckedCreateNestedManyWithoutDepartmentInput = {
@@ -18034,14 +14579,17 @@ export namespace Prisma {
     update?: XOR<XOR<CollegeUpdateToOneWithWhereWithoutDepartmentInput, CollegeUpdateWithoutDepartmentInput>, CollegeUncheckedUpdateWithoutDepartmentInput>
   }
 
-  export type HODUpdateOneWithoutDepartmentsNestedInput = {
-    create?: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput>
-    connectOrCreate?: HODCreateOrConnectWithoutDepartmentsInput
-    upsert?: HODUpsertWithoutDepartmentsInput
-    disconnect?: HODWhereInput | boolean
-    delete?: HODWhereInput | boolean
-    connect?: HODWhereUniqueInput
-    update?: XOR<XOR<HODUpdateToOneWithWhereWithoutDepartmentsInput, HODUpdateWithoutDepartmentsInput>, HODUncheckedUpdateWithoutDepartmentsInput>
+  export type HODUpdateManyWithoutDepartmentsNestedInput = {
+    create?: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput> | HODCreateWithoutDepartmentsInput[] | HODUncheckedCreateWithoutDepartmentsInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutDepartmentsInput | HODCreateOrConnectWithoutDepartmentsInput[]
+    upsert?: HODUpsertWithWhereUniqueWithoutDepartmentsInput | HODUpsertWithWhereUniqueWithoutDepartmentsInput[]
+    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    update?: HODUpdateWithWhereUniqueWithoutDepartmentsInput | HODUpdateWithWhereUniqueWithoutDepartmentsInput[]
+    updateMany?: HODUpdateManyWithWhereWithoutDepartmentsInput | HODUpdateManyWithWhereWithoutDepartmentsInput[]
+    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
   }
 
   export type LabUpdateManyWithoutDepartmentNestedInput = {
@@ -18083,6 +14631,19 @@ export namespace Prisma {
     update?: ReportUpdateWithWhereUniqueWithoutDepartmentInput | ReportUpdateWithWhereUniqueWithoutDepartmentInput[]
     updateMany?: ReportUpdateManyWithWhereWithoutDepartmentInput | ReportUpdateManyWithWhereWithoutDepartmentInput[]
     deleteMany?: ReportScalarWhereInput | ReportScalarWhereInput[]
+  }
+
+  export type HODUncheckedUpdateManyWithoutDepartmentsNestedInput = {
+    create?: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput> | HODCreateWithoutDepartmentsInput[] | HODUncheckedCreateWithoutDepartmentsInput[]
+    connectOrCreate?: HODCreateOrConnectWithoutDepartmentsInput | HODCreateOrConnectWithoutDepartmentsInput[]
+    upsert?: HODUpsertWithWhereUniqueWithoutDepartmentsInput | HODUpsertWithWhereUniqueWithoutDepartmentsInput[]
+    set?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    disconnect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    delete?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    connect?: HODWhereUniqueInput | HODWhereUniqueInput[]
+    update?: HODUpdateWithWhereUniqueWithoutDepartmentsInput | HODUpdateWithWhereUniqueWithoutDepartmentsInput[]
+    updateMany?: HODUpdateManyWithWhereWithoutDepartmentsInput | HODUpdateManyWithWhereWithoutDepartmentsInput[]
+    deleteMany?: HODScalarWhereInput | HODScalarWhereInput[]
   }
 
   export type LabUncheckedUpdateManyWithoutDepartmentNestedInput = {
@@ -18411,11 +14972,9 @@ export namespace Prisma {
     name: string
     address: string
     collegeId: string
-    staffs?: StaffCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseCreateNestedManyWithoutCollegeInput
-    component?: ComponentCreateNestedManyWithoutCollegeInput
-    hod?: HODCreateNestedManyWithoutCollegeInput
     Department?: DepartmentCreateNestedManyWithoutCollegeInput
+    HOD?: HODCreateNestedManyWithoutCollegeInput
+    Component?: ComponentCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeUncheckedCreateWithoutAdminInput = {
@@ -18423,11 +14982,9 @@ export namespace Prisma {
     name: string
     address: string
     collegeId: string
-    staffs?: StaffUncheckedCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutCollegeInput
-    component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
-    hod?: HODUncheckedCreateNestedManyWithoutCollegeInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutCollegeInput
+    HOD?: HODUncheckedCreateNestedManyWithoutCollegeInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeCreateOrConnectWithoutAdminInput = {
@@ -18440,46 +14997,11 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type StaffCreateWithoutAdminInput = {
-    name: string
-    email: string
-    password: string
-    phone: string
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    college: CollegeCreateNestedOneWithoutStaffsInput
-    componentRequest?: ComponentRequestCreateNestedManyWithoutStaffInput
-  }
-
-  export type StaffUncheckedCreateWithoutAdminInput = {
-    id?: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    collegeId: number
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    componentRequest?: ComponentRequestUncheckedCreateNestedManyWithoutStaffInput
-  }
-
-  export type StaffCreateOrConnectWithoutAdminInput = {
-    where: StaffWhereUniqueInput
-    create: XOR<StaffCreateWithoutAdminInput, StaffUncheckedCreateWithoutAdminInput>
-  }
-
-  export type StaffCreateManyAdminInputEnvelope = {
-    data: StaffCreateManyAdminInput | StaffCreateManyAdminInput[]
-    skipDuplicates?: boolean
-  }
-
   export type WarehouseCreateWithoutAdminInput = {
     name: string
+    collegeId: number
     warehouseId: string
-    college: CollegeCreateNestedOneWithoutWarehousesInput
-    component?: ComponentCreateNestedManyWithoutWarehouseInput
+    Component?: ComponentCreateNestedManyWithoutWarehouseInput
   }
 
   export type WarehouseUncheckedCreateWithoutAdminInput = {
@@ -18487,7 +15009,7 @@ export namespace Prisma {
     name: string
     collegeId: number
     warehouseId: string
-    component?: ComponentUncheckedCreateNestedManyWithoutWarehouseInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutWarehouseInput
   }
 
   export type WarehouseCreateOrConnectWithoutAdminInput = {
@@ -18497,6 +15019,95 @@ export namespace Prisma {
 
   export type WarehouseCreateManyAdminInputEnvelope = {
     data: WarehouseCreateManyAdminInput | WarehouseCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DepartmentCreateWithoutAdminInput = {
+    name: string
+    departmentId: string
+    hodId?: number | null
+    college: CollegeCreateNestedOneWithoutDepartmentInput
+    HOD?: HODCreateNestedManyWithoutDepartmentsInput
+    Lab?: LabCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentCreateNestedManyWithoutDepartmentInput
+    Report?: ReportCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentUncheckedCreateWithoutAdminInput = {
+    id?: number
+    name: string
+    departmentId: string
+    collegeId: number
+    hodId?: number | null
+    HOD?: HODUncheckedCreateNestedManyWithoutDepartmentsInput
+    Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
+    Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentCreateOrConnectWithoutAdminInput = {
+    where: DepartmentWhereUniqueInput
+    create: XOR<DepartmentCreateWithoutAdminInput, DepartmentUncheckedCreateWithoutAdminInput>
+  }
+
+  export type DepartmentCreateManyAdminInputEnvelope = {
+    data: DepartmentCreateManyAdminInput | DepartmentCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HODCreateWithoutAdminInput = {
+    name: string
+    email: string
+    phone: string
+    password: string
+    role?: $Enums.Role
+    college: CollegeCreateNestedOneWithoutHODInput
+    departments?: DepartmentCreateNestedManyWithoutHODInput
+    Report?: ReportCreateNestedManyWithoutHodInput
+  }
+
+  export type HODUncheckedCreateWithoutAdminInput = {
+    id?: number
+    name: string
+    email: string
+    phone: string
+    password: string
+    collegeId: number
+    role?: $Enums.Role
+    departments?: DepartmentUncheckedCreateNestedManyWithoutHODInput
+    Report?: ReportUncheckedCreateNestedManyWithoutHodInput
+  }
+
+  export type HODCreateOrConnectWithoutAdminInput = {
+    where: HODWhereUniqueInput
+    create: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput>
+  }
+
+  export type HODCreateManyAdminInputEnvelope = {
+    data: HODCreateManyAdminInput | HODCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LabCreateWithoutAdminInput = {
+    name: string
+    department: DepartmentCreateNestedOneWithoutLabInput
+    Component?: ComponentCreateNestedManyWithoutLabInput
+  }
+
+  export type LabUncheckedCreateWithoutAdminInput = {
+    id?: number
+    name: string
+    departmentId: number
+    Component?: ComponentUncheckedCreateNestedManyWithoutLabInput
+  }
+
+  export type LabCreateOrConnectWithoutAdminInput = {
+    where: LabWhereUniqueInput
+    create: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput>
+  }
+
+  export type LabCreateManyAdminInputEnvelope = {
+    data: LabCreateManyAdminInput | LabCreateManyAdminInput[]
     skipDuplicates?: boolean
   }
 
@@ -18511,9 +15122,9 @@ export namespace Prisma {
     type: $Enums.ComponentType
     college: CollegeCreateNestedOneWithoutComponentInput
     warehouse: WarehouseCreateNestedOneWithoutComponentInput
-    lab: LabCreateNestedOneWithoutComponentsInput
+    lab: LabCreateNestedOneWithoutComponentInput
+    Department?: DepartmentCreateNestedManyWithoutComponentInput
     Report?: ReportCreateNestedManyWithoutComponentInput
-    Department?: DepartmentCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentUncheckedCreateWithoutAdminInput = {
@@ -18529,8 +15140,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     status?: $Enums.Status
     type: $Enums.ComponentType
+    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentInput
     Report?: ReportUncheckedCreateNestedManyWithoutComponentInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentCreateOrConnectWithoutAdminInput = {
@@ -18540,93 +15151,6 @@ export namespace Prisma {
 
   export type ComponentCreateManyAdminInputEnvelope = {
     data: ComponentCreateManyAdminInput | ComponentCreateManyAdminInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type HODCreateWithoutAdminInput = {
-    name: string
-    email: string
-    phone: string
-    password: string
-    role?: $Enums.Role
-    college: CollegeCreateNestedOneWithoutHodInput
-    departments?: DepartmentCreateNestedManyWithoutHodInput
-    Report?: ReportCreateNestedManyWithoutHodInput
-  }
-
-  export type HODUncheckedCreateWithoutAdminInput = {
-    id?: number
-    name: string
-    email: string
-    phone: string
-    password: string
-    collegeId: number
-    role?: $Enums.Role
-    departments?: DepartmentUncheckedCreateNestedManyWithoutHodInput
-    Report?: ReportUncheckedCreateNestedManyWithoutHodInput
-  }
-
-  export type HODCreateOrConnectWithoutAdminInput = {
-    where: HODWhereUniqueInput
-    create: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput>
-  }
-
-  export type HODCreateManyAdminInputEnvelope = {
-    data: HODCreateManyAdminInput | HODCreateManyAdminInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type DepartmentCreateWithoutAdminInput = {
-    name: string
-    departmentId: string
-    college: CollegeCreateNestedOneWithoutDepartmentInput
-    hod?: HODCreateNestedOneWithoutDepartmentsInput
-    Lab?: LabCreateNestedManyWithoutDepartmentInput
-    components?: ComponentCreateNestedManyWithoutDepartmentInput
-    Report?: ReportCreateNestedManyWithoutDepartmentInput
-  }
-
-  export type DepartmentUncheckedCreateWithoutAdminInput = {
-    id?: number
-    name: string
-    departmentId: string
-    collegeId: number
-    hodId?: number | null
-    Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
-    components?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
-    Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
-  }
-
-  export type DepartmentCreateOrConnectWithoutAdminInput = {
-    where: DepartmentWhereUniqueInput
-    create: XOR<DepartmentCreateWithoutAdminInput, DepartmentUncheckedCreateWithoutAdminInput>
-  }
-
-  export type DepartmentCreateManyAdminInputEnvelope = {
-    data: DepartmentCreateManyAdminInput | DepartmentCreateManyAdminInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LabCreateWithoutAdminInput = {
-    name: string
-    department: DepartmentCreateNestedOneWithoutLabInput
-    components?: ComponentCreateNestedManyWithoutLabInput
-  }
-
-  export type LabUncheckedCreateWithoutAdminInput = {
-    id?: number
-    name: string
-    departmentId: number
-    components?: ComponentUncheckedCreateNestedManyWithoutLabInput
-  }
-
-  export type LabCreateOrConnectWithoutAdminInput = {
-    where: LabWhereUniqueInput
-    create: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput>
-  }
-
-  export type LabCreateManyAdminInputEnvelope = {
-    data: LabCreateManyAdminInput | LabCreateManyAdminInput[]
     skipDuplicates?: boolean
   }
 
@@ -18657,38 +15181,6 @@ export namespace Prisma {
     adminId?: IntFilter<"College"> | number
   }
 
-  export type StaffUpsertWithWhereUniqueWithoutAdminInput = {
-    where: StaffWhereUniqueInput
-    update: XOR<StaffUpdateWithoutAdminInput, StaffUncheckedUpdateWithoutAdminInput>
-    create: XOR<StaffCreateWithoutAdminInput, StaffUncheckedCreateWithoutAdminInput>
-  }
-
-  export type StaffUpdateWithWhereUniqueWithoutAdminInput = {
-    where: StaffWhereUniqueInput
-    data: XOR<StaffUpdateWithoutAdminInput, StaffUncheckedUpdateWithoutAdminInput>
-  }
-
-  export type StaffUpdateManyWithWhereWithoutAdminInput = {
-    where: StaffScalarWhereInput
-    data: XOR<StaffUpdateManyMutationInput, StaffUncheckedUpdateManyWithoutAdminInput>
-  }
-
-  export type StaffScalarWhereInput = {
-    AND?: StaffScalarWhereInput | StaffScalarWhereInput[]
-    OR?: StaffScalarWhereInput[]
-    NOT?: StaffScalarWhereInput | StaffScalarWhereInput[]
-    id?: IntFilter<"Staff"> | number
-    name?: StringFilter<"Staff"> | string
-    email?: StringFilter<"Staff"> | string
-    password?: StringFilter<"Staff"> | string
-    phone?: StringFilter<"Staff"> | string
-    collegeId?: IntFilter<"Staff"> | number
-    adminId?: IntFilter<"Staff"> | number
-    role?: EnumRoleFilter<"Staff"> | $Enums.Role
-    resetToken?: StringNullableFilter<"Staff"> | string | null
-    resetTokenExpiry?: DateTimeNullableFilter<"Staff"> | Date | string | null
-  }
-
   export type WarehouseUpsertWithWhereUniqueWithoutAdminInput = {
     where: WarehouseWhereUniqueInput
     update: XOR<WarehouseUpdateWithoutAdminInput, WarehouseUncheckedUpdateWithoutAdminInput>
@@ -18714,6 +15206,90 @@ export namespace Prisma {
     collegeId?: IntFilter<"Warehouse"> | number
     adminId?: IntFilter<"Warehouse"> | number
     warehouseId?: StringFilter<"Warehouse"> | string
+  }
+
+  export type DepartmentUpsertWithWhereUniqueWithoutAdminInput = {
+    where: DepartmentWhereUniqueInput
+    update: XOR<DepartmentUpdateWithoutAdminInput, DepartmentUncheckedUpdateWithoutAdminInput>
+    create: XOR<DepartmentCreateWithoutAdminInput, DepartmentUncheckedCreateWithoutAdminInput>
+  }
+
+  export type DepartmentUpdateWithWhereUniqueWithoutAdminInput = {
+    where: DepartmentWhereUniqueInput
+    data: XOR<DepartmentUpdateWithoutAdminInput, DepartmentUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type DepartmentUpdateManyWithWhereWithoutAdminInput = {
+    where: DepartmentScalarWhereInput
+    data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type DepartmentScalarWhereInput = {
+    AND?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
+    OR?: DepartmentScalarWhereInput[]
+    NOT?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
+    id?: IntFilter<"Department"> | number
+    name?: StringFilter<"Department"> | string
+    departmentId?: StringFilter<"Department"> | string
+    collegeId?: IntFilter<"Department"> | number
+    adminId?: IntFilter<"Department"> | number
+    hodId?: IntNullableFilter<"Department"> | number | null
+  }
+
+  export type HODUpsertWithWhereUniqueWithoutAdminInput = {
+    where: HODWhereUniqueInput
+    update: XOR<HODUpdateWithoutAdminInput, HODUncheckedUpdateWithoutAdminInput>
+    create: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput>
+  }
+
+  export type HODUpdateWithWhereUniqueWithoutAdminInput = {
+    where: HODWhereUniqueInput
+    data: XOR<HODUpdateWithoutAdminInput, HODUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type HODUpdateManyWithWhereWithoutAdminInput = {
+    where: HODScalarWhereInput
+    data: XOR<HODUpdateManyMutationInput, HODUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type HODScalarWhereInput = {
+    AND?: HODScalarWhereInput | HODScalarWhereInput[]
+    OR?: HODScalarWhereInput[]
+    NOT?: HODScalarWhereInput | HODScalarWhereInput[]
+    id?: IntFilter<"HOD"> | number
+    name?: StringFilter<"HOD"> | string
+    email?: StringFilter<"HOD"> | string
+    phone?: StringFilter<"HOD"> | string
+    password?: StringFilter<"HOD"> | string
+    collegeId?: IntFilter<"HOD"> | number
+    adminId?: IntFilter<"HOD"> | number
+    role?: EnumRoleFilter<"HOD"> | $Enums.Role
+  }
+
+  export type LabUpsertWithWhereUniqueWithoutAdminInput = {
+    where: LabWhereUniqueInput
+    update: XOR<LabUpdateWithoutAdminInput, LabUncheckedUpdateWithoutAdminInput>
+    create: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput>
+  }
+
+  export type LabUpdateWithWhereUniqueWithoutAdminInput = {
+    where: LabWhereUniqueInput
+    data: XOR<LabUpdateWithoutAdminInput, LabUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type LabUpdateManyWithWhereWithoutAdminInput = {
+    where: LabScalarWhereInput
+    data: XOR<LabUpdateManyMutationInput, LabUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type LabScalarWhereInput = {
+    AND?: LabScalarWhereInput | LabScalarWhereInput[]
+    OR?: LabScalarWhereInput[]
+    NOT?: LabScalarWhereInput | LabScalarWhereInput[]
+    id?: IntFilter<"Lab"> | number
+    name?: StringFilter<"Lab"> | string
+    departmentId?: IntFilter<"Lab"> | number
+    adminId?: IntNullableFilter<"Lab"> | number | null
   }
 
   export type ComponentUpsertWithWhereUniqueWithoutAdminInput = {
@@ -18751,91 +15327,7 @@ export namespace Prisma {
     type?: EnumComponentTypeFilter<"Component"> | $Enums.ComponentType
   }
 
-  export type HODUpsertWithWhereUniqueWithoutAdminInput = {
-    where: HODWhereUniqueInput
-    update: XOR<HODUpdateWithoutAdminInput, HODUncheckedUpdateWithoutAdminInput>
-    create: XOR<HODCreateWithoutAdminInput, HODUncheckedCreateWithoutAdminInput>
-  }
-
-  export type HODUpdateWithWhereUniqueWithoutAdminInput = {
-    where: HODWhereUniqueInput
-    data: XOR<HODUpdateWithoutAdminInput, HODUncheckedUpdateWithoutAdminInput>
-  }
-
-  export type HODUpdateManyWithWhereWithoutAdminInput = {
-    where: HODScalarWhereInput
-    data: XOR<HODUpdateManyMutationInput, HODUncheckedUpdateManyWithoutAdminInput>
-  }
-
-  export type HODScalarWhereInput = {
-    AND?: HODScalarWhereInput | HODScalarWhereInput[]
-    OR?: HODScalarWhereInput[]
-    NOT?: HODScalarWhereInput | HODScalarWhereInput[]
-    id?: IntFilter<"HOD"> | number
-    name?: StringFilter<"HOD"> | string
-    email?: StringFilter<"HOD"> | string
-    phone?: StringFilter<"HOD"> | string
-    password?: StringFilter<"HOD"> | string
-    collegeId?: IntFilter<"HOD"> | number
-    adminId?: IntFilter<"HOD"> | number
-    role?: EnumRoleFilter<"HOD"> | $Enums.Role
-  }
-
-  export type DepartmentUpsertWithWhereUniqueWithoutAdminInput = {
-    where: DepartmentWhereUniqueInput
-    update: XOR<DepartmentUpdateWithoutAdminInput, DepartmentUncheckedUpdateWithoutAdminInput>
-    create: XOR<DepartmentCreateWithoutAdminInput, DepartmentUncheckedCreateWithoutAdminInput>
-  }
-
-  export type DepartmentUpdateWithWhereUniqueWithoutAdminInput = {
-    where: DepartmentWhereUniqueInput
-    data: XOR<DepartmentUpdateWithoutAdminInput, DepartmentUncheckedUpdateWithoutAdminInput>
-  }
-
-  export type DepartmentUpdateManyWithWhereWithoutAdminInput = {
-    where: DepartmentScalarWhereInput
-    data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutAdminInput>
-  }
-
-  export type DepartmentScalarWhereInput = {
-    AND?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
-    OR?: DepartmentScalarWhereInput[]
-    NOT?: DepartmentScalarWhereInput | DepartmentScalarWhereInput[]
-    id?: IntFilter<"Department"> | number
-    name?: StringFilter<"Department"> | string
-    departmentId?: StringFilter<"Department"> | string
-    collegeId?: IntFilter<"Department"> | number
-    adminId?: IntFilter<"Department"> | number
-    hodId?: IntNullableFilter<"Department"> | number | null
-  }
-
-  export type LabUpsertWithWhereUniqueWithoutAdminInput = {
-    where: LabWhereUniqueInput
-    update: XOR<LabUpdateWithoutAdminInput, LabUncheckedUpdateWithoutAdminInput>
-    create: XOR<LabCreateWithoutAdminInput, LabUncheckedCreateWithoutAdminInput>
-  }
-
-  export type LabUpdateWithWhereUniqueWithoutAdminInput = {
-    where: LabWhereUniqueInput
-    data: XOR<LabUpdateWithoutAdminInput, LabUncheckedUpdateWithoutAdminInput>
-  }
-
-  export type LabUpdateManyWithWhereWithoutAdminInput = {
-    where: LabScalarWhereInput
-    data: XOR<LabUpdateManyMutationInput, LabUncheckedUpdateManyWithoutAdminInput>
-  }
-
-  export type LabScalarWhereInput = {
-    AND?: LabScalarWhereInput | LabScalarWhereInput[]
-    OR?: LabScalarWhereInput[]
-    NOT?: LabScalarWhereInput | LabScalarWhereInput[]
-    id?: IntFilter<"Lab"> | number
-    name?: StringFilter<"Lab"> | string
-    departmentId?: IntFilter<"Lab"> | number
-    adminId?: IntNullableFilter<"Lab"> | number | null
-  }
-
-  export type AdminCreateWithoutCollegesInput = {
+  export type AdminCreateWithoutCollegeInput = {
     name: string
     email: string
     password: string
@@ -18845,15 +15337,14 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
-    HOD?: HODCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseCreateNestedManyWithoutAdminInput
     Department?: DepartmentCreateNestedManyWithoutAdminInput
+    HOD?: HODCreateNestedManyWithoutAdminInput
     Lab?: LabCreateNestedManyWithoutAdminInput
+    Component?: ComponentCreateNestedManyWithoutAdminInput
   }
 
-  export type AdminUncheckedCreateWithoutCollegesInput = {
+  export type AdminUncheckedCreateWithoutCollegeInput = {
     id?: number
     name: string
     email: string
@@ -18864,76 +15355,81 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
-    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
+    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
     Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
   }
 
-  export type AdminCreateOrConnectWithoutCollegesInput = {
+  export type AdminCreateOrConnectWithoutCollegeInput = {
     where: AdminWhereUniqueInput
-    create: XOR<AdminCreateWithoutCollegesInput, AdminUncheckedCreateWithoutCollegesInput>
+    create: XOR<AdminCreateWithoutCollegeInput, AdminUncheckedCreateWithoutCollegeInput>
   }
 
-  export type StaffCreateWithoutCollegeInput = {
+  export type DepartmentCreateWithoutCollegeInput = {
     name: string
-    email: string
-    password: string
-    phone: string
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    admin: AdminCreateNestedOneWithoutStaffsInput
-    componentRequest?: ComponentRequestCreateNestedManyWithoutStaffInput
+    departmentId: string
+    hodId?: number | null
+    admin: AdminCreateNestedOneWithoutDepartmentInput
+    HOD?: HODCreateNestedManyWithoutDepartmentsInput
+    Lab?: LabCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentCreateNestedManyWithoutDepartmentInput
+    Report?: ReportCreateNestedManyWithoutDepartmentInput
   }
 
-  export type StaffUncheckedCreateWithoutCollegeInput = {
+  export type DepartmentUncheckedCreateWithoutCollegeInput = {
     id?: number
     name: string
-    email: string
-    password: string
-    phone: string
+    departmentId: string
     adminId: number
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    componentRequest?: ComponentRequestUncheckedCreateNestedManyWithoutStaffInput
+    hodId?: number | null
+    HOD?: HODUncheckedCreateNestedManyWithoutDepartmentsInput
+    Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
+    Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
-  export type StaffCreateOrConnectWithoutCollegeInput = {
-    where: StaffWhereUniqueInput
-    create: XOR<StaffCreateWithoutCollegeInput, StaffUncheckedCreateWithoutCollegeInput>
+  export type DepartmentCreateOrConnectWithoutCollegeInput = {
+    where: DepartmentWhereUniqueInput
+    create: XOR<DepartmentCreateWithoutCollegeInput, DepartmentUncheckedCreateWithoutCollegeInput>
   }
 
-  export type StaffCreateManyCollegeInputEnvelope = {
-    data: StaffCreateManyCollegeInput | StaffCreateManyCollegeInput[]
+  export type DepartmentCreateManyCollegeInputEnvelope = {
+    data: DepartmentCreateManyCollegeInput | DepartmentCreateManyCollegeInput[]
     skipDuplicates?: boolean
   }
 
-  export type WarehouseCreateWithoutCollegeInput = {
+  export type HODCreateWithoutCollegeInput = {
     name: string
-    warehouseId: string
-    admin: AdminCreateNestedOneWithoutWarehousesInput
-    component?: ComponentCreateNestedManyWithoutWarehouseInput
+    email: string
+    phone: string
+    password: string
+    role?: $Enums.Role
+    admin: AdminCreateNestedOneWithoutHODInput
+    departments?: DepartmentCreateNestedManyWithoutHODInput
+    Report?: ReportCreateNestedManyWithoutHodInput
   }
 
-  export type WarehouseUncheckedCreateWithoutCollegeInput = {
+  export type HODUncheckedCreateWithoutCollegeInput = {
     id?: number
     name: string
+    email: string
+    phone: string
+    password: string
     adminId: number
-    warehouseId: string
-    component?: ComponentUncheckedCreateNestedManyWithoutWarehouseInput
+    role?: $Enums.Role
+    departments?: DepartmentUncheckedCreateNestedManyWithoutHODInput
+    Report?: ReportUncheckedCreateNestedManyWithoutHodInput
   }
 
-  export type WarehouseCreateOrConnectWithoutCollegeInput = {
-    where: WarehouseWhereUniqueInput
-    create: XOR<WarehouseCreateWithoutCollegeInput, WarehouseUncheckedCreateWithoutCollegeInput>
+  export type HODCreateOrConnectWithoutCollegeInput = {
+    where: HODWhereUniqueInput
+    create: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput>
   }
 
-  export type WarehouseCreateManyCollegeInputEnvelope = {
-    data: WarehouseCreateManyCollegeInput | WarehouseCreateManyCollegeInput[]
+  export type HODCreateManyCollegeInputEnvelope = {
+    data: HODCreateManyCollegeInput | HODCreateManyCollegeInput[]
     skipDuplicates?: boolean
   }
 
@@ -18948,9 +15444,9 @@ export namespace Prisma {
     type: $Enums.ComponentType
     admin: AdminCreateNestedOneWithoutComponentInput
     warehouse: WarehouseCreateNestedOneWithoutComponentInput
-    lab: LabCreateNestedOneWithoutComponentsInput
+    lab: LabCreateNestedOneWithoutComponentInput
+    Department?: DepartmentCreateNestedManyWithoutComponentInput
     Report?: ReportCreateNestedManyWithoutComponentInput
-    Department?: DepartmentCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentUncheckedCreateWithoutCollegeInput = {
@@ -18966,8 +15462,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     status?: $Enums.Status
     type: $Enums.ComponentType
+    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentInput
     Report?: ReportUncheckedCreateNestedManyWithoutComponentInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentCreateOrConnectWithoutCollegeInput = {
@@ -18980,82 +15476,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type HODCreateWithoutCollegeInput = {
-    name: string
-    email: string
-    phone: string
-    password: string
-    role?: $Enums.Role
-    admin: AdminCreateNestedOneWithoutHODInput
-    departments?: DepartmentCreateNestedManyWithoutHodInput
-    Report?: ReportCreateNestedManyWithoutHodInput
-  }
-
-  export type HODUncheckedCreateWithoutCollegeInput = {
-    id?: number
-    name: string
-    email: string
-    phone: string
-    password: string
-    adminId: number
-    role?: $Enums.Role
-    departments?: DepartmentUncheckedCreateNestedManyWithoutHodInput
-    Report?: ReportUncheckedCreateNestedManyWithoutHodInput
-  }
-
-  export type HODCreateOrConnectWithoutCollegeInput = {
-    where: HODWhereUniqueInput
-    create: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput>
-  }
-
-  export type HODCreateManyCollegeInputEnvelope = {
-    data: HODCreateManyCollegeInput | HODCreateManyCollegeInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type DepartmentCreateWithoutCollegeInput = {
-    name: string
-    departmentId: string
-    admin: AdminCreateNestedOneWithoutDepartmentInput
-    hod?: HODCreateNestedOneWithoutDepartmentsInput
-    Lab?: LabCreateNestedManyWithoutDepartmentInput
-    components?: ComponentCreateNestedManyWithoutDepartmentInput
-    Report?: ReportCreateNestedManyWithoutDepartmentInput
-  }
-
-  export type DepartmentUncheckedCreateWithoutCollegeInput = {
-    id?: number
-    name: string
-    departmentId: string
-    adminId: number
-    hodId?: number | null
-    Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
-    components?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
-    Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
-  }
-
-  export type DepartmentCreateOrConnectWithoutCollegeInput = {
-    where: DepartmentWhereUniqueInput
-    create: XOR<DepartmentCreateWithoutCollegeInput, DepartmentUncheckedCreateWithoutCollegeInput>
-  }
-
-  export type DepartmentCreateManyCollegeInputEnvelope = {
-    data: DepartmentCreateManyCollegeInput | DepartmentCreateManyCollegeInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AdminUpsertWithoutCollegesInput = {
-    update: XOR<AdminUpdateWithoutCollegesInput, AdminUncheckedUpdateWithoutCollegesInput>
-    create: XOR<AdminCreateWithoutCollegesInput, AdminUncheckedCreateWithoutCollegesInput>
+  export type AdminUpsertWithoutCollegeInput = {
+    update: XOR<AdminUpdateWithoutCollegeInput, AdminUncheckedUpdateWithoutCollegeInput>
+    create: XOR<AdminCreateWithoutCollegeInput, AdminUncheckedCreateWithoutCollegeInput>
     where?: AdminWhereInput
   }
 
-  export type AdminUpdateToOneWithWhereWithoutCollegesInput = {
+  export type AdminUpdateToOneWithWhereWithoutCollegeInput = {
     where?: AdminWhereInput
-    data: XOR<AdminUpdateWithoutCollegesInput, AdminUncheckedUpdateWithoutCollegesInput>
+    data: XOR<AdminUpdateWithoutCollegeInput, AdminUncheckedUpdateWithoutCollegeInput>
   }
 
-  export type AdminUpdateWithoutCollegesInput = {
+  export type AdminUpdateWithoutCollegeInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -19065,15 +15497,14 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
-    HOD?: HODUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUpdateManyWithoutAdminNestedInput
+    HOD?: HODUpdateManyWithoutAdminNestedInput
     Lab?: LabUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUpdateManyWithoutAdminNestedInput
   }
 
-  export type AdminUncheckedUpdateWithoutCollegesInput = {
+  export type AdminUncheckedUpdateWithoutCollegeInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -19084,76 +15515,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
-    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
     Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
-  }
-
-  export type StaffUpsertWithWhereUniqueWithoutCollegeInput = {
-    where: StaffWhereUniqueInput
-    update: XOR<StaffUpdateWithoutCollegeInput, StaffUncheckedUpdateWithoutCollegeInput>
-    create: XOR<StaffCreateWithoutCollegeInput, StaffUncheckedCreateWithoutCollegeInput>
-  }
-
-  export type StaffUpdateWithWhereUniqueWithoutCollegeInput = {
-    where: StaffWhereUniqueInput
-    data: XOR<StaffUpdateWithoutCollegeInput, StaffUncheckedUpdateWithoutCollegeInput>
-  }
-
-  export type StaffUpdateManyWithWhereWithoutCollegeInput = {
-    where: StaffScalarWhereInput
-    data: XOR<StaffUpdateManyMutationInput, StaffUncheckedUpdateManyWithoutCollegeInput>
-  }
-
-  export type WarehouseUpsertWithWhereUniqueWithoutCollegeInput = {
-    where: WarehouseWhereUniqueInput
-    update: XOR<WarehouseUpdateWithoutCollegeInput, WarehouseUncheckedUpdateWithoutCollegeInput>
-    create: XOR<WarehouseCreateWithoutCollegeInput, WarehouseUncheckedCreateWithoutCollegeInput>
-  }
-
-  export type WarehouseUpdateWithWhereUniqueWithoutCollegeInput = {
-    where: WarehouseWhereUniqueInput
-    data: XOR<WarehouseUpdateWithoutCollegeInput, WarehouseUncheckedUpdateWithoutCollegeInput>
-  }
-
-  export type WarehouseUpdateManyWithWhereWithoutCollegeInput = {
-    where: WarehouseScalarWhereInput
-    data: XOR<WarehouseUpdateManyMutationInput, WarehouseUncheckedUpdateManyWithoutCollegeInput>
-  }
-
-  export type ComponentUpsertWithWhereUniqueWithoutCollegeInput = {
-    where: ComponentWhereUniqueInput
-    update: XOR<ComponentUpdateWithoutCollegeInput, ComponentUncheckedUpdateWithoutCollegeInput>
-    create: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput>
-  }
-
-  export type ComponentUpdateWithWhereUniqueWithoutCollegeInput = {
-    where: ComponentWhereUniqueInput
-    data: XOR<ComponentUpdateWithoutCollegeInput, ComponentUncheckedUpdateWithoutCollegeInput>
-  }
-
-  export type ComponentUpdateManyWithWhereWithoutCollegeInput = {
-    where: ComponentScalarWhereInput
-    data: XOR<ComponentUpdateManyMutationInput, ComponentUncheckedUpdateManyWithoutCollegeInput>
-  }
-
-  export type HODUpsertWithWhereUniqueWithoutCollegeInput = {
-    where: HODWhereUniqueInput
-    update: XOR<HODUpdateWithoutCollegeInput, HODUncheckedUpdateWithoutCollegeInput>
-    create: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput>
-  }
-
-  export type HODUpdateWithWhereUniqueWithoutCollegeInput = {
-    where: HODWhereUniqueInput
-    data: XOR<HODUpdateWithoutCollegeInput, HODUncheckedUpdateWithoutCollegeInput>
-  }
-
-  export type HODUpdateManyWithWhereWithoutCollegeInput = {
-    where: HODScalarWhereInput
-    data: XOR<HODUpdateManyMutationInput, HODUncheckedUpdateManyWithoutCollegeInput>
+    Component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type DepartmentUpsertWithWhereUniqueWithoutCollegeInput = {
@@ -19172,7 +15538,39 @@ export namespace Prisma {
     data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutCollegeInput>
   }
 
-  export type AdminCreateWithoutWarehousesInput = {
+  export type HODUpsertWithWhereUniqueWithoutCollegeInput = {
+    where: HODWhereUniqueInput
+    update: XOR<HODUpdateWithoutCollegeInput, HODUncheckedUpdateWithoutCollegeInput>
+    create: XOR<HODCreateWithoutCollegeInput, HODUncheckedCreateWithoutCollegeInput>
+  }
+
+  export type HODUpdateWithWhereUniqueWithoutCollegeInput = {
+    where: HODWhereUniqueInput
+    data: XOR<HODUpdateWithoutCollegeInput, HODUncheckedUpdateWithoutCollegeInput>
+  }
+
+  export type HODUpdateManyWithWhereWithoutCollegeInput = {
+    where: HODScalarWhereInput
+    data: XOR<HODUpdateManyMutationInput, HODUncheckedUpdateManyWithoutCollegeInput>
+  }
+
+  export type ComponentUpsertWithWhereUniqueWithoutCollegeInput = {
+    where: ComponentWhereUniqueInput
+    update: XOR<ComponentUpdateWithoutCollegeInput, ComponentUncheckedUpdateWithoutCollegeInput>
+    create: XOR<ComponentCreateWithoutCollegeInput, ComponentUncheckedCreateWithoutCollegeInput>
+  }
+
+  export type ComponentUpdateWithWhereUniqueWithoutCollegeInput = {
+    where: ComponentWhereUniqueInput
+    data: XOR<ComponentUpdateWithoutCollegeInput, ComponentUncheckedUpdateWithoutCollegeInput>
+  }
+
+  export type ComponentUpdateManyWithWhereWithoutCollegeInput = {
+    where: ComponentScalarWhereInput
+    data: XOR<ComponentUpdateManyMutationInput, ComponentUncheckedUpdateManyWithoutCollegeInput>
+  }
+
+  export type AdminCreateWithoutWarehouseInput = {
     name: string
     email: string
     password: string
@@ -19182,15 +15580,14 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
-    HOD?: HODCreateNestedManyWithoutAdminInput
+    College?: CollegeCreateNestedManyWithoutAdminInput
     Department?: DepartmentCreateNestedManyWithoutAdminInput
+    HOD?: HODCreateNestedManyWithoutAdminInput
     Lab?: LabCreateNestedManyWithoutAdminInput
+    Component?: ComponentCreateNestedManyWithoutAdminInput
   }
 
-  export type AdminUncheckedCreateWithoutWarehousesInput = {
+  export type AdminUncheckedCreateWithoutWarehouseInput = {
     id?: number
     name: string
     email: string
@@ -19201,45 +15598,16 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
-    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
+    College?: CollegeUncheckedCreateNestedManyWithoutAdminInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
+    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
     Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
   }
 
-  export type AdminCreateOrConnectWithoutWarehousesInput = {
+  export type AdminCreateOrConnectWithoutWarehouseInput = {
     where: AdminWhereUniqueInput
-    create: XOR<AdminCreateWithoutWarehousesInput, AdminUncheckedCreateWithoutWarehousesInput>
-  }
-
-  export type CollegeCreateWithoutWarehousesInput = {
-    name: string
-    address: string
-    collegeId: string
-    admin: AdminCreateNestedOneWithoutCollegesInput
-    staffs?: StaffCreateNestedManyWithoutCollegeInput
-    component?: ComponentCreateNestedManyWithoutCollegeInput
-    hod?: HODCreateNestedManyWithoutCollegeInput
-    Department?: DepartmentCreateNestedManyWithoutCollegeInput
-  }
-
-  export type CollegeUncheckedCreateWithoutWarehousesInput = {
-    id?: number
-    name: string
-    address: string
-    collegeId: string
-    adminId: number
-    staffs?: StaffUncheckedCreateNestedManyWithoutCollegeInput
-    component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
-    hod?: HODUncheckedCreateNestedManyWithoutCollegeInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutCollegeInput
-  }
-
-  export type CollegeCreateOrConnectWithoutWarehousesInput = {
-    where: CollegeWhereUniqueInput
-    create: XOR<CollegeCreateWithoutWarehousesInput, CollegeUncheckedCreateWithoutWarehousesInput>
+    create: XOR<AdminCreateWithoutWarehouseInput, AdminUncheckedCreateWithoutWarehouseInput>
   }
 
   export type ComponentCreateWithoutWarehouseInput = {
@@ -19253,9 +15621,9 @@ export namespace Prisma {
     type: $Enums.ComponentType
     admin: AdminCreateNestedOneWithoutComponentInput
     college: CollegeCreateNestedOneWithoutComponentInput
-    lab: LabCreateNestedOneWithoutComponentsInput
+    lab: LabCreateNestedOneWithoutComponentInput
+    Department?: DepartmentCreateNestedManyWithoutComponentInput
     Report?: ReportCreateNestedManyWithoutComponentInput
-    Department?: DepartmentCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentUncheckedCreateWithoutWarehouseInput = {
@@ -19271,8 +15639,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     status?: $Enums.Status
     type: $Enums.ComponentType
+    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentInput
     Report?: ReportUncheckedCreateNestedManyWithoutComponentInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentCreateOrConnectWithoutWarehouseInput = {
@@ -19285,18 +15653,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AdminUpsertWithoutWarehousesInput = {
-    update: XOR<AdminUpdateWithoutWarehousesInput, AdminUncheckedUpdateWithoutWarehousesInput>
-    create: XOR<AdminCreateWithoutWarehousesInput, AdminUncheckedCreateWithoutWarehousesInput>
+  export type AdminUpsertWithoutWarehouseInput = {
+    update: XOR<AdminUpdateWithoutWarehouseInput, AdminUncheckedUpdateWithoutWarehouseInput>
+    create: XOR<AdminCreateWithoutWarehouseInput, AdminUncheckedCreateWithoutWarehouseInput>
     where?: AdminWhereInput
   }
 
-  export type AdminUpdateToOneWithWhereWithoutWarehousesInput = {
+  export type AdminUpdateToOneWithWhereWithoutWarehouseInput = {
     where?: AdminWhereInput
-    data: XOR<AdminUpdateWithoutWarehousesInput, AdminUncheckedUpdateWithoutWarehousesInput>
+    data: XOR<AdminUpdateWithoutWarehouseInput, AdminUncheckedUpdateWithoutWarehouseInput>
   }
 
-  export type AdminUpdateWithoutWarehousesInput = {
+  export type AdminUpdateWithoutWarehouseInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -19306,15 +15674,14 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
-    HOD?: HODUpdateManyWithoutAdminNestedInput
+    College?: CollegeUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUpdateManyWithoutAdminNestedInput
+    HOD?: HODUpdateManyWithoutAdminNestedInput
     Lab?: LabUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUpdateManyWithoutAdminNestedInput
   }
 
-  export type AdminUncheckedUpdateWithoutWarehousesInput = {
+  export type AdminUncheckedUpdateWithoutWarehouseInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -19325,46 +15692,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
-    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
+    College?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
     Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
-  }
-
-  export type CollegeUpsertWithoutWarehousesInput = {
-    update: XOR<CollegeUpdateWithoutWarehousesInput, CollegeUncheckedUpdateWithoutWarehousesInput>
-    create: XOR<CollegeCreateWithoutWarehousesInput, CollegeUncheckedCreateWithoutWarehousesInput>
-    where?: CollegeWhereInput
-  }
-
-  export type CollegeUpdateToOneWithWhereWithoutWarehousesInput = {
-    where?: CollegeWhereInput
-    data: XOR<CollegeUpdateWithoutWarehousesInput, CollegeUncheckedUpdateWithoutWarehousesInput>
-  }
-
-  export type CollegeUpdateWithoutWarehousesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    collegeId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutCollegesNestedInput
-    staffs?: StaffUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUpdateManyWithoutCollegeNestedInput
-    hod?: HODUpdateManyWithoutCollegeNestedInput
-    Department?: DepartmentUpdateManyWithoutCollegeNestedInput
-  }
-
-  export type CollegeUncheckedUpdateWithoutWarehousesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    collegeId?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    staffs?: StaffUncheckedUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
-    hod?: HODUncheckedUpdateManyWithoutCollegeNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type ComponentUpsertWithWhereUniqueWithoutWarehouseInput = {
@@ -19383,289 +15715,6 @@ export namespace Prisma {
     data: XOR<ComponentUpdateManyMutationInput, ComponentUncheckedUpdateManyWithoutWarehouseInput>
   }
 
-  export type AdminCreateWithoutStaffsInput = {
-    name: string
-    email: string
-    password: string
-    phone: string
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
-    HOD?: HODCreateNestedManyWithoutAdminInput
-    Department?: DepartmentCreateNestedManyWithoutAdminInput
-    Lab?: LabCreateNestedManyWithoutAdminInput
-  }
-
-  export type AdminUncheckedCreateWithoutStaffsInput = {
-    id?: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
-    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
-    Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
-  }
-
-  export type AdminCreateOrConnectWithoutStaffsInput = {
-    where: AdminWhereUniqueInput
-    create: XOR<AdminCreateWithoutStaffsInput, AdminUncheckedCreateWithoutStaffsInput>
-  }
-
-  export type CollegeCreateWithoutStaffsInput = {
-    name: string
-    address: string
-    collegeId: string
-    admin: AdminCreateNestedOneWithoutCollegesInput
-    warehouses?: WarehouseCreateNestedManyWithoutCollegeInput
-    component?: ComponentCreateNestedManyWithoutCollegeInput
-    hod?: HODCreateNestedManyWithoutCollegeInput
-    Department?: DepartmentCreateNestedManyWithoutCollegeInput
-  }
-
-  export type CollegeUncheckedCreateWithoutStaffsInput = {
-    id?: number
-    name: string
-    address: string
-    collegeId: string
-    adminId: number
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutCollegeInput
-    component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
-    hod?: HODUncheckedCreateNestedManyWithoutCollegeInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutCollegeInput
-  }
-
-  export type CollegeCreateOrConnectWithoutStaffsInput = {
-    where: CollegeWhereUniqueInput
-    create: XOR<CollegeCreateWithoutStaffsInput, CollegeUncheckedCreateWithoutStaffsInput>
-  }
-
-  export type ComponentRequestCreateWithoutStaffInput = {
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt?: Date | string
-    type: string
-    status: string
-    createdByStaffId?: number | null
-  }
-
-  export type ComponentRequestUncheckedCreateWithoutStaffInput = {
-    id?: number
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt?: Date | string
-    type: string
-    status: string
-    createdByStaffId?: number | null
-  }
-
-  export type ComponentRequestCreateOrConnectWithoutStaffInput = {
-    where: ComponentRequestWhereUniqueInput
-    create: XOR<ComponentRequestCreateWithoutStaffInput, ComponentRequestUncheckedCreateWithoutStaffInput>
-  }
-
-  export type ComponentRequestCreateManyStaffInputEnvelope = {
-    data: ComponentRequestCreateManyStaffInput | ComponentRequestCreateManyStaffInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AdminUpsertWithoutStaffsInput = {
-    update: XOR<AdminUpdateWithoutStaffsInput, AdminUncheckedUpdateWithoutStaffsInput>
-    create: XOR<AdminCreateWithoutStaffsInput, AdminUncheckedCreateWithoutStaffsInput>
-    where?: AdminWhereInput
-  }
-
-  export type AdminUpdateToOneWithWhereWithoutStaffsInput = {
-    where?: AdminWhereInput
-    data: XOR<AdminUpdateWithoutStaffsInput, AdminUncheckedUpdateWithoutStaffsInput>
-  }
-
-  export type AdminUpdateWithoutStaffsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
-    HOD?: HODUpdateManyWithoutAdminNestedInput
-    Department?: DepartmentUpdateManyWithoutAdminNestedInput
-    Lab?: LabUpdateManyWithoutAdminNestedInput
-  }
-
-  export type AdminUncheckedUpdateWithoutStaffsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
-    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
-    Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
-  }
-
-  export type CollegeUpsertWithoutStaffsInput = {
-    update: XOR<CollegeUpdateWithoutStaffsInput, CollegeUncheckedUpdateWithoutStaffsInput>
-    create: XOR<CollegeCreateWithoutStaffsInput, CollegeUncheckedCreateWithoutStaffsInput>
-    where?: CollegeWhereInput
-  }
-
-  export type CollegeUpdateToOneWithWhereWithoutStaffsInput = {
-    where?: CollegeWhereInput
-    data: XOR<CollegeUpdateWithoutStaffsInput, CollegeUncheckedUpdateWithoutStaffsInput>
-  }
-
-  export type CollegeUpdateWithoutStaffsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    collegeId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutCollegesNestedInput
-    warehouses?: WarehouseUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUpdateManyWithoutCollegeNestedInput
-    hod?: HODUpdateManyWithoutCollegeNestedInput
-    Department?: DepartmentUpdateManyWithoutCollegeNestedInput
-  }
-
-  export type CollegeUncheckedUpdateWithoutStaffsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    collegeId?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    warehouses?: WarehouseUncheckedUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
-    hod?: HODUncheckedUpdateManyWithoutCollegeNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutCollegeNestedInput
-  }
-
-  export type ComponentRequestUpsertWithWhereUniqueWithoutStaffInput = {
-    where: ComponentRequestWhereUniqueInput
-    update: XOR<ComponentRequestUpdateWithoutStaffInput, ComponentRequestUncheckedUpdateWithoutStaffInput>
-    create: XOR<ComponentRequestCreateWithoutStaffInput, ComponentRequestUncheckedCreateWithoutStaffInput>
-  }
-
-  export type ComponentRequestUpdateWithWhereUniqueWithoutStaffInput = {
-    where: ComponentRequestWhereUniqueInput
-    data: XOR<ComponentRequestUpdateWithoutStaffInput, ComponentRequestUncheckedUpdateWithoutStaffInput>
-  }
-
-  export type ComponentRequestUpdateManyWithWhereWithoutStaffInput = {
-    where: ComponentRequestScalarWhereInput
-    data: XOR<ComponentRequestUpdateManyMutationInput, ComponentRequestUncheckedUpdateManyWithoutStaffInput>
-  }
-
-  export type ComponentRequestScalarWhereInput = {
-    AND?: ComponentRequestScalarWhereInput | ComponentRequestScalarWhereInput[]
-    OR?: ComponentRequestScalarWhereInput[]
-    NOT?: ComponentRequestScalarWhereInput | ComponentRequestScalarWhereInput[]
-    id?: IntFilter<"ComponentRequest"> | number
-    name?: StringFilter<"ComponentRequest"> | string
-    brand?: StringFilter<"ComponentRequest"> | string
-    modelNumber?: StringFilter<"ComponentRequest"> | string
-    serialNumber?: StringFilter<"ComponentRequest"> | string
-    createdAt?: DateTimeFilter<"ComponentRequest"> | Date | string
-    staffId?: IntFilter<"ComponentRequest"> | number
-    type?: StringFilter<"ComponentRequest"> | string
-    status?: StringFilter<"ComponentRequest"> | string
-    createdByStaffId?: IntNullableFilter<"ComponentRequest"> | number | null
-  }
-
-  export type StaffCreateWithoutComponentRequestInput = {
-    name: string
-    email: string
-    password: string
-    phone: string
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    admin: AdminCreateNestedOneWithoutStaffsInput
-    college: CollegeCreateNestedOneWithoutStaffsInput
-  }
-
-  export type StaffUncheckedCreateWithoutComponentRequestInput = {
-    id?: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    collegeId: number
-    adminId: number
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-  }
-
-  export type StaffCreateOrConnectWithoutComponentRequestInput = {
-    where: StaffWhereUniqueInput
-    create: XOR<StaffCreateWithoutComponentRequestInput, StaffUncheckedCreateWithoutComponentRequestInput>
-  }
-
-  export type StaffUpsertWithoutComponentRequestInput = {
-    update: XOR<StaffUpdateWithoutComponentRequestInput, StaffUncheckedUpdateWithoutComponentRequestInput>
-    create: XOR<StaffCreateWithoutComponentRequestInput, StaffUncheckedCreateWithoutComponentRequestInput>
-    where?: StaffWhereInput
-  }
-
-  export type StaffUpdateToOneWithWhereWithoutComponentRequestInput = {
-    where?: StaffWhereInput
-    data: XOR<StaffUpdateWithoutComponentRequestInput, StaffUncheckedUpdateWithoutComponentRequestInput>
-  }
-
-  export type StaffUpdateWithoutComponentRequestInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    admin?: AdminUpdateOneRequiredWithoutStaffsNestedInput
-    college?: CollegeUpdateOneRequiredWithoutStaffsNestedInput
-  }
-
-  export type StaffUncheckedUpdateWithoutComponentRequestInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    adminId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
   export type AdminCreateWithoutHODInput = {
     name: string
     email: string
@@ -19676,12 +15725,11 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
+    College?: CollegeCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseCreateNestedManyWithoutAdminInput
     Department?: DepartmentCreateNestedManyWithoutAdminInput
     Lab?: LabCreateNestedManyWithoutAdminInput
+    Component?: ComponentCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateWithoutHODInput = {
@@ -19695,12 +15743,11 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
+    College?: CollegeUncheckedCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
     Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
   }
 
   export type AdminCreateOrConnectWithoutHODInput = {
@@ -19708,63 +15755,56 @@ export namespace Prisma {
     create: XOR<AdminCreateWithoutHODInput, AdminUncheckedCreateWithoutHODInput>
   }
 
-  export type CollegeCreateWithoutHodInput = {
+  export type CollegeCreateWithoutHODInput = {
     name: string
     address: string
     collegeId: string
-    admin: AdminCreateNestedOneWithoutCollegesInput
-    staffs?: StaffCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseCreateNestedManyWithoutCollegeInput
-    component?: ComponentCreateNestedManyWithoutCollegeInput
+    admin: AdminCreateNestedOneWithoutCollegeInput
     Department?: DepartmentCreateNestedManyWithoutCollegeInput
+    Component?: ComponentCreateNestedManyWithoutCollegeInput
   }
 
-  export type CollegeUncheckedCreateWithoutHodInput = {
+  export type CollegeUncheckedCreateWithoutHODInput = {
     id?: number
     name: string
     address: string
     collegeId: string
     adminId: number
-    staffs?: StaffUncheckedCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutCollegeInput
-    component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutCollegeInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
   }
 
-  export type CollegeCreateOrConnectWithoutHodInput = {
+  export type CollegeCreateOrConnectWithoutHODInput = {
     where: CollegeWhereUniqueInput
-    create: XOR<CollegeCreateWithoutHodInput, CollegeUncheckedCreateWithoutHodInput>
+    create: XOR<CollegeCreateWithoutHODInput, CollegeUncheckedCreateWithoutHODInput>
   }
 
-  export type DepartmentCreateWithoutHodInput = {
+  export type DepartmentCreateWithoutHODInput = {
     name: string
     departmentId: string
+    hodId?: number | null
     admin: AdminCreateNestedOneWithoutDepartmentInput
     college: CollegeCreateNestedOneWithoutDepartmentInput
     Lab?: LabCreateNestedManyWithoutDepartmentInput
-    components?: ComponentCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentCreateNestedManyWithoutDepartmentInput
     Report?: ReportCreateNestedManyWithoutDepartmentInput
   }
 
-  export type DepartmentUncheckedCreateWithoutHodInput = {
+  export type DepartmentUncheckedCreateWithoutHODInput = {
     id?: number
     name: string
     departmentId: string
     collegeId: number
     adminId: number
+    hodId?: number | null
     Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
-    components?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
     Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
-  export type DepartmentCreateOrConnectWithoutHodInput = {
+  export type DepartmentCreateOrConnectWithoutHODInput = {
     where: DepartmentWhereUniqueInput
-    create: XOR<DepartmentCreateWithoutHodInput, DepartmentUncheckedCreateWithoutHodInput>
-  }
-
-  export type DepartmentCreateManyHodInputEnvelope = {
-    data: DepartmentCreateManyHodInput | DepartmentCreateManyHodInput[]
-    skipDuplicates?: boolean
+    create: XOR<DepartmentCreateWithoutHODInput, DepartmentUncheckedCreateWithoutHODInput>
   }
 
   export type ReportCreateWithoutHodInput = {
@@ -19815,12 +15855,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
+    College?: CollegeUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUpdateManyWithoutAdminNestedInput
     Lab?: LabUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateWithoutHODInput = {
@@ -19834,62 +15873,57 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
+    College?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
     Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
   }
 
-  export type CollegeUpsertWithoutHodInput = {
-    update: XOR<CollegeUpdateWithoutHodInput, CollegeUncheckedUpdateWithoutHodInput>
-    create: XOR<CollegeCreateWithoutHodInput, CollegeUncheckedCreateWithoutHodInput>
+  export type CollegeUpsertWithoutHODInput = {
+    update: XOR<CollegeUpdateWithoutHODInput, CollegeUncheckedUpdateWithoutHODInput>
+    create: XOR<CollegeCreateWithoutHODInput, CollegeUncheckedCreateWithoutHODInput>
     where?: CollegeWhereInput
   }
 
-  export type CollegeUpdateToOneWithWhereWithoutHodInput = {
+  export type CollegeUpdateToOneWithWhereWithoutHODInput = {
     where?: CollegeWhereInput
-    data: XOR<CollegeUpdateWithoutHodInput, CollegeUncheckedUpdateWithoutHodInput>
+    data: XOR<CollegeUpdateWithoutHODInput, CollegeUncheckedUpdateWithoutHODInput>
   }
 
-  export type CollegeUpdateWithoutHodInput = {
+  export type CollegeUpdateWithoutHODInput = {
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutCollegesNestedInput
-    staffs?: StaffUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUpdateManyWithoutCollegeNestedInput
+    admin?: AdminUpdateOneRequiredWithoutCollegeNestedInput
     Department?: DepartmentUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUpdateManyWithoutCollegeNestedInput
   }
 
-  export type CollegeUncheckedUpdateWithoutHodInput = {
+  export type CollegeUncheckedUpdateWithoutHODInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
     adminId?: IntFieldUpdateOperationsInput | number
-    staffs?: StaffUncheckedUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
   }
 
-  export type DepartmentUpsertWithWhereUniqueWithoutHodInput = {
+  export type DepartmentUpsertWithWhereUniqueWithoutHODInput = {
     where: DepartmentWhereUniqueInput
-    update: XOR<DepartmentUpdateWithoutHodInput, DepartmentUncheckedUpdateWithoutHodInput>
-    create: XOR<DepartmentCreateWithoutHodInput, DepartmentUncheckedCreateWithoutHodInput>
+    update: XOR<DepartmentUpdateWithoutHODInput, DepartmentUncheckedUpdateWithoutHODInput>
+    create: XOR<DepartmentCreateWithoutHODInput, DepartmentUncheckedCreateWithoutHODInput>
   }
 
-  export type DepartmentUpdateWithWhereUniqueWithoutHodInput = {
+  export type DepartmentUpdateWithWhereUniqueWithoutHODInput = {
     where: DepartmentWhereUniqueInput
-    data: XOR<DepartmentUpdateWithoutHodInput, DepartmentUncheckedUpdateWithoutHodInput>
+    data: XOR<DepartmentUpdateWithoutHODInput, DepartmentUncheckedUpdateWithoutHODInput>
   }
 
-  export type DepartmentUpdateManyWithWhereWithoutHodInput = {
+  export type DepartmentUpdateManyWithWhereWithoutHODInput = {
     where: DepartmentScalarWhereInput
-    data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutHodInput>
+    data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutHODInput>
   }
 
   export type ReportUpsertWithWhereUniqueWithoutHodInput = {
@@ -19924,10 +15958,11 @@ export namespace Prisma {
   export type DepartmentCreateWithoutLabInput = {
     name: string
     departmentId: string
+    hodId?: number | null
     admin: AdminCreateNestedOneWithoutDepartmentInput
     college: CollegeCreateNestedOneWithoutDepartmentInput
-    hod?: HODCreateNestedOneWithoutDepartmentsInput
-    components?: ComponentCreateNestedManyWithoutDepartmentInput
+    HOD?: HODCreateNestedManyWithoutDepartmentsInput
+    Component?: ComponentCreateNestedManyWithoutDepartmentInput
     Report?: ReportCreateNestedManyWithoutDepartmentInput
   }
 
@@ -19938,7 +15973,8 @@ export namespace Prisma {
     collegeId: number
     adminId: number
     hodId?: number | null
-    components?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
+    HOD?: HODUncheckedCreateNestedManyWithoutDepartmentsInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
     Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
@@ -19957,12 +15993,11 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
-    HOD?: HODCreateNestedManyWithoutAdminInput
+    College?: CollegeCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseCreateNestedManyWithoutAdminInput
     Department?: DepartmentCreateNestedManyWithoutAdminInput
+    HOD?: HODCreateNestedManyWithoutAdminInput
+    Component?: ComponentCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateWithoutLabInput = {
@@ -19976,12 +16011,11 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
-    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
+    College?: CollegeUncheckedCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
+    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
   }
 
   export type AdminCreateOrConnectWithoutLabInput = {
@@ -20001,8 +16035,8 @@ export namespace Prisma {
     admin: AdminCreateNestedOneWithoutComponentInput
     college: CollegeCreateNestedOneWithoutComponentInput
     warehouse: WarehouseCreateNestedOneWithoutComponentInput
+    Department?: DepartmentCreateNestedManyWithoutComponentInput
     Report?: ReportCreateNestedManyWithoutComponentInput
-    Department?: DepartmentCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentUncheckedCreateWithoutLabInput = {
@@ -20018,8 +16052,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     status?: $Enums.Status
     type: $Enums.ComponentType
+    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentInput
     Report?: ReportUncheckedCreateNestedManyWithoutComponentInput
-    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentsInput
   }
 
   export type ComponentCreateOrConnectWithoutLabInput = {
@@ -20046,10 +16080,11 @@ export namespace Prisma {
   export type DepartmentUpdateWithoutLabInput = {
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
     admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
     college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
-    hod?: HODUpdateOneWithoutDepartmentsNestedInput
-    components?: ComponentUpdateManyWithoutDepartmentNestedInput
+    HOD?: HODUpdateManyWithoutDepartmentsNestedInput
+    Component?: ComponentUpdateManyWithoutDepartmentNestedInput
     Report?: ReportUpdateManyWithoutDepartmentNestedInput
   }
 
@@ -20060,7 +16095,8 @@ export namespace Prisma {
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
     hodId?: NullableIntFieldUpdateOperationsInput | number | null
-    components?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutDepartmentsNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
@@ -20085,12 +16121,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
-    HOD?: HODUpdateManyWithoutAdminNestedInput
+    College?: CollegeUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUpdateManyWithoutAdminNestedInput
+    HOD?: HODUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateWithoutLabInput = {
@@ -20104,12 +16139,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
-    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
+    College?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type ComponentUpsertWithWhereUniqueWithoutLabInput = {
@@ -20138,11 +16172,10 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    HOD?: HODCreateNestedManyWithoutAdminInput
+    College?: CollegeCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseCreateNestedManyWithoutAdminInput
     Department?: DepartmentCreateNestedManyWithoutAdminInput
+    HOD?: HODCreateNestedManyWithoutAdminInput
     Lab?: LabCreateNestedManyWithoutAdminInput
   }
 
@@ -20157,11 +16190,10 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
+    College?: CollegeUncheckedCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutAdminInput
+    HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
     Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
   }
 
@@ -20174,11 +16206,9 @@ export namespace Prisma {
     name: string
     address: string
     collegeId: string
-    admin: AdminCreateNestedOneWithoutCollegesInput
-    staffs?: StaffCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseCreateNestedManyWithoutCollegeInput
-    hod?: HODCreateNestedManyWithoutCollegeInput
+    admin: AdminCreateNestedOneWithoutCollegeInput
     Department?: DepartmentCreateNestedManyWithoutCollegeInput
+    HOD?: HODCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeUncheckedCreateWithoutComponentInput = {
@@ -20187,10 +16217,8 @@ export namespace Prisma {
     address: string
     collegeId: string
     adminId: number
-    staffs?: StaffUncheckedCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutCollegeInput
-    hod?: HODUncheckedCreateNestedManyWithoutCollegeInput
     Department?: DepartmentUncheckedCreateNestedManyWithoutCollegeInput
+    HOD?: HODUncheckedCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeCreateOrConnectWithoutComponentInput = {
@@ -20200,9 +16228,9 @@ export namespace Prisma {
 
   export type WarehouseCreateWithoutComponentInput = {
     name: string
+    collegeId: number
     warehouseId: string
-    admin: AdminCreateNestedOneWithoutWarehousesInput
-    college: CollegeCreateNestedOneWithoutWarehousesInput
+    admin: AdminCreateNestedOneWithoutWarehouseInput
   }
 
   export type WarehouseUncheckedCreateWithoutComponentInput = {
@@ -20218,22 +16246,50 @@ export namespace Prisma {
     create: XOR<WarehouseCreateWithoutComponentInput, WarehouseUncheckedCreateWithoutComponentInput>
   }
 
-  export type LabCreateWithoutComponentsInput = {
+  export type LabCreateWithoutComponentInput = {
     name: string
     department: DepartmentCreateNestedOneWithoutLabInput
     admin?: AdminCreateNestedOneWithoutLabInput
   }
 
-  export type LabUncheckedCreateWithoutComponentsInput = {
+  export type LabUncheckedCreateWithoutComponentInput = {
     id?: number
     name: string
     departmentId: number
     adminId?: number | null
   }
 
-  export type LabCreateOrConnectWithoutComponentsInput = {
+  export type LabCreateOrConnectWithoutComponentInput = {
     where: LabWhereUniqueInput
-    create: XOR<LabCreateWithoutComponentsInput, LabUncheckedCreateWithoutComponentsInput>
+    create: XOR<LabCreateWithoutComponentInput, LabUncheckedCreateWithoutComponentInput>
+  }
+
+  export type DepartmentCreateWithoutComponentInput = {
+    name: string
+    departmentId: string
+    hodId?: number | null
+    admin: AdminCreateNestedOneWithoutDepartmentInput
+    college: CollegeCreateNestedOneWithoutDepartmentInput
+    HOD?: HODCreateNestedManyWithoutDepartmentsInput
+    Lab?: LabCreateNestedManyWithoutDepartmentInput
+    Report?: ReportCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentUncheckedCreateWithoutComponentInput = {
+    id?: number
+    name: string
+    departmentId: string
+    collegeId: number
+    adminId: number
+    hodId?: number | null
+    HOD?: HODUncheckedCreateNestedManyWithoutDepartmentsInput
+    Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
+    Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentCreateOrConnectWithoutComponentInput = {
+    where: DepartmentWhereUniqueInput
+    create: XOR<DepartmentCreateWithoutComponentInput, DepartmentUncheckedCreateWithoutComponentInput>
   }
 
   export type ReportCreateWithoutComponentInput = {
@@ -20263,32 +16319,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DepartmentCreateWithoutComponentsInput = {
-    name: string
-    departmentId: string
-    admin: AdminCreateNestedOneWithoutDepartmentInput
-    college: CollegeCreateNestedOneWithoutDepartmentInput
-    hod?: HODCreateNestedOneWithoutDepartmentsInput
-    Lab?: LabCreateNestedManyWithoutDepartmentInput
-    Report?: ReportCreateNestedManyWithoutDepartmentInput
-  }
-
-  export type DepartmentUncheckedCreateWithoutComponentsInput = {
-    id?: number
-    name: string
-    departmentId: string
-    collegeId: number
-    adminId: number
-    hodId?: number | null
-    Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
-    Report?: ReportUncheckedCreateNestedManyWithoutDepartmentInput
-  }
-
-  export type DepartmentCreateOrConnectWithoutComponentsInput = {
-    where: DepartmentWhereUniqueInput
-    create: XOR<DepartmentCreateWithoutComponentsInput, DepartmentUncheckedCreateWithoutComponentsInput>
-  }
-
   export type AdminUpsertWithoutComponentInput = {
     update: XOR<AdminUpdateWithoutComponentInput, AdminUncheckedUpdateWithoutComponentInput>
     create: XOR<AdminCreateWithoutComponentInput, AdminUncheckedCreateWithoutComponentInput>
@@ -20310,11 +16340,10 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    HOD?: HODUpdateManyWithoutAdminNestedInput
+    College?: CollegeUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUpdateManyWithoutAdminNestedInput
+    HOD?: HODUpdateManyWithoutAdminNestedInput
     Lab?: LabUpdateManyWithoutAdminNestedInput
   }
 
@@ -20329,11 +16358,10 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
+    College?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutAdminNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
     Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
   }
 
@@ -20352,11 +16380,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutCollegesNestedInput
-    staffs?: StaffUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUpdateManyWithoutCollegeNestedInput
-    hod?: HODUpdateManyWithoutCollegeNestedInput
+    admin?: AdminUpdateOneRequiredWithoutCollegeNestedInput
     Department?: DepartmentUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUpdateManyWithoutCollegeNestedInput
   }
 
   export type CollegeUncheckedUpdateWithoutComponentInput = {
@@ -20365,10 +16391,8 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
     adminId?: IntFieldUpdateOperationsInput | number
-    staffs?: StaffUncheckedUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutCollegeNestedInput
-    hod?: HODUncheckedUpdateManyWithoutCollegeNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutCollegeNestedInput
   }
 
   export type WarehouseUpsertWithoutComponentInput = {
@@ -20384,9 +16408,9 @@ export namespace Prisma {
 
   export type WarehouseUpdateWithoutComponentInput = {
     name?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutWarehousesNestedInput
-    college?: CollegeUpdateOneRequiredWithoutWarehousesNestedInput
+    admin?: AdminUpdateOneRequiredWithoutWarehouseNestedInput
   }
 
   export type WarehouseUncheckedUpdateWithoutComponentInput = {
@@ -20397,28 +16421,44 @@ export namespace Prisma {
     warehouseId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type LabUpsertWithoutComponentsInput = {
-    update: XOR<LabUpdateWithoutComponentsInput, LabUncheckedUpdateWithoutComponentsInput>
-    create: XOR<LabCreateWithoutComponentsInput, LabUncheckedCreateWithoutComponentsInput>
+  export type LabUpsertWithoutComponentInput = {
+    update: XOR<LabUpdateWithoutComponentInput, LabUncheckedUpdateWithoutComponentInput>
+    create: XOR<LabCreateWithoutComponentInput, LabUncheckedCreateWithoutComponentInput>
     where?: LabWhereInput
   }
 
-  export type LabUpdateToOneWithWhereWithoutComponentsInput = {
+  export type LabUpdateToOneWithWhereWithoutComponentInput = {
     where?: LabWhereInput
-    data: XOR<LabUpdateWithoutComponentsInput, LabUncheckedUpdateWithoutComponentsInput>
+    data: XOR<LabUpdateWithoutComponentInput, LabUncheckedUpdateWithoutComponentInput>
   }
 
-  export type LabUpdateWithoutComponentsInput = {
+  export type LabUpdateWithoutComponentInput = {
     name?: StringFieldUpdateOperationsInput | string
     department?: DepartmentUpdateOneRequiredWithoutLabNestedInput
     admin?: AdminUpdateOneWithoutLabNestedInput
   }
 
-  export type LabUncheckedUpdateWithoutComponentsInput = {
+  export type LabUncheckedUpdateWithoutComponentInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: IntFieldUpdateOperationsInput | number
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type DepartmentUpsertWithWhereUniqueWithoutComponentInput = {
+    where: DepartmentWhereUniqueInput
+    update: XOR<DepartmentUpdateWithoutComponentInput, DepartmentUncheckedUpdateWithoutComponentInput>
+    create: XOR<DepartmentCreateWithoutComponentInput, DepartmentUncheckedCreateWithoutComponentInput>
+  }
+
+  export type DepartmentUpdateWithWhereUniqueWithoutComponentInput = {
+    where: DepartmentWhereUniqueInput
+    data: XOR<DepartmentUpdateWithoutComponentInput, DepartmentUncheckedUpdateWithoutComponentInput>
+  }
+
+  export type DepartmentUpdateManyWithWhereWithoutComponentInput = {
+    where: DepartmentScalarWhereInput
+    data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutComponentInput>
   }
 
   export type ReportUpsertWithWhereUniqueWithoutComponentInput = {
@@ -20437,22 +16477,6 @@ export namespace Prisma {
     data: XOR<ReportUpdateManyMutationInput, ReportUncheckedUpdateManyWithoutComponentInput>
   }
 
-  export type DepartmentUpsertWithWhereUniqueWithoutComponentsInput = {
-    where: DepartmentWhereUniqueInput
-    update: XOR<DepartmentUpdateWithoutComponentsInput, DepartmentUncheckedUpdateWithoutComponentsInput>
-    create: XOR<DepartmentCreateWithoutComponentsInput, DepartmentUncheckedCreateWithoutComponentsInput>
-  }
-
-  export type DepartmentUpdateWithWhereUniqueWithoutComponentsInput = {
-    where: DepartmentWhereUniqueInput
-    data: XOR<DepartmentUpdateWithoutComponentsInput, DepartmentUncheckedUpdateWithoutComponentsInput>
-  }
-
-  export type DepartmentUpdateManyWithWhereWithoutComponentsInput = {
-    where: DepartmentScalarWhereInput
-    data: XOR<DepartmentUpdateManyMutationInput, DepartmentUncheckedUpdateManyWithoutComponentsInput>
-  }
-
   export type AdminCreateWithoutDepartmentInput = {
     name: string
     email: string
@@ -20463,12 +16487,11 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeCreateNestedManyWithoutAdminInput
-    staffs?: StaffCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseCreateNestedManyWithoutAdminInput
-    component?: ComponentCreateNestedManyWithoutAdminInput
+    College?: CollegeCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseCreateNestedManyWithoutAdminInput
     HOD?: HODCreateNestedManyWithoutAdminInput
     Lab?: LabCreateNestedManyWithoutAdminInput
+    Component?: ComponentCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateWithoutDepartmentInput = {
@@ -20482,12 +16505,11 @@ export namespace Prisma {
     resetTokenExpiry?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    colleges?: CollegeUncheckedCreateNestedManyWithoutAdminInput
-    staffs?: StaffUncheckedCreateNestedManyWithoutAdminInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
-    component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
+    College?: CollegeUncheckedCreateNestedManyWithoutAdminInput
+    Warehouse?: WarehouseUncheckedCreateNestedManyWithoutAdminInput
     HOD?: HODUncheckedCreateNestedManyWithoutAdminInput
     Lab?: LabUncheckedCreateNestedManyWithoutAdminInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutAdminInput
   }
 
   export type AdminCreateOrConnectWithoutDepartmentInput = {
@@ -20499,11 +16521,9 @@ export namespace Prisma {
     name: string
     address: string
     collegeId: string
-    admin: AdminCreateNestedOneWithoutCollegesInput
-    staffs?: StaffCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseCreateNestedManyWithoutCollegeInput
-    component?: ComponentCreateNestedManyWithoutCollegeInput
-    hod?: HODCreateNestedManyWithoutCollegeInput
+    admin: AdminCreateNestedOneWithoutCollegeInput
+    HOD?: HODCreateNestedManyWithoutCollegeInput
+    Component?: ComponentCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeUncheckedCreateWithoutDepartmentInput = {
@@ -20512,10 +16532,8 @@ export namespace Prisma {
     address: string
     collegeId: string
     adminId: number
-    staffs?: StaffUncheckedCreateNestedManyWithoutCollegeInput
-    warehouses?: WarehouseUncheckedCreateNestedManyWithoutCollegeInput
-    component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
-    hod?: HODUncheckedCreateNestedManyWithoutCollegeInput
+    HOD?: HODUncheckedCreateNestedManyWithoutCollegeInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutCollegeInput
   }
 
   export type CollegeCreateOrConnectWithoutDepartmentInput = {
@@ -20530,7 +16548,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     admin: AdminCreateNestedOneWithoutHODInput
-    college: CollegeCreateNestedOneWithoutHodInput
+    college: CollegeCreateNestedOneWithoutHODInput
     Report?: ReportCreateNestedManyWithoutHodInput
   }
 
@@ -20554,14 +16572,14 @@ export namespace Prisma {
   export type LabCreateWithoutDepartmentInput = {
     name: string
     admin?: AdminCreateNestedOneWithoutLabInput
-    components?: ComponentCreateNestedManyWithoutLabInput
+    Component?: ComponentCreateNestedManyWithoutLabInput
   }
 
   export type LabUncheckedCreateWithoutDepartmentInput = {
     id?: number
     name: string
     adminId?: number | null
-    components?: ComponentUncheckedCreateNestedManyWithoutLabInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutLabInput
   }
 
   export type LabCreateOrConnectWithoutDepartmentInput = {
@@ -20586,7 +16604,7 @@ export namespace Prisma {
     admin: AdminCreateNestedOneWithoutComponentInput
     college: CollegeCreateNestedOneWithoutComponentInput
     warehouse: WarehouseCreateNestedOneWithoutComponentInput
-    lab: LabCreateNestedOneWithoutComponentsInput
+    lab: LabCreateNestedOneWithoutComponentInput
     Report?: ReportCreateNestedManyWithoutComponentInput
   }
 
@@ -20660,12 +16678,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUpdateManyWithoutAdminNestedInput
-    component?: ComponentUpdateManyWithoutAdminNestedInput
+    College?: CollegeUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUpdateManyWithoutAdminNestedInput
     HOD?: HODUpdateManyWithoutAdminNestedInput
     Lab?: LabUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateWithoutDepartmentInput = {
@@ -20679,12 +16696,11 @@ export namespace Prisma {
     resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    colleges?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
-    staffs?: StaffUncheckedUpdateManyWithoutAdminNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
+    College?: CollegeUncheckedUpdateManyWithoutAdminNestedInput
+    Warehouse?: WarehouseUncheckedUpdateManyWithoutAdminNestedInput
     HOD?: HODUncheckedUpdateManyWithoutAdminNestedInput
     Lab?: LabUncheckedUpdateManyWithoutAdminNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type CollegeUpsertWithoutDepartmentInput = {
@@ -20702,11 +16718,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutCollegesNestedInput
-    staffs?: StaffUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUpdateManyWithoutCollegeNestedInput
-    hod?: HODUpdateManyWithoutCollegeNestedInput
+    admin?: AdminUpdateOneRequiredWithoutCollegeNestedInput
+    HOD?: HODUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUpdateManyWithoutCollegeNestedInput
   }
 
   export type CollegeUncheckedUpdateWithoutDepartmentInput = {
@@ -20715,44 +16729,24 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
     adminId?: IntFieldUpdateOperationsInput | number
-    staffs?: StaffUncheckedUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
-    hod?: HODUncheckedUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
   }
 
-  export type HODUpsertWithoutDepartmentsInput = {
+  export type HODUpsertWithWhereUniqueWithoutDepartmentsInput = {
+    where: HODWhereUniqueInput
     update: XOR<HODUpdateWithoutDepartmentsInput, HODUncheckedUpdateWithoutDepartmentsInput>
     create: XOR<HODCreateWithoutDepartmentsInput, HODUncheckedCreateWithoutDepartmentsInput>
-    where?: HODWhereInput
   }
 
-  export type HODUpdateToOneWithWhereWithoutDepartmentsInput = {
-    where?: HODWhereInput
+  export type HODUpdateWithWhereUniqueWithoutDepartmentsInput = {
+    where: HODWhereUniqueInput
     data: XOR<HODUpdateWithoutDepartmentsInput, HODUncheckedUpdateWithoutDepartmentsInput>
   }
 
-  export type HODUpdateWithoutDepartmentsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    admin?: AdminUpdateOneRequiredWithoutHODNestedInput
-    college?: CollegeUpdateOneRequiredWithoutHodNestedInput
-    Report?: ReportUpdateManyWithoutHodNestedInput
-  }
-
-  export type HODUncheckedUpdateWithoutDepartmentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    adminId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
+  export type HODUpdateManyWithWhereWithoutDepartmentsInput = {
+    where: HODScalarWhereInput
+    data: XOR<HODUpdateManyMutationInput, HODUncheckedUpdateManyWithoutDepartmentsInput>
   }
 
   export type LabUpsertWithWhereUniqueWithoutDepartmentInput = {
@@ -20806,11 +16800,12 @@ export namespace Prisma {
   export type DepartmentCreateWithoutReportInput = {
     name: string
     departmentId: string
+    hodId?: number | null
     admin: AdminCreateNestedOneWithoutDepartmentInput
     college: CollegeCreateNestedOneWithoutDepartmentInput
-    hod?: HODCreateNestedOneWithoutDepartmentsInput
+    HOD?: HODCreateNestedManyWithoutDepartmentsInput
     Lab?: LabCreateNestedManyWithoutDepartmentInput
-    components?: ComponentCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentUncheckedCreateWithoutReportInput = {
@@ -20820,8 +16815,9 @@ export namespace Prisma {
     collegeId: number
     adminId: number
     hodId?: number | null
+    HOD?: HODUncheckedCreateNestedManyWithoutDepartmentsInput
     Lab?: LabUncheckedCreateNestedManyWithoutDepartmentInput
-    components?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
+    Component?: ComponentUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentCreateOrConnectWithoutReportInput = {
@@ -20841,8 +16837,8 @@ export namespace Prisma {
     admin: AdminCreateNestedOneWithoutComponentInput
     college: CollegeCreateNestedOneWithoutComponentInput
     warehouse: WarehouseCreateNestedOneWithoutComponentInput
-    lab: LabCreateNestedOneWithoutComponentsInput
-    Department?: DepartmentCreateNestedManyWithoutComponentsInput
+    lab: LabCreateNestedOneWithoutComponentInput
+    Department?: DepartmentCreateNestedManyWithoutComponentInput
   }
 
   export type ComponentUncheckedCreateWithoutReportInput = {
@@ -20859,7 +16855,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     status?: $Enums.Status
     type: $Enums.ComponentType
-    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentsInput
+    Department?: DepartmentUncheckedCreateNestedManyWithoutComponentInput
   }
 
   export type ComponentCreateOrConnectWithoutReportInput = {
@@ -20874,8 +16870,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     admin: AdminCreateNestedOneWithoutHODInput
-    college: CollegeCreateNestedOneWithoutHodInput
-    departments?: DepartmentCreateNestedManyWithoutHodInput
+    college: CollegeCreateNestedOneWithoutHODInput
+    departments?: DepartmentCreateNestedManyWithoutHODInput
   }
 
   export type HODUncheckedCreateWithoutReportInput = {
@@ -20887,7 +16883,7 @@ export namespace Prisma {
     collegeId: number
     adminId: number
     role?: $Enums.Role
-    departments?: DepartmentUncheckedCreateNestedManyWithoutHodInput
+    departments?: DepartmentUncheckedCreateNestedManyWithoutHODInput
   }
 
   export type HODCreateOrConnectWithoutReportInput = {
@@ -20909,11 +16905,12 @@ export namespace Prisma {
   export type DepartmentUpdateWithoutReportInput = {
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
     admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
     college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
-    hod?: HODUpdateOneWithoutDepartmentsNestedInput
+    HOD?: HODUpdateManyWithoutDepartmentsNestedInput
     Lab?: LabUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUpdateManyWithoutDepartmentNestedInput
   }
 
   export type DepartmentUncheckedUpdateWithoutReportInput = {
@@ -20923,8 +16920,9 @@ export namespace Prisma {
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
     hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    HOD?: HODUncheckedUpdateManyWithoutDepartmentsNestedInput
     Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type ComponentUpsertWithoutReportInput = {
@@ -20950,8 +16948,8 @@ export namespace Prisma {
     admin?: AdminUpdateOneRequiredWithoutComponentNestedInput
     college?: CollegeUpdateOneRequiredWithoutComponentNestedInput
     warehouse?: WarehouseUpdateOneRequiredWithoutComponentNestedInput
-    lab?: LabUpdateOneRequiredWithoutComponentsNestedInput
-    Department?: DepartmentUpdateManyWithoutComponentsNestedInput
+    lab?: LabUpdateOneRequiredWithoutComponentNestedInput
+    Department?: DepartmentUpdateManyWithoutComponentNestedInput
   }
 
   export type ComponentUncheckedUpdateWithoutReportInput = {
@@ -20968,7 +16966,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
-    Department?: DepartmentUncheckedUpdateManyWithoutComponentsNestedInput
+    Department?: DepartmentUncheckedUpdateManyWithoutComponentNestedInput
   }
 
   export type HODUpsertWithoutReportInput = {
@@ -20989,8 +16987,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     admin?: AdminUpdateOneRequiredWithoutHODNestedInput
-    college?: CollegeUpdateOneRequiredWithoutHodNestedInput
-    departments?: DepartmentUpdateManyWithoutHodNestedInput
+    college?: CollegeUpdateOneRequiredWithoutHODNestedInput
+    departments?: DepartmentUpdateManyWithoutHODNestedInput
   }
 
   export type HODUncheckedUpdateWithoutReportInput = {
@@ -21002,7 +17000,7 @@ export namespace Prisma {
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    departments?: DepartmentUncheckedUpdateManyWithoutHodNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutHODNestedInput
   }
 
   export type CollegeCreateManyAdminInput = {
@@ -21012,23 +17010,35 @@ export namespace Prisma {
     collegeId: string
   }
 
-  export type StaffCreateManyAdminInput = {
-    id?: number
-    name: string
-    email: string
-    password: string
-    phone: string
-    collegeId: number
-    role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-  }
-
   export type WarehouseCreateManyAdminInput = {
     id?: number
     name: string
     collegeId: number
     warehouseId: string
+  }
+
+  export type DepartmentCreateManyAdminInput = {
+    id?: number
+    name: string
+    departmentId: string
+    collegeId: number
+    hodId?: number | null
+  }
+
+  export type HODCreateManyAdminInput = {
+    id?: number
+    name: string
+    email: string
+    phone: string
+    password: string
+    collegeId: number
+    role?: $Enums.Role
+  }
+
+  export type LabCreateManyAdminInput = {
+    id?: number
+    name: string
+    departmentId: number
   }
 
   export type ComponentCreateManyAdminInput = {
@@ -21046,39 +17056,13 @@ export namespace Prisma {
     type: $Enums.ComponentType
   }
 
-  export type HODCreateManyAdminInput = {
-    id?: number
-    name: string
-    email: string
-    phone: string
-    password: string
-    collegeId: number
-    role?: $Enums.Role
-  }
-
-  export type DepartmentCreateManyAdminInput = {
-    id?: number
-    name: string
-    departmentId: string
-    collegeId: number
-    hodId?: number | null
-  }
-
-  export type LabCreateManyAdminInput = {
-    id?: number
-    name: string
-    departmentId: number
-  }
-
   export type CollegeUpdateWithoutAdminInput = {
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
-    staffs?: StaffUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUpdateManyWithoutCollegeNestedInput
-    hod?: HODUpdateManyWithoutCollegeNestedInput
     Department?: DepartmentUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUpdateManyWithoutCollegeNestedInput
   }
 
   export type CollegeUncheckedUpdateWithoutAdminInput = {
@@ -21086,11 +17070,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     collegeId?: StringFieldUpdateOperationsInput | string
-    staffs?: StaffUncheckedUpdateManyWithoutCollegeNestedInput
-    warehouses?: WarehouseUncheckedUpdateManyWithoutCollegeNestedInput
-    component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
-    hod?: HODUncheckedUpdateManyWithoutCollegeNestedInput
     Department?: DepartmentUncheckedUpdateManyWithoutCollegeNestedInput
+    HOD?: HODUncheckedUpdateManyWithoutCollegeNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutCollegeNestedInput
   }
 
   export type CollegeUncheckedUpdateManyWithoutAdminInput = {
@@ -21100,48 +17082,11 @@ export namespace Prisma {
     collegeId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StaffUpdateWithoutAdminInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    college?: CollegeUpdateOneRequiredWithoutStaffsNestedInput
-    componentRequest?: ComponentRequestUpdateManyWithoutStaffNestedInput
-  }
-
-  export type StaffUncheckedUpdateWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    componentRequest?: ComponentRequestUncheckedUpdateManyWithoutStaffNestedInput
-  }
-
-  export type StaffUncheckedUpdateManyWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
   export type WarehouseUpdateWithoutAdminInput = {
     name?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
-    college?: CollegeUpdateOneRequiredWithoutWarehousesNestedInput
-    component?: ComponentUpdateManyWithoutWarehouseNestedInput
+    Component?: ComponentUpdateManyWithoutWarehouseNestedInput
   }
 
   export type WarehouseUncheckedUpdateWithoutAdminInput = {
@@ -21149,7 +17094,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     collegeId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
-    component?: ComponentUncheckedUpdateManyWithoutWarehouseNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutWarehouseNestedInput
   }
 
   export type WarehouseUncheckedUpdateManyWithoutAdminInput = {
@@ -21157,6 +17102,89 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     collegeId?: IntFieldUpdateOperationsInput | number
     warehouseId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DepartmentUpdateWithoutAdminInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
+    HOD?: HODUpdateManyWithoutDepartmentsNestedInput
+    Lab?: LabUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUpdateManyWithoutDepartmentNestedInput
+    Report?: ReportUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    HOD?: HODUncheckedUpdateManyWithoutDepartmentsNestedInput
+    Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
+    Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateManyWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type HODUpdateWithoutAdminInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    college?: CollegeUpdateOneRequiredWithoutHODNestedInput
+    departments?: DepartmentUpdateManyWithoutHODNestedInput
+    Report?: ReportUpdateManyWithoutHodNestedInput
+  }
+
+  export type HODUncheckedUpdateWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    departments?: DepartmentUncheckedUpdateManyWithoutHODNestedInput
+    Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
+  }
+
+  export type HODUncheckedUpdateManyWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type LabUpdateWithoutAdminInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    department?: DepartmentUpdateOneRequiredWithoutLabNestedInput
+    Component?: ComponentUpdateManyWithoutLabNestedInput
+  }
+
+  export type LabUncheckedUpdateWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: IntFieldUpdateOperationsInput | number
+    Component?: ComponentUncheckedUpdateManyWithoutLabNestedInput
+  }
+
+  export type LabUncheckedUpdateManyWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ComponentUpdateWithoutAdminInput = {
@@ -21170,9 +17198,9 @@ export namespace Prisma {
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
     college?: CollegeUpdateOneRequiredWithoutComponentNestedInput
     warehouse?: WarehouseUpdateOneRequiredWithoutComponentNestedInput
-    lab?: LabUpdateOneRequiredWithoutComponentsNestedInput
+    lab?: LabUpdateOneRequiredWithoutComponentNestedInput
+    Department?: DepartmentUpdateManyWithoutComponentNestedInput
     Report?: ReportUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateWithoutAdminInput = {
@@ -21188,8 +17216,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
+    Department?: DepartmentUncheckedUpdateManyWithoutComponentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateManyWithoutAdminInput = {
@@ -21207,104 +17235,22 @@ export namespace Prisma {
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
   }
 
-  export type HODUpdateWithoutAdminInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    college?: CollegeUpdateOneRequiredWithoutHodNestedInput
-    departments?: DepartmentUpdateManyWithoutHodNestedInput
-    Report?: ReportUpdateManyWithoutHodNestedInput
+  export type DepartmentCreateManyCollegeInput = {
+    id?: number
+    name: string
+    departmentId: string
+    adminId: number
+    hodId?: number | null
   }
 
-  export type HODUncheckedUpdateWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    departments?: DepartmentUncheckedUpdateManyWithoutHodNestedInput
-    Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
-  }
-
-  export type HODUncheckedUpdateManyWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  }
-
-  export type DepartmentUpdateWithoutAdminInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
-    hod?: HODUpdateOneWithoutDepartmentsNestedInput
-    Lab?: LabUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUpdateManyWithoutDepartmentNestedInput
-    Report?: ReportUpdateManyWithoutDepartmentNestedInput
-  }
-
-  export type DepartmentUncheckedUpdateWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    hodId?: NullableIntFieldUpdateOperationsInput | number | null
-    Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
-    Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
-  }
-
-  export type DepartmentUncheckedUpdateManyWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    hodId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type LabUpdateWithoutAdminInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    department?: DepartmentUpdateOneRequiredWithoutLabNestedInput
-    components?: ComponentUpdateManyWithoutLabNestedInput
-  }
-
-  export type LabUncheckedUpdateWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: IntFieldUpdateOperationsInput | number
-    components?: ComponentUncheckedUpdateManyWithoutLabNestedInput
-  }
-
-  export type LabUncheckedUpdateManyWithoutAdminInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type StaffCreateManyCollegeInput = {
+  export type HODCreateManyCollegeInput = {
     id?: number
     name: string
     email: string
-    password: string
     phone: string
+    password: string
     adminId: number
     role?: $Enums.Role
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-  }
-
-  export type WarehouseCreateManyCollegeInput = {
-    id?: number
-    name: string
-    adminId: number
-    warehouseId: string
   }
 
   export type ComponentCreateManyCollegeInput = {
@@ -21322,81 +17268,68 @@ export namespace Prisma {
     type: $Enums.ComponentType
   }
 
-  export type HODCreateManyCollegeInput = {
-    id?: number
-    name: string
-    email: string
-    phone: string
-    password: string
-    adminId: number
-    role?: $Enums.Role
+  export type DepartmentUpdateWithoutCollegeInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
+    HOD?: HODUpdateManyWithoutDepartmentsNestedInput
+    Lab?: LabUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUpdateManyWithoutDepartmentNestedInput
+    Report?: ReportUpdateManyWithoutDepartmentNestedInput
   }
 
-  export type DepartmentCreateManyCollegeInput = {
-    id?: number
-    name: string
-    departmentId: string
-    adminId: number
-    hodId?: number | null
+  export type DepartmentUncheckedUpdateWithoutCollegeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    adminId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    HOD?: HODUncheckedUpdateManyWithoutDepartmentsNestedInput
+    Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
+    Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
-  export type StaffUpdateWithoutCollegeInput = {
+  export type DepartmentUncheckedUpdateManyWithoutCollegeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    adminId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type HODUpdateWithoutCollegeInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    admin?: AdminUpdateOneRequiredWithoutStaffsNestedInput
-    componentRequest?: ComponentRequestUpdateManyWithoutStaffNestedInput
+    admin?: AdminUpdateOneRequiredWithoutHODNestedInput
+    departments?: DepartmentUpdateManyWithoutHODNestedInput
+    Report?: ReportUpdateManyWithoutHodNestedInput
   }
 
-  export type StaffUncheckedUpdateWithoutCollegeInput = {
+  export type HODUncheckedUpdateWithoutCollegeInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     adminId?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    componentRequest?: ComponentRequestUncheckedUpdateManyWithoutStaffNestedInput
+    departments?: DepartmentUncheckedUpdateManyWithoutHODNestedInput
+    Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
   }
 
-  export type StaffUncheckedUpdateManyWithoutCollegeInput = {
+  export type HODUncheckedUpdateManyWithoutCollegeInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     adminId?: IntFieldUpdateOperationsInput | number
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type WarehouseUpdateWithoutCollegeInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    warehouseId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutWarehousesNestedInput
-    component?: ComponentUpdateManyWithoutWarehouseNestedInput
-  }
-
-  export type WarehouseUncheckedUpdateWithoutCollegeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    warehouseId?: StringFieldUpdateOperationsInput | string
-    component?: ComponentUncheckedUpdateManyWithoutWarehouseNestedInput
-  }
-
-  export type WarehouseUncheckedUpdateManyWithoutCollegeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    warehouseId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ComponentUpdateWithoutCollegeInput = {
@@ -21410,9 +17343,9 @@ export namespace Prisma {
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
     admin?: AdminUpdateOneRequiredWithoutComponentNestedInput
     warehouse?: WarehouseUpdateOneRequiredWithoutComponentNestedInput
-    lab?: LabUpdateOneRequiredWithoutComponentsNestedInput
+    lab?: LabUpdateOneRequiredWithoutComponentNestedInput
+    Department?: DepartmentUpdateManyWithoutComponentNestedInput
     Report?: ReportUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateWithoutCollegeInput = {
@@ -21428,8 +17361,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
+    Department?: DepartmentUncheckedUpdateManyWithoutComponentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateManyWithoutCollegeInput = {
@@ -21445,68 +17378,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
-  }
-
-  export type HODUpdateWithoutCollegeInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    admin?: AdminUpdateOneRequiredWithoutHODNestedInput
-    departments?: DepartmentUpdateManyWithoutHodNestedInput
-    Report?: ReportUpdateManyWithoutHodNestedInput
-  }
-
-  export type HODUncheckedUpdateWithoutCollegeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    departments?: DepartmentUncheckedUpdateManyWithoutHodNestedInput
-    Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
-  }
-
-  export type HODUncheckedUpdateManyWithoutCollegeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  }
-
-  export type DepartmentUpdateWithoutCollegeInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
-    hod?: HODUpdateOneWithoutDepartmentsNestedInput
-    Lab?: LabUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUpdateManyWithoutDepartmentNestedInput
-    Report?: ReportUpdateManyWithoutDepartmentNestedInput
-  }
-
-  export type DepartmentUncheckedUpdateWithoutCollegeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    hodId?: NullableIntFieldUpdateOperationsInput | number | null
-    Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
-    Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
-  }
-
-  export type DepartmentUncheckedUpdateManyWithoutCollegeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    adminId?: IntFieldUpdateOperationsInput | number
-    hodId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ComponentCreateManyWarehouseInput = {
@@ -21535,9 +17406,9 @@ export namespace Prisma {
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
     admin?: AdminUpdateOneRequiredWithoutComponentNestedInput
     college?: CollegeUpdateOneRequiredWithoutComponentNestedInput
-    lab?: LabUpdateOneRequiredWithoutComponentsNestedInput
+    lab?: LabUpdateOneRequiredWithoutComponentNestedInput
+    Department?: DepartmentUpdateManyWithoutComponentNestedInput
     Report?: ReportUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateWithoutWarehouseInput = {
@@ -21553,8 +17424,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
+    Department?: DepartmentUncheckedUpdateManyWithoutComponentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateManyWithoutWarehouseInput = {
@@ -21572,61 +17443,6 @@ export namespace Prisma {
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
   }
 
-  export type ComponentRequestCreateManyStaffInput = {
-    id?: number
-    name: string
-    brand: string
-    modelNumber: string
-    serialNumber: string
-    createdAt?: Date | string
-    type: string
-    status: string
-    createdByStaffId?: number | null
-  }
-
-  export type ComponentRequestUpdateWithoutStaffInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ComponentRequestUncheckedUpdateWithoutStaffInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ComponentRequestUncheckedUpdateManyWithoutStaffInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    modelNumber?: StringFieldUpdateOperationsInput | string
-    serialNumber?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    createdByStaffId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type DepartmentCreateManyHodInput = {
-    id?: number
-    name: string
-    departmentId: string
-    collegeId: number
-    adminId: number
-  }
-
   export type ReportCreateManyHodInput = {
     id?: number
     componentId: number
@@ -21636,33 +17452,36 @@ export namespace Prisma {
     departmentId: number
   }
 
-  export type DepartmentUpdateWithoutHodInput = {
+  export type DepartmentUpdateWithoutHODInput = {
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
     admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
     college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
     Lab?: LabUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUpdateManyWithoutDepartmentNestedInput
     Report?: ReportUpdateManyWithoutDepartmentNestedInput
   }
 
-  export type DepartmentUncheckedUpdateWithoutHodInput = {
+  export type DepartmentUncheckedUpdateWithoutHODInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
     Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
-    components?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutDepartmentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
-  export type DepartmentUncheckedUpdateManyWithoutHodInput = {
+  export type DepartmentUncheckedUpdateManyWithoutHODInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     departmentId?: StringFieldUpdateOperationsInput | string
     collegeId?: IntFieldUpdateOperationsInput | number
     adminId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ReportUpdateWithoutHodInput = {
@@ -21718,8 +17537,8 @@ export namespace Prisma {
     admin?: AdminUpdateOneRequiredWithoutComponentNestedInput
     college?: CollegeUpdateOneRequiredWithoutComponentNestedInput
     warehouse?: WarehouseUpdateOneRequiredWithoutComponentNestedInput
+    Department?: DepartmentUpdateManyWithoutComponentNestedInput
     Report?: ReportUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateWithoutLabInput = {
@@ -21735,8 +17554,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     type?: EnumComponentTypeFieldUpdateOperationsInput | $Enums.ComponentType
+    Department?: DepartmentUncheckedUpdateManyWithoutComponentNestedInput
     Report?: ReportUncheckedUpdateManyWithoutComponentNestedInput
-    Department?: DepartmentUncheckedUpdateManyWithoutComponentsNestedInput
   }
 
   export type ComponentUncheckedUpdateManyWithoutLabInput = {
@@ -21761,6 +17580,38 @@ export namespace Prisma {
     message: string
     createdAt?: Date | string
     departmentId: number
+  }
+
+  export type DepartmentUpdateWithoutComponentInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
+    college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
+    HOD?: HODUpdateManyWithoutDepartmentsNestedInput
+    Lab?: LabUpdateManyWithoutDepartmentNestedInput
+    Report?: ReportUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateWithoutComponentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    adminId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
+    HOD?: HODUncheckedUpdateManyWithoutDepartmentsNestedInput
+    Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
+    Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateManyWithoutComponentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    departmentId?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    adminId?: IntFieldUpdateOperationsInput | number
+    hodId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ReportUpdateWithoutComponentInput = {
@@ -21789,36 +17640,6 @@ export namespace Prisma {
     departmentId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type DepartmentUpdateWithoutComponentsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    admin?: AdminUpdateOneRequiredWithoutDepartmentNestedInput
-    college?: CollegeUpdateOneRequiredWithoutDepartmentNestedInput
-    hod?: HODUpdateOneWithoutDepartmentsNestedInput
-    Lab?: LabUpdateManyWithoutDepartmentNestedInput
-    Report?: ReportUpdateManyWithoutDepartmentNestedInput
-  }
-
-  export type DepartmentUncheckedUpdateWithoutComponentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    adminId?: IntFieldUpdateOperationsInput | number
-    hodId?: NullableIntFieldUpdateOperationsInput | number | null
-    Lab?: LabUncheckedUpdateManyWithoutDepartmentNestedInput
-    Report?: ReportUncheckedUpdateManyWithoutDepartmentNestedInput
-  }
-
-  export type DepartmentUncheckedUpdateManyWithoutComponentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    departmentId?: StringFieldUpdateOperationsInput | string
-    collegeId?: IntFieldUpdateOperationsInput | number
-    adminId?: IntFieldUpdateOperationsInput | number
-    hodId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
   export type LabCreateManyDepartmentInput = {
     id?: number
     name: string
@@ -21834,17 +17655,51 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type HODUpdateWithoutDepartmentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    admin?: AdminUpdateOneRequiredWithoutHODNestedInput
+    college?: CollegeUpdateOneRequiredWithoutHODNestedInput
+    Report?: ReportUpdateManyWithoutHodNestedInput
+  }
+
+  export type HODUncheckedUpdateWithoutDepartmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    adminId?: IntFieldUpdateOperationsInput | number
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    Report?: ReportUncheckedUpdateManyWithoutHodNestedInput
+  }
+
+  export type HODUncheckedUpdateManyWithoutDepartmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    collegeId?: IntFieldUpdateOperationsInput | number
+    adminId?: IntFieldUpdateOperationsInput | number
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
   export type LabUpdateWithoutDepartmentInput = {
     name?: StringFieldUpdateOperationsInput | string
     admin?: AdminUpdateOneWithoutLabNestedInput
-    components?: ComponentUpdateManyWithoutLabNestedInput
+    Component?: ComponentUpdateManyWithoutLabNestedInput
   }
 
   export type LabUncheckedUpdateWithoutDepartmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
-    components?: ComponentUncheckedUpdateManyWithoutLabNestedInput
+    Component?: ComponentUncheckedUpdateManyWithoutLabNestedInput
   }
 
   export type LabUncheckedUpdateManyWithoutDepartmentInput = {
@@ -21865,7 +17720,7 @@ export namespace Prisma {
     admin?: AdminUpdateOneRequiredWithoutComponentNestedInput
     college?: CollegeUpdateOneRequiredWithoutComponentNestedInput
     warehouse?: WarehouseUpdateOneRequiredWithoutComponentNestedInput
-    lab?: LabUpdateOneRequiredWithoutComponentsNestedInput
+    lab?: LabUpdateOneRequiredWithoutComponentNestedInput
     Report?: ReportUpdateManyWithoutComponentNestedInput
   }
 
