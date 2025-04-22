@@ -60,6 +60,7 @@ model HOD {
   role        Role         @default(HOD)
   admin       Admin        @relation(fields: [adminId], references: [id])
   college     College      @relation(fields: [collegeId], references: [id])
+  Report      Report[]
   departments Department[] @relation("HODDepartments")
 }
 
@@ -91,6 +92,7 @@ model Component {
   college      College       @relation(fields: [collegeId], references: [id])
   lab          Lab           @relation(fields: [labId], references: [id])
   warehouse    Warehouse     @relation(fields: [warehouseId], references: [id])
+  Report       Report[]
   Department   Department[]  @relation("ComponentToDepartment")
 
   @@index([labId])
@@ -107,8 +109,22 @@ model Department {
   admin        Admin       @relation(fields: [adminId], references: [id])
   college      College     @relation(fields: [collegeId], references: [id])
   Lab          Lab[]
+  Report       Report[]
   Component    Component[] @relation("ComponentToDepartment")
   HOD          HOD[]       @relation("HODDepartments")
+}
+
+model Report {
+  id           Int        @id @default(autoincrement())
+  componentId  Int
+  hodId        Int
+  status       Status
+  message      String
+  createdAt    DateTime   @default(now())
+  departmentId Int
+  component    Component  @relation(fields: [componentId], references: [id])
+  department   Department @relation(fields: [departmentId], references: [id])
+  hod          HOD        @relation(fields: [hodId], references: [id])
 }
 
 enum ComponentType {

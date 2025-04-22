@@ -11,7 +11,7 @@ const warehouse_routes_1 = __importDefault(require("./routes/warehouse.routes"))
 const createStaff_routes_1 = __importDefault(require("./routes/createStaff.routes"));
 const compnent_routes_1 = __importDefault(require("./routes/compnent.routes"));
 const staff_routes_1 = __importDefault(require("./routes/staff.routes"));
-const componentRequest_routes_1 = __importDefault(require("./routes/componentRequest.routes"));
+// import RequestStaff from './routes/componentRequest.routes'
 const createDepartment_routes_1 = __importDefault(require("./routes/createDepartment.routes"));
 const createHod_routes_1 = __importDefault(require("./routes/createHod.routes"));
 const createLab_routes_1 = __importDefault(require("./routes/createLab.routes"));
@@ -26,7 +26,7 @@ app.use('/api/warehouse', warehouse_routes_1.default);
 app.use('/api/staff', createStaff_routes_1.default);
 app.use("/api/component", compnent_routes_1.default);
 app.use("/api/staff", staff_routes_1.default);
-app.use("/api", componentRequest_routes_1.default);
+// app.use("/api", RequestStaff);
 app.use("/api/department", createDepartment_routes_1.default);
 app.use("/api/hod", createHod_routes_1.default);
 app.use("/api/lab", createLab_routes_1.default);

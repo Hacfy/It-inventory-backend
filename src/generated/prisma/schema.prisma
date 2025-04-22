@@ -158,6 +158,8 @@ model HOD {
   college     College      @relation(fields: [collegeId], references: [id])
   departments Department[] @relation("HODDepartments")
 
+  // Report Report[]
+
   Report Report[]
 }
 
@@ -168,6 +170,7 @@ model Lab {
   adminId      Int?
   department   Department @relation(fields: [departmentId], references: [id])
   admin        Admin?     @relation(fields: [adminId], references: [id])
+  // components   Component[]
 
   Component Component[]
 }
@@ -207,6 +210,12 @@ model Department {
   hodId        Int?
   admin        Admin   @relation(fields: [adminId], references: [id])
   college      College @relation(fields: [collegeId], references: [id])
+  // hod          HOD?     @relation("HODDepartments", fields: [hodId], references: [id])  
+  // Lab          Lab[]    
+  // components   Component[]
+  // Report Report[]
+
+  // HOD HOD[] @relation("HODDepartments")
 
   HOD HOD[] @relation("HODDepartments")
 
@@ -230,6 +239,12 @@ model Report {
   hod          HOD        @relation(fields: [hodId], references: [id])
 }
 
+// enum RequestStatus {
+//   PENDING
+//   APPROVED
+//   REJECTED
+// }
+
 enum ComponentType {
   MONITOR
   KEYBOARD
@@ -248,6 +263,6 @@ enum Status {
 
 enum Role {
   ADMIN
-
+  // STAFF
   HOD
 }
